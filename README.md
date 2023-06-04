@@ -50,3 +50,21 @@ To run the project, simply use the following command:
 npm i
 npm start
 ```
+
+## Docker compose file
+Pull node latest image, clone the repo and start it
+```
+version: '3'
+services:
+  nodejs:
+    container_name: ruisbot
+    image: node:latest
+    labels:
+        com.centurylinklabs.watchtower.stop-signal: "SIGHUP"
+    command: bash -c "cd /opt;[ ! -d 'discord-ruisbot' ] && git clone https://github.com/RPDJF/discord-ruisbot.git || (cd discord-ruisbot && git checkout main && git pull); cd discord-ruisbot;npm i; npm start"
+    volumes:
+      - ./opt:/opt/ # don't forget to  upload .env file into /opt/ruisbot/
+    environment:
+      - TZ=Europe/Zurich
+    restart: always
+```
