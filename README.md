@@ -5,6 +5,7 @@
 
 ## Description
 discord-ruisbot is a Discord bot developed by RPDJF (also known as Banatawa) from ruinformatique. The bot utilizes various features and APIs to enhance your Discord server experience.
+Official bot : https://discord.com/oauth2/authorize?client_id=956303957439955007&permissions=8&scope=bot.
 
 ## Contact
 - Creator: RPDJF (Banatawa)
