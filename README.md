@@ -42,6 +42,7 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `FS_TYPE`: [Firebase Type]
 - `GIPHY_API_KEY`: [Giphy API Key]
 - `OPENAI_API_KEY`: [OpenAI API Key]
+- `WAIFU-IT_API_KEY`: [Waifu.it API Key]
 
 ## Getting Started
 **Make sure you have already seen the requirements above.**
@@ -52,7 +53,9 @@ npm start
 ```
 
 ## Docker compose file
-Pull node latest image, clone the repo and start it
+It pulls node latest image, clones the repo and starts it
+Don't forget to check the requirements
+`com.centurylinklabs.watchtower.stop-signal` allows Watchtower to update the container. Not needed if you don't have Watchtower.
 ```
 version: '3'
 services:

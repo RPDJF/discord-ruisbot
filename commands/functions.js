@@ -78,12 +78,18 @@ async function embedReply(msg, title, color, description, image, footer, url, js
             await msg.reply({ embeds: [output] });
         }
     } catch(e){
+        if(e.status == 404){
+            console.log(e);
+            return;
+        }
         // slash command support
         if (attachment !== undefined) {
             await msg.editReply({ embeds: [output], files: [attachment] });
         }
         else {
             await msg.editReply({ embeds: [output] });
+            console.log("error")
+            console.log(e);
         }
     }
     

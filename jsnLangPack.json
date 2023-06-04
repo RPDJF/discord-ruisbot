@@ -115,9 +115,9 @@
                     "usage": "cheer [user]"
                 },
                 {
-                    "command": "handhold",
+                    "command": "hold",
                     "description": "",
-                    "usage": "handhold [user]"
+                    "usage": "hold [user]"
                 },
                 {
                     "command": "blush",
@@ -321,7 +321,7 @@
                     "1": "Arf... {user} just facepalmed itself..."
                 }
             },
-            "handhold": {
+            "hold": {
                 "emoji": ":people_holding_hands:",
                 "message": {
                     "0": "So cute ! {user} and {target} are holding their hands !"
@@ -590,9 +590,9 @@
                     "usage": "cheer [user]"
                 },
                 {
-                    "command": "handhold",
+                    "command": "hold",
                     "description": "tenir la main",
-                    "usage": "handhold [user]"
+                    "usage": "hold [user]"
                 },
                 {
                     "command": "blush",
@@ -795,7 +795,7 @@
                     "0": "{user} se facepalm..."
                 }
             },
-            "handhold": {
+            "hold": {
                 "emoji": ":people_holding_hands:",
                 "message": {
                     "0": "{user} et {target} se tiennent la main !"

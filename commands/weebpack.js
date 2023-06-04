@@ -4,6 +4,10 @@ const jsnLangPack = require("../jsnLangPack.json");
 const ainasepics = require("ainasepics");
 const weebPack = require("./settings/weebpack.json");
 const functions = require("./functions");
+const axios = require("axios");
+const cheerio = require("cheerio");
+const token = process.env.WAIFUIT_API_KEY;
+const url = "https://waifu.it/api/"
 /**
  * 
  * @param {discord.Message<boolean>} msg 
@@ -46,30 +50,63 @@ async function start(msg, args, lang) {
 async function weebpack(msg, args, lang, select) {
     // determines if mentioning user is necessary
     if (select === undefined) select = true;
-    // select random if needed
+    // select random user if needed
     if (select && (args[1] == "random" || args.length <= 1)) {
         const randomUser = await functions.getRandomUser(msg);
         args[1] = `<@${randomUser.id}>`;
         await weebpack(msg, args, lang, select);
         return;
     }
-    if (!select) {
-        // uses ainasepics to get gif
-        let output = `${jsnLangPack[lang].weebpack[args[0]].emoji} ${jsnLangPack[lang].weebpack[args[0]].message[Math.floor(Math.random() * Object.keys(jsnLangPack[lang].weebpack[args[0]].message).length)]}`;
-        output = output.replace("{user}", msg.author);
-        ainasepics.get(args[0])
-            .then(imageData => functions.embedReply(msg, undefined, undefined, output, imageData.url, undefined, undefined, undefined, "ainasepics", "https://www.npmjs.com/package/ainasepics", "https://www.logolynx.com/images/logolynx/7f/7fb976a537620fed310872d533cd161c.png"))
-            .catch(error => console.log(error));
-    } else if (select && args[1].charAt(0) != "<") {
+    // prepare the text
+    let output = `${jsnLangPack[lang].weebpack[args[0]].emoji} ${jsnLangPack[lang].weebpack[args[0]].message[Math.floor(Math.random() * Object.keys(jsnLangPack[lang].weebpack[args[0]].message).length)]}`;
+    output = output.replace("{user}", msg.author);
+
+    if (select && args[1].charAt(0) != "<") {
         await msg.reply(jsnLangPack[lang].weebpack.error.mention);
-    } else {
-        // uses ainasepics to get gif
-        let output = `${jsnLangPack[lang].weebpack[args[0]].emoji} ${jsnLangPack[lang].weebpack[args[0]].message[Math.floor(Math.random() * Object.keys(jsnLangPack[lang].weebpack[args[0]].message).length)]}`;
-        output = (output.replace("{user}", msg.author)).replace("{target}", args[1]);
-        ainasepics.get(args[0])
-            .then(imageData => functions.embedReply(msg, undefined, undefined, output, imageData.url, undefined, undefined, undefined, "ainasepics", "https://www.npmjs.com/package/ainasepics", "https://www.logolynx.com/images/logolynx/7f/7fb976a537620fed310872d533cd161c.png"))
-            .catch(error => console.log(error));
+        return;
     }
+    
+    if(select){
+        // prepare the text
+        output = output.replace("{target}", args[1]);
+    }
+
+    // get gif with waifu.it api
+    axios.get(`${url}${args[0]}`, {
+        headers: {
+            Authorization: token,
+        }
+    })
+        .then(async (response) => {
+            let gifUrl = response.data.url;
+    
+            // check if the URL is a short link, discordjs embed doesn't support tenor shorts links
+            const shortTenorLinkPattern = /^https:\/\/tenor\.com\/\w+\.gif$/;
+            if (shortTenorLinkPattern.test(gifUrl)) {
+                try {
+                    const htmlResponse = await axios.get(gifUrl);
+                    const $ = cheerio.load(htmlResponse.data);
+    
+                    // find and get content of the first <meta> tag with property="og:url", contains long link
+                    const metaTags = $('meta[property="og:url"]');
+                    if (metaTags.length > 0) {
+                        const longLink = metaTags.eq(0).attr('content');
+                        gifUrl = longLink;
+                    }
+                } catch (error) {
+                    console.error('Error fetching HTML:', error);
+                }
+            }
+    
+            // add ".gif" extension if missing
+            if (!gifUrl.endsWith('.gif')) {
+                gifUrl += '.gif';
+            }
+    
+            // send gif
+            functions.embedReply(msg, undefined, undefined, output, gifUrl, undefined, undefined, undefined, "waifu.it", "https://waifu.it/", "https://waifu.it/public/favicon.ico");
+        })
+        .catch(error => console.error(error));
 }
 // ACTIONS ARRAY
 const aActions = [];
