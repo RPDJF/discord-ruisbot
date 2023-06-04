@@ -1,0 +1,21 @@
+{
+  "name": "ruisbot",
+  "version": "1.4.0",
+  "description": "Amusez-vous sur Discord avec Rui's Bot ! Jouez à des mini-jeux, envoyez de memes, discutez avec lui, générez des images délirantes et envoyez des gifs de gros weeb entre vous !",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rpdjf",
+  "license": "ISC",
+  "dependencies": {
+    "ainasepics": "^4.1.0",
+    "axios": "^0.27.2",
+    "chatgpt-api": "^0.0.6",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.1",
+    "firebase-admin": "^10.3.0",
+    "openai": "^3.2.1"
+  }
+}

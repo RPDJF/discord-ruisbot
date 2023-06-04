@@ -1,0 +1,54 @@
+{
+    "items": [
+        {
+            "id": 0,
+            "value": 5,
+            "occurence": 100,
+            "name":{
+                "fr":"pierre",
+                "en":"stone"
+            },
+            "emoji":":rock:"
+        },
+        {
+            "id": 1,
+            "value": 50,
+            "occurence": 50,
+            "name":{
+                "fr":"charbon",
+                "en":"coal"
+            },
+            "emoji":":black_circle:"
+        },
+        {
+            "id": 2,
+            "value": 100,
+            "occurence": 20,
+            "name":{
+                "fr":"lingot de fer",
+                "en":"iron"
+            },
+            "emoji":":link:"
+        },
+        {
+            "id": 3,
+            "value": 600,
+            "occurence": 8,
+            "name":{
+                "fr":"lingot d'or",
+                "en":"gold"
+            },
+            "emoji":":coin:"
+        },
+        {
+            "id": 4,
+            "value": 2000,
+            "occurence": 1,
+            "name":{
+                "fr":"diamant",
+                "en":"diamond"
+            },
+            "emoji":":gem:"
+        }
+    ]
+}

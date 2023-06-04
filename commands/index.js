@@ -1,0 +1,17 @@
+exports.functions = require("./functions");
+exports.settings = require("./settings/mine.json");
+exports.dick = require("./dick");
+exports.help = require("./help");
+exports.lang = require("./lang");
+exports.meme = require("./meme");
+exports.mine = require("./mine");
+exports.ping = require("./ping");
+exports.prefix = require("./prefix");
+exports.secret = require("./secret");
+exports.weebpack = require("./weebpack");
+exports.version = require("./version");
+exports.chat = require("./chat");
+exports.unknow = require("./unknow");
+exports.invite = require("./invite");
+exports.version = require("./version");
+exports.draw = require("./draw");
