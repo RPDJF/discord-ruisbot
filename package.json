@@ -10,7 +10,6 @@
   "author": "rpdjf",
   "license": "ISC",
   "dependencies": {
-    "ainasepics": "^4.1.0",
     "axios": "^0.27.2",
     "chatgpt-api": "^0.0.6",
     "cheerio": "^1.0.0-rc.12",

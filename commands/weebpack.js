@@ -1,7 +1,6 @@
 // imports
 const discord = require("discord.js");
 const jsnLangPack = require("../jsnLangPack.json");
-const ainasepics = require("ainasepics");
 const weebPack = require("./settings/weebpack.json");
 const functions = require("./functions");
 const axios = require("axios");
