@@ -26,7 +26,7 @@ async function start(msg, client, lang, isDepracted){
     // check if depracted usage, bot only should be mentionned @
     if(!isDepracted){
       // load context
-      const context = require("./settings/chat.json").context.map(entry => ({ role: "system", content: entry.replace("{date}",(new Date).toISOString()).replace("{botId}",client.user.id) }));
+      const context = require("./settings/chat.json").context.map(entry => ({ role: "system", content: entry.replace("{date}",(new Date).toISOString()).replace("{botid}",client.user.id) }));
       // get 10 last message
       const lastMessages = await msg.channel.messages.fetch({ limit: 8 });
       // create message array for openai
