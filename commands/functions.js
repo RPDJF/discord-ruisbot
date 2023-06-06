@@ -111,6 +111,24 @@ function addUserData(msg, data){
         updateCacheUserData(msg, data);
     });
 }
+
+/**
+ * 
+ * @param {discord.Message} msg 
+ * @param {*} data
+ */
+function addFeedChannel(msg, data){
+    // firestore init
+    const guildRef = db.collection("guilds");
+    const guildDoc = guildRef.doc(msg.guildId);
+    const feedChannelRef = guildDoc.collection("feedChannels");
+    const feedChannelDoc = feedChannelRef.doc(msg.author.id); // channel id (argument)
+    // register feed channel
+    const update = feedChannelDoc.set(data, {merge: true});
+    update.then(function(){
+        updateCacheUserData(msg, data);
+    });
+}
 /**
  * 
  * @param {discord.Message} msg 

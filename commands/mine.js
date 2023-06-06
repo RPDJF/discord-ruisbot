@@ -1,6 +1,5 @@
 // import
 const jsnLangPack = require("../jsnLangPack.json");
-const db = require("../db");
 const commands = require("./index");
 const discord = require("discord.js");
 const functions = require("./functions");

@@ -21,11 +21,11 @@ This project is licensed under the Creative Commons Attribution 4.0 Internationa
 
 ## Requirements
 A nodejs server is requiered.
-This project uses APIs from Google firebase, Giphy and OpenAI, make sure to get your own API keys.
+This project uses APIs from Google firebase, Tenor, OpenIA and more, make sure to get your own API keys for each of them.
 You need to setup environment variables, or at least, create an .env file to the root folder.
 
 ## Environment Variables
-The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. `GIPHY_API_KEY` isn't used for now but certainly will be in next updates.
+The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values.
 
 - `BOT_INVITE`: [Bot Invite Link]
 - `CLIENT_TOKEN`: [Discord Bot Token]
@@ -40,7 +40,7 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `FS_PROJECT_ID`: [Firebase Project ID]
 - `FS_TOKEN_URI`: [Firebase Token URI]
 - `FS_TYPE`: [Firebase Type]
-- `GIPHY_API_KEY`: [Giphy API Key]
+- `TENOR_API_KEY`: [Tenor API Key]
 - `OPENAI_API_KEY`: [OpenAI API Key]
 - `WAIFU-IT_API_KEY`: [Waifu.it API Key]
 
