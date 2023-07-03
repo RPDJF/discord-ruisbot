@@ -42,7 +42,7 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `FS_TYPE`: [Firebase Type]
 - `GIPHY_API_KEY`: [Giphy API Key]
 - `OPENAI_API_KEY`: [OpenAI API Key]
-- `WAIFU-IT_API_KEY`: [Waifu.it API Key]
+- `WAIFUIT_API_KEY`: [Waifu.it API Key]
 
 ## Getting Started
 **Make sure you have already seen the requirements above.**
