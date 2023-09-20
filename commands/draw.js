@@ -23,7 +23,6 @@ async function start(msg, args, lang) {
         // generate image
         const response = openai.createImage({
             prompt: args[1],
-            model: "openai-dall-e-2-0",
             n: 1,
             size: "512x512",
             user: msg.author.id,
