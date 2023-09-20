@@ -27,8 +27,8 @@ async function start(msg, client, lang, isDepracted){
     if(!isDepracted){
       // load context
       const context = require("./settings/chat.json").context.map(entry => ({ role: "system", content: entry.replace("{date}",(new Date).toISOString()).replace("{botid}",client.user.id) }));
-      // get 12 last message
-      const lastMessages = await msg.channel.messages.fetch({ limit: 12 });
+      // get 8 last message
+      const lastMessages = await msg.channel.messages.fetch({ limit: 8 });
       // create message array for openai
       const chatMessages = lastMessages.reverse().map(message => {
         const role = message.author.id === client.user.id ? "assistant":"user";
@@ -37,7 +37,7 @@ async function start(msg, client, lang, isDepracted){
       });
       // create openai completion
       const response = openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         messages: context.concat(chatMessages),
       },{
         validateStatus: function (status){
