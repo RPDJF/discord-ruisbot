@@ -1,7 +1,7 @@
 // import
 const db = require("../../db");
 const discord = require("discord.js");
-const {items, minimumRounds, gameLogo, gameName, gameThumbnail} = require("../../..//config/mine.conf");
+const {items, minimumRounds, gameLogo, gameName, gameThumbnail, gameCoolDownInMinute} = require("../../..//config/mine.conf");
 const { BOT_AUTHOR, PRIMARY_COLOR, BOT_ICON } = require("../../../config/bot-conf");
 const {name, version} = require("../../../package.json");
 const embedUtility = require("../features/embedUtility")
@@ -46,9 +46,9 @@ function play(msg, guild, userData){
         const lastUsage = userData.mine.lastusage;
         // check if CoolDown
         const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
-        if(differenceInMinutes < 30){
+        if(differenceInMinutes < gameCoolDownInMinute){
             msg.reply({
-                embeds: mineCoolDownEmbedBuilder(guild, 30 - Math.floor(differenceInMinutes)),
+                embeds: mineCoolDownEmbedBuilder(guild, gameCoolDownInMinute - Math.floor(differenceInMinutes)),
                 files: [gameLogo]
             });
             return(0);
@@ -124,12 +124,12 @@ function mineSuccessEmbedBuilder(guild, inventory, highscore){
     switch(guild.lang){
         case "fr":
             fields.push({
-                name: "Argent récolté",
+                name: "Valeur ajoutée",
                 value: `\`\`\`$${score}\`\`\``,
                 inline: true
             });
             fields.push({
-                name: "Argent au total",
+                name: "Valeur des ressources",
                 value: `\`\`\`$${highscore + score}\`\`\``,
                 inline: true
             });

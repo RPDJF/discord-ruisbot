@@ -60,4 +60,4 @@ const items = [
     }
 ];
 
-module.exports = {gameName, items, minimumRounds, gameLogo, gameThumbnail}
+module.exports = {gameName, items, minimumRounds, gameLogo, gameThumbnail, gameCoolDownInMinute}
