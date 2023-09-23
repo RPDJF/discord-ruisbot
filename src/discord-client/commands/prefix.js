@@ -1,5 +1,5 @@
 // imports
-const {Message} = require("discord.js");
+const {Message, PermissionFlagsBits} = require("discord.js");
 const { DEFAULT_PREFIX } = require("../../../config/bot-conf");
 const db = require("../../db");
 const embedUtility = require("../features/embedUtility");
