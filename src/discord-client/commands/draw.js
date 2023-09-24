@@ -18,6 +18,9 @@ module.exports = {
      * @param {Array} args
      */
     async execute(msg, args) {
+        // Transforms arguments into an only string, removing command name
+        args.shift();
+        args = args.join(' ');
         // check if GPT is disabled
         const guild = await db.getData("guilds", msg.guildId);
         if(!(guild == undefined || guild.gpt == undefined || guild.gpt.status)){
@@ -31,7 +34,7 @@ module.exports = {
             url:"https://openai.com/api/"
         }
         // generate image
-        const prompt = args[1];
+        const prompt = args;
         const n = 1;
         const size = "512x512";
 
@@ -48,7 +51,7 @@ module.exports = {
 
         try {
             const response = await axios.post("https://api.openai.com/v1/images/generations", data, { headers });
-            const embed = embedUtility.message(args[1], `${msg.author}`, author)[0];
+            const embed = embedUtility.message(args, `${msg.author}`, author)[0];
             embed.data.image = {url: await response.data.data[0].url};
             msg.reply({embeds: [embed]})
         } catch (error) {
