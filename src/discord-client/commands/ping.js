@@ -1,13 +1,11 @@
 // imports
 const { Message } = require("discord.js");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "ping",
-  description: {
-    en: "check the bot's ping to the server.",
-    fr: "vérifie que le bot répond au serveur.",
-  },
-  usage: "ping",
+  description: messages.data.commands.ping.description,
+  usage: messages.data.commands.ping.usage,
   category: undefined,
   /**
    * @param {Message} msg

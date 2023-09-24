@@ -3,14 +3,12 @@ const { Message, PermissionFlagsBits } = require("discord.js");
 const { DEFAULT_PREFIX } = require("../../../config/bot-conf");
 const db = require("../../modules/db");
 const embedUtility = require("../features/embedUtility");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "prefix",
-  description: {
-    en: "change bot's prefix.",
-    fr: "changer le préfixe du bot.",
-  },
-  usage: `prefix <new>\`\` | \`\`${DEFAULT_PREFIX}prefix <new>`,
+  description: messages.data.commands.prefix.description,
+  usage: messages.data.commands.prefix.usage,
   category: "configurations",
   /**
    * @param {Message} msg

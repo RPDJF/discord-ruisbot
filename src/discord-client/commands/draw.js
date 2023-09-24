@@ -4,14 +4,12 @@ const embedUtility = require("../features/embedUtility");
 const { OPENAI_API_KEY } = require("../../../config/openai-conf");
 const { default: axios } = require("axios");
 const db = require("../../modules/db");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "draw",
-  description: {
-    en: "Draw anything you want !.",
-    fr: "Dessine ce que tu veux !",
-  },
-  usage: "draw <something>",
+  description: messages.data.commands.draw.description,
+  usage: messages.data.commands.draw.usage,
   category: "fun",
   /**
    * @param {Message} msg

@@ -2,14 +2,12 @@
 const { Message, PermissionFlagsBits } = require("discord.js");
 const embedUtility = require("../features/embedUtility");
 const db = require("../../modules/db");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "gpt",
-  description: {
-    en: "Disable or enable GPT4.",
-    fr: "Désactiver ou réactiver GPT4.",
-  },
-  usage: "gpt <enable|disable>",
+  description: messages.data.commands.gpt.description,
+  usage: messages.data.commands.gpt.usage,
   category: "configurations",
   /**
    * @param {Message} msg

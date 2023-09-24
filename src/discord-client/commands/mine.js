@@ -9,13 +9,10 @@ const {
   gameThumbnail,
   gameCoolDownInMinute,
 } = require("../../..//config/mine.conf");
-const {
-  BOT_AUTHOR,
-  PRIMARY_COLOR,
-  BOT_ICON,
-} = require("../../../config/bot-conf");
+const { BOT_AUTHOR, PRIMARY_COLOR } = require("../../../config/bot-conf");
 const { name, version } = require("../../../package.json");
 const embedUtility = require("../features/embedUtility");
+const messages = require("../../modules/messages");
 
 /**
  *
@@ -292,11 +289,8 @@ function mineStatsEmbedBuilder(guild, cloudInventory) {
 
 module.exports = {
   name: "mine",
-  description: {
-    en: "a mine mini-game",
-    fr: "un mini-jeu de minage",
-  },
-  usage: "mine",
+  description: messages.data.commands.mine.description,
+  usage: messages.data.commands.mine.usage,
   category: "fun",
   execute,
 };

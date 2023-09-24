@@ -2,14 +2,12 @@
 const { Message, PermissionFlagsBits } = require("discord.js");
 const db = require("../../modules/db");
 const embedUtility = require("../features/embedUtility");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "lang",
-  description: {
-    en: "change bot's language.",
-    fr: "changer la langue du bot.",
-  },
-  usage: `lang <fr|en>`,
+  description: messages.data.commands.lang.description,
+  usage: messages.data.commands.lang.usage,
   category: "configurations",
   /**
    * @param {Message} msg

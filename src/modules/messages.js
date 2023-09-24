@@ -1,8 +1,36 @@
 // Imports
 const messages = {
   data: {
-    // Temporary name, next version will have all of the translations in here insteaf of fr: and en: elements
+    // In further updates, all of the text will be stored in here
     commands: {
+      dick: {
+        description: {
+          fr: "À quoi tu t'attends ?",
+          en: "What are u expecting for ?",
+        },
+        usage: "dick",
+      },
+      draw: {
+        description: {
+          fr: "Dessine ce que tu veux !",
+          en: "Draw anything yout want !",
+        },
+        usage: "draw <something>",
+      },
+      gpt: {
+        description: {
+          fr: "Désactiver ou réactiver GPT4 sur le serveur.",
+          en: "Disable or enable again GPT4 on this server.",
+        },
+        usage: "gpt <enable|disable>",
+      },
+      help: {
+        description: {
+          fr: "Liste des commandes",
+          en: "List of commands",
+        },
+        usage: "help <command|category> <page>",
+      },
       interactions: {
         angrystare: {
           description: {
@@ -1710,6 +1738,41 @@ const messages = {
             },
           },
         },
+      },
+      lang: {
+        description: {
+          fr: "Changer la langue du bot.",
+          en: "Change the bot's language.",
+        },
+        usage: "lang <fr|en>",
+      },
+      meme: {
+        description: {
+          fr: "Afficher un meme aléatoire.",
+          en: "Display a random meme.",
+        },
+        usage: "meme",
+      },
+      mine: {
+        description: {
+          fr: "Miner des ressources.",
+          en: "Mine resources.",
+        },
+        usage: "mine",
+      },
+      ping: {
+        description: {
+          fr: "Vérifier la latence du bot.",
+          en: "Check the bot's latency.",
+        },
+        usage: "ping",
+      },
+      prefix: {
+        description: {
+          fr: "Changer le préfixe du bot.",
+          en: "Change the bot's prefix.",
+        },
+        usage: "prefix <prefix>",
       },
     },
   },

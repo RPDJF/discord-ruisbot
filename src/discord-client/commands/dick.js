@@ -1,13 +1,11 @@
 // imports
 const { Message } = require("discord.js");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "dick",
-  description: {
-    en: "what are u expecting ?",
-    fr: "à quoi tu t'attends ?",
-  },
-  usage: "dick",
+  description: messages.data.commands.dick.description,
+  usage: messages.data.commands.dick.usage,
   category: "fun",
   /**
    * @param {Message} msg

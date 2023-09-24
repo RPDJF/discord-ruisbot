@@ -2,14 +2,12 @@
 const axios = require("axios");
 const { Message } = require("discord.js");
 const embedUtility = require("../features/embedUtility");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "meme",
-  description: {
-    en: "random memes from reddit",
-    fr: "memes de reddit",
-  },
-  usage: "meme",
+  description: messages.data.commands.meme.description,
+  usage: messages.data.commands.meme.usage,
   category: "fun",
   /**
    * @param {Message} msg

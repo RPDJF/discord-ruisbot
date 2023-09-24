@@ -2,14 +2,12 @@
 const embedUtility = require("../features/embedUtility");
 const db = require("../../modules/db");
 const { BOT_AUTHOR } = require("../../../config/bot-conf");
+const messages = require("../../modules/messages");
 
 module.exports = {
   name: "help",
-  description: {
-    en: "list of commands",
-    fr: "liste des commandes",
-  },
-  usage: "help <command|page>",
+  description: messages.data.commands.help.description,
+  usage: messages.data.commands.help.usage,
   category: undefined,
   /**
    * @param {Message} msg
