@@ -1,7 +1,7 @@
 // imports
 const axios = require("axios");
 const { Message } = require("discord.js");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const messages = require("../../modules/messages");
 
 module.exports = {

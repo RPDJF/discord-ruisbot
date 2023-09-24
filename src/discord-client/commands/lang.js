@@ -1,7 +1,7 @@
 // imports
 const { Message, PermissionFlagsBits } = require("discord.js");
 const db = require("../../modules/db");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const messages = require("../../modules/messages");
 
 module.exports = {

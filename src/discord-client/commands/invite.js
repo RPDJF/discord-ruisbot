@@ -2,7 +2,7 @@
 const { Message } = require("discord.js");
 const messages = require("../../modules/messages");
 const botConf = require("../../../config/bot-conf");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 
 module.exports = {
   name: "invite",

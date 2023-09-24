@@ -1,5 +1,5 @@
 // imports
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const db = require("../../modules/db");
 const { BOT_AUTHOR } = require("../../../config/bot-conf");
 const messages = require("../../modules/messages");

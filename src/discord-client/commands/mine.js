@@ -11,7 +11,7 @@ const {
 } = require("../../..//config/mine.conf");
 const { BOT_AUTHOR, PRIMARY_COLOR } = require("../../../config/bot-conf");
 const { name, version } = require("../../../package.json");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const messages = require("../../modules/messages");
 
 /**

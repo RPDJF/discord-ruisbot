@@ -1,6 +1,6 @@
 // imports
 const { Message } = require("discord.js");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const { OPENAI_API_KEY } = require("../../../config/openai-conf");
 const { default: axios } = require("axios");
 const db = require("../../modules/db");

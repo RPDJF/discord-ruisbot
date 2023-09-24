@@ -1,6 +1,6 @@
 // imports
 const { Client } = require("discord.js");
-const { DEFAULT_PREFIX } = require("../../../config/bot-conf");
+const { DEFAULT_PREFIX } = require("../../config/bot-conf");
 
 /**
  * Updates bot's activity with custom content

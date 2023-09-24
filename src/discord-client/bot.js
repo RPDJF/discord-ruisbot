@@ -8,11 +8,11 @@ const {
 } = require("discord.js");
 const { DEFAULT_PREFIX, DEFAULT_LANG } = require("../../config/bot-conf");
 const { DISCORD_BOT_TOKEN } = require("../../config/discordjs-conf");
-const dynamicActivity = require("./features/dynamicActivity");
-const embedUtility = require("./features/embedUtility");
+const dynamicActivity = require("../modules/dynamicActivity");
+const embedUtility = require("../modules/embedUtility");
 const db = require("../modules/db");
 const fs = require("fs");
-const gpt = require("./features/gpt");
+const gpt = require("../modules/gpt");
 
 /// app init
 const client = new Client({

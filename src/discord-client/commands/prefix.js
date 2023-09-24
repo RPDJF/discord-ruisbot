@@ -2,7 +2,7 @@
 const { Message, PermissionFlagsBits } = require("discord.js");
 const { DEFAULT_PREFIX } = require("../../../config/bot-conf");
 const db = require("../../modules/db");
-const embedUtility = require("../features/embedUtility");
+const embedUtility = require("../../modules/embedUtility");
 const messages = require("../../modules/messages");
 
 module.exports = {

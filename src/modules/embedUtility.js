@@ -1,11 +1,11 @@
 // Imports
 const { EmbedBuilder, Embed } = require("discord.js");
-const { name, version } = require("../../../package.json");
+const { name, version } = require("../../package.json");
 const {
   BOT_ICON,
   PRIMARY_COLOR,
   BOT_AUTHOR,
-} = require("../../../config/bot-conf");
+} = require("../../config/bot-conf");
 
 // Message type
 /**
