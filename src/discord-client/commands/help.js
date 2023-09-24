@@ -1,6 +1,6 @@
 // imports
 const embedUtility = require("../features/embedUtility");
-const db = require("../../db");
+const db = require("../../modules/db");
 const { BOT_AUTHOR } = require("../../../config/bot-conf");
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
      * @param {Array} args
      * @returns {Int32Array}
      */
-    async execute(msg, args, client) {
+    async execute(msg, args) {
         const fields = [];
         const guild = await db.getData("guilds", msg.guildId).catch((err) => {console.error(err); return (1)});
         if(args.length <= 1)
@@ -46,7 +46,7 @@ module.exports = {
                 case "fr":
                     switch(args[1]){
                         case "all":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 fields.push({name: command.name, value: command.description[guild.lang]});
                             });
                             msg.reply({embeds: embedUtility.fieldsMessage("Liste de toutes les commandes", "bonne lecture !", fields, BOT_AUTHOR, args[2])});
@@ -62,36 +62,36 @@ module.exports = {
                             msg.reply({embeds: embeds});
                             break;
                         case "fun":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 if(command.category == "fun"){
                                     console.log(guild.lang);
                                     console.log(command.description[guild.lang]);
                                     fields.push({name: command.name, value: command.description[guild.lang]});
                                 }
                             });
-                            msg.reply({embeds: embedUtility.fieldsMessage("List des commandes fun", "Amuse-toi bien !", fields)});
+                            msg.reply({embeds: embedUtility.fieldsMessage("List des commandes fun", "Amuse-toi bien !", fields, BOT_AUTHOR, args[2])});
                             break;
                         case "configurations":
                         case "configuration":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                             if(command.category == "configurations"){
                                 console.log(guild.lang);
                                 console.log(command.description[guild.lang]);
                                 fields.push({name: command.name, value: command.description[guild.lang]});
                             }
                             });
-                            msg.reply({embeds: embedUtility.fieldsMessage("List des commandes de configuration", "Amuse-toi bien !", fields)});
+                            msg.reply({embeds: embedUtility.fieldsMessage("List des commandes de configuration", "Amuse-toi bien !", fields, BOT_AUTHOR, args[2])});
                             break;
                         case "interactions":
                         case "interaction":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 if(command.category == "interaction")
                                     fields.push({name: command.name, value: command.description[guild.lang]});
                             });
-                            msg.reply({embeds: embedUtility.fieldsMessage("List of interaction commands", "enjoy !", fields)});
+                            msg.reply({embeds: embedUtility.fieldsMessage("List of interaction commands", "enjoy !", fields, BOT_AUTHOR, args[2])});
                             break;
                         default:
-                            const command = client.commands.get(args[1]);
+                            const command = msg.client.commands.get(args[1]);
                             if (command)
                                 msg.reply({embeds: embedUtility.message(args[1], `**description** : ${command.description[guild.lang]}\n**usage** : \`\`${guild.prefix}${command.usage}\`\``)});
                             else
@@ -102,7 +102,7 @@ module.exports = {
                 default:
                     switch(args[1]){
                         case "all":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 fields.push({name: command.name, value: command.description[guild.lang]});
                             });
                             msg.reply({embeds: embedUtility.fieldsMessage("List of all the commands", "enjoy !", fields, BOT_AUTHOR, args[2])});
@@ -118,33 +118,33 @@ module.exports = {
                             msg.reply({embeds: embeds});
                             break;
                         case "fun":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 if(command.category == "fun")
                                     fields.push({name: command.name, value: command.description[guild.lang]});
                             });
-                            msg.reply({embeds: embedUtility.fieldsMessage("List of fun commands", "enjoy !", fields)});
+                            msg.reply({embeds: embedUtility.fieldsMessage("List of fun commands", "enjoy !", fields, BOT_AUTHOR, args[2])});
                             break;
                             case "configurations":
                             case "configuration":
-                                client.commands.forEach(command => {
+                                msg.client.commands.forEach(command => {
                                 if(command.category == "configurations"){
                                     console.log(guild.lang);
                                     console.log(command.description[guild.lang]);
                                     fields.push({name: command.name, value: command.description[guild.lang]});
                                 }
                                 });
-                                msg.reply({embeds: embedUtility.fieldsMessage("List of configuration commands", "enjoy !", fields)});
+                                msg.reply({embeds: embedUtility.fieldsMessage("List of configuration commands", "enjoy !", fields, BOT_AUTHOR, args[2])});
                                 break;
                         case "interactions":
                         case "interaction":
-                            client.commands.forEach(command => {
+                            msg.client.commands.forEach(command => {
                                 if(command.category == "interaction")
                                     fields.push({name: command.name, value: command.description[guild.lang]});
                             });
-                            msg.reply({embeds: embedUtility.fieldsMessage("List of interaction commands", "enjoy !", fields)});
+                            msg.reply({embeds: embedUtility.fieldsMessage("List of interaction commands", "enjoy !", fields, BOT_AUTHOR, args[2])});
                             break;
                         default:
-                            const command = client.commands.get(args[1]);
+                            const command = msg.client.commands.get(args[1]);
                             if (command)
                                 msg.reply({embeds: embedUtility.message(args[1], `**description** : ${command.description[guild.lang]}\n**usage** : \`\`${guild.prefix}${command.usage}\`\``)});
                             else
