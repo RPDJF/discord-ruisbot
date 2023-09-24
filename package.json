@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ./src/ && node main.js"
+    "start": "cd ./src/ && node main.js",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "repository": {
     "type": "git",
@@ -37,5 +38,8 @@
     "fs": "^0.0.1-security",
     "openai": "^4.10.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }
