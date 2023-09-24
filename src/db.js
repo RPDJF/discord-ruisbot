@@ -13,20 +13,20 @@ const db = admin.firestore();
 const inMemoryCache = {};
 
 /**
- * Génère une clé de cache basée sur la hiérarchie de la collection et du document.
- * @param {string} collectionName - Le nom de la Firestore collection (peut inclure des sous-collections).
- * @param {string} documentId - L'ID du document Firestore.
- * @returns {string} - La clé de cache générée.
+ * Generates a cache key based on the hierarchy of the collection and document.
+ * @param {string} collectionName - The name of the Firestore collection (may include subcollections).
+ * @param {string} documentId - The ID of the Firestore document.
+ * @returns {string} - The generated cache key.
  */
 function generateCacheKey(collectionName, documentId) {
     return `${collectionName}/${documentId}`;
 }
 
 /**
- * Retrieve data from Firestore or in-memory cache
- * @param {string} collectionName - Le nom de la Firestore collection.
- * @param {string} documentId - L'ID du Firestore document.
- * @returns {Promise<admin.firestore.DocumentData|null>} - Retourne les données si elles sont trouvées, sinon null.
+ * Retrieve data from Firestore or in-memory cache.
+ * @param {string} collectionName - The name of the Firestore collection.
+ * @param {string} documentId - The ID of the Firestore document.
+ * @returns {Promise<admin.firestore.DocumentData|null>} - Returns the data if found, otherwise null.
  */
 async function getData(collectionName, documentId) {
     const cacheKey = generateCacheKey(collectionName, documentId);
@@ -34,14 +34,14 @@ async function getData(collectionName, documentId) {
     if (inMemoryCache[cacheKey]) {
         return inMemoryCache[cacheKey];
     } else {
-        // Si les données ne sont pas en cache en mémoire, les récupérer depuis Firestore
+        // If no data is found, fetch them from firestore
         const docRef = db.collection(collectionName).doc(documentId);
         const snapshot = await docRef.get();
 
         if (snapshot.exists) {
             const data = snapshot.data();
 
-            // Mettre en cache les données en mémoire
+            // Write data in the cache
             inMemoryCache[cacheKey] = data;
             console.log(`Données récupérées depuis Firestore avec ${cacheKey}`);
             return data;
@@ -53,29 +53,31 @@ async function getData(collectionName, documentId) {
 }
 
 /**
- * Writes data to Firestore and updates the in-memory cache.
- * @param {string} collectionName - Le nom de la Firestore collection.
- * @param {string} documentId - L'ID du Firestore document.
- * @param {Object} newData - Les nouvelles données à écrire dans Firestore.
- * @param {Boolean} merge - Fusionner les données (par défaut, oui).
+ * Writes data to Firestore and updates the in-memory cache by merging with existing data.
+ * @param {string} collectionName - The name of the Firestore collection.
+ * @param {string} documentId - The ID of the Firestore document.
+ * @param {Object} newData - The new data to write to Firestore.
+ * @param {boolean} merge - Whether to merge the data (default: true).
  */
-async function writeData(collectionName, documentId, newData, merge) {
-    if (!merge) {
-        merge = true;
-    }
-    
+async function writeData(collectionName, documentId, newData, merge = true) {
     const cacheKey = generateCacheKey(collectionName, documentId);
 
-    // Mettre à jour les données Firestore
+    // Get existing data from cache if available
+    const existingData = inMemoryCache[cacheKey] || {};
+
+    // Merge existing data with new data
+    const mergedData = { ...existingData, ...newData };
+
+    // Update Firestore data
     await db
         .collection(collectionName)
         .doc(documentId)
-        .set(newData, { merge: merge });
+        .set(mergedData, { merge });
 
-    // Mettre à jour le cache en mémoire
-    inMemoryCache[cacheKey] = newData;
+    // Update the in-memory cache with merged data
+    inMemoryCache[cacheKey] = mergedData;
 
-    console.log("Données mises à jour dans Firestore et en cache en mémoire :", newData);
+    console.log("Data updated in Firestore and merged in-memory cache:", mergedData);
 }
 
 module.exports = { getData, writeData };
