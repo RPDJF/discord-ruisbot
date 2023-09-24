@@ -6,7 +6,7 @@ module.exports = {
   name: "ping",
   description: messages.data.commands.ping.description,
   usage: messages.data.commands.ping.usage,
-  category: undefined,
+  category: "misc",
   /**
    * @param {Message} msg
    * @param {Array} args

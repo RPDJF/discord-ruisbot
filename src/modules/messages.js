@@ -1739,6 +1739,13 @@ const messages = {
           },
         },
       },
+      invite: {
+        description: {
+          fr: "Inviter le bot sur un serveur.",
+          en: "Invite the bot to a server.",
+        },
+        usage: "invite",
+      },
       lang: {
         description: {
           fr: "Changer la langue du bot.",

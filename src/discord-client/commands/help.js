@@ -30,7 +30,7 @@ module.exports = {
           });
           fields.push({
             name: "all",
-            value: "```Affiche toutes les commands du bot```",
+            value: "```Toutes les commandes du bot```",
             inline: true,
           });
           fields.push({
@@ -46,6 +46,11 @@ module.exports = {
           fields.push({
             name: "configurations",
             value: "```Réservé aux modo discord avérés !```",
+            inline: true,
+          });
+          fields.push({
+            name: "misc",
+            value: "```Commandes diverses```",
             inline: true,
           });
           msg.reply({
@@ -74,12 +79,17 @@ module.exports = {
           });
           fields.push({
             name: "interactions",
-            value: "```Need to interact with someone?```",
+            value: "```Need to hit someone?```",
             inline: true,
           });
           fields.push({
             name: "configurations",
             value: "```Reserved for verified Discord mods!```",
+            inline: true,
+          });
+          fields.push({
+            name: "misc",
+            value: "```Misc commands```",
             inline: true,
           });
           msg.reply({
@@ -172,6 +182,7 @@ module.exports = {
                 ),
               });
               break;
+            case "conf":
             case "configurations":
             case "configuration":
               msg.client.commands.forEach((command) => {
@@ -184,7 +195,7 @@ module.exports = {
               });
               msg.reply({
                 embeds: embedUtility.fieldsMessage(
-                  "List des commandes de configuration",
+                  "Liste des commandes de configuration",
                   "Amuse-toi bien !",
                   fields,
                   BOT_AUTHOR,
@@ -203,8 +214,26 @@ module.exports = {
               });
               msg.reply({
                 embeds: embedUtility.fieldsMessage(
-                  "List of interaction commands",
-                  "enjoy !",
+                  "Liste des commandes d'interaction",
+                  "Amuse-toi bien !",
+                  fields,
+                  BOT_AUTHOR,
+                  args[2],
+                ),
+              });
+              break;
+            case "misc":
+              msg.client.commands.forEach((command) => {
+                if (command.category == "misc")
+                  fields.push({
+                    name: command.name,
+                    value: command.description[guild.lang],
+                  });
+              });
+              msg.reply({
+                embeds: embedUtility.fieldsMessage(
+                  "Liste des commandes diverses",
+                  "Amuse-toi bien !",
                   fields,
                   BOT_AUTHOR,
                   args[2],
@@ -342,6 +371,24 @@ module.exports = {
               msg.reply({
                 embeds: embedUtility.fieldsMessage(
                   "List of interaction commands",
+                  "enjoy !",
+                  fields,
+                  BOT_AUTHOR,
+                  args[2],
+                ),
+              });
+              break;
+            case "misc":
+              msg.client.commands.forEach((command) => {
+                if (command.category == "misc")
+                  fields.push({
+                    name: command.name,
+                    value: command.description[guild.lang],
+                  });
+              });
+              msg.reply({
+                embeds: embedUtility.fieldsMessage(
+                  "List of misc commands",
                   "enjoy !",
                   fields,
                   BOT_AUTHOR,
