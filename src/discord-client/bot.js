@@ -29,7 +29,7 @@ const client = new Client({
 client.commands = new Collection();
 
 const commandFiles = fs
-  .readdirSync("./discord-client/commands")
+  .readdirSync("./src/discord-client/commands")
   .filter((file) => file.endsWith(".js"));
 // Load all commands from the commands folder
 for (const file of commandFiles) {

@@ -5,7 +5,7 @@ services:
     image: node:latest
     labels:
         com.centurylinklabs.watchtower.stop-signal: "SIGHUP"
-    command: bash -c "cd /opt;[ ! -d 'discord-ruisbot' ] && git clone https://github.com/RPDJF/discord-ruisbot.git || (cd discord-ruisbot && git checkout main && git pull); cd discord-ruisbot/src;npm i; npm start"
+    command: bash -c "cd /opt;[ ! -d 'discord-ruisbot' ] && git clone https://github.com/RPDJF/discord-ruisbot.git || (git checkout main && git pull); cd discord-ruisbot/src;npm i; npm start"
     volumes:
       - ./opt:/opt/ # don't forget to  upload .env file into /opt/ruisbot-discord/src, and firestore config into /opt/ruisbot-discord/config/firebase-adminsdk-credential.json (just download it from firestore)
     environment:
