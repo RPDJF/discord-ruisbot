@@ -51,7 +51,7 @@ npm start
 ```
 
 ## Step-by-Step Guide: Adding a New Docker Stack with Portainer
-> You can also use Tower to keep Rui's Bot up to date
+> You can also use [Watch Tower](https://github.com/containrrr/watchtower) to keep Rui's Bot up to date
 
 1. **Access Portainer**: Open Portainer and log in to your Docker instance.
 
