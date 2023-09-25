@@ -29,28 +29,31 @@ async function execute(msg, args) {
     `guilds/${msg.guildId}/users`,
     msg.author.id,
   );
+  let targetUserData;
+  // Check if msg has mention
+  if (msg.mentions.users.size > 0) {
+    targetUserData = await db.getData(
+      `guilds/${msg.guildId}/users`,
+      msg.mentions.users.at(0).id,
+    );
+  } else targetUserData = userData; // if not, use author data
   if (args.length < 2) play(msg, guild, userData);
   else
     switch (args[1]) {
       case "stat":
       case "stats":
-        if (userData == undefined || userData.mine == undefined) {
-          msg
-            .reply({
-              embeds: embedUtility.errorMessage(
-                "Tu n'as aucune donnée !",
-                "Joue d'abord au jeu avant de vouloir voir tes statistiques ;)",
-              ),
-            })
-            .catch((err) => {
-              console.error(err);
-              return 1;
-            });
-          return 0;
-        }
+        if (targetUserData == undefined || targetUserData.mine == undefined)
+          targetUserData = {
+            mine: {
+              minedItems: [],
+            },
+          };
         msg
           .reply({
-            embeds: mineStatsEmbedBuilder(guild, userData.mine.minedItems),
+            embeds: mineStatsEmbedBuilder(
+              guild,
+              targetUserData.mine.minedItems,
+            ),
             files: [gameLogo],
           })
           .catch((err) => {

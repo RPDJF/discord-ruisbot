@@ -17,6 +17,13 @@ const messages = {
         },
         usage: "draw <something>",
       },
+      gif: {
+        description: {
+          fr: "Envoyer un GIF.",
+          en: "Send a GIF.",
+        },
+        usage: "gif <something>",
+      },
       gpt: {
         description: {
           fr: "Désactiver ou réactiver GPT4 sur le serveur.",
@@ -1781,7 +1788,7 @@ const messages = {
           fr: "Miner des ressources.",
           en: "Mine resources.",
         },
-        usage: "mine",
+        usage: "mine``\n``mine stats <user?>",
       },
       ping: {
         description: {

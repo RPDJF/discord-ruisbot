@@ -386,20 +386,20 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg.reply({
-                embeds: embedUtility
-                  .fieldsMessage(
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
                     "List of fun commands",
                     "enjoy !",
                     fields,
                     BOT_AUTHOR,
                     args[2],
-                  )
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  }),
-              });
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "configurations":
             case "configuration":
