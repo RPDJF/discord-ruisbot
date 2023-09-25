@@ -22,13 +22,13 @@ It means that you can do pretty much everything with this project, as long as I 
 
 **Important: This project is developed by a passionate individual who learns development in his spare time. The project may not be well-structured, and updates may not be frequent. Long periods of inactivity are to be expected.**
 
-## Requirements
+## <a id="Requirements"></a> Requirements
 A nodejs server is requiered.
 This project uses APIs from Discord, OpenAI and Firestore, make sure to get your own API keys.
 You need to setup environment variables, or at least, create an .env file to the src folder of the project.
 You need to import the firebase configuration file (more details on `Configuration Files` section).
 
-## Environment Variables
+## <a id="Environment-Variables"></a> Environment Variables
 The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. 
 
 - `DISCORD_BOT_TOKEN`: [Bot's token from discord developer portal]
@@ -36,35 +36,47 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `OPENAI_API_KEY`: [Openai API Key which you can get from their portal]
 - `OPENAI_ORGANIZATION_ID`: [OpenAI ID which you can get from their portal]
 
-## Configuration Files
+## <a id="Configuration-Files"></a> Configuration Files
 Don't forget to import firebase-adminsdk-credential into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from firestore portal
 
 The rest of the configuration files are mostly default settings that you can change
 
 ## Getting Started
-**Make sure you have already seen the requirements above.**
+### Global
+**Make sure you have already seen the requirements above. [Link to Requirements](#Requirements)**
 To run the project, simply use the following command:
 ```bash
 npm i
 npm start
 ```
 
+## Step-by-Step Guide: Adding a New Docker Stack with Portainer
+> You can also use Tower to keep Rui's Bot up to date
+
+1. **Access Portainer**: Open Portainer and log in to your Docker instance.
+
+2. **Choose Stacks**: Navigate to the "Stacks" option in the menu.
+
+3. **Add Stack**: Click on "Add Stack."
+
+4. **Name Your Stack**: In the "Name" field, provide a meaningful name for your stack, e.g., "discord-ruisbot."
+
+5. **Select Repository Build Method**: Under the "Repository" section, choose "Repository" as the build method.
+
+6. **Repository URL**: Enter the GitHub project's URL: [https://github.com/RPDJF/discord-ruisbot](https://github.com/RPDJF/discord-ruisbot)
+
+7. **Deploy the Stack**: Click "Deploy the stack" to initiate the deployment process.
+
+8. **Download Project**: The stack will create a directory in `/data/compose/`. Access this directory to download the entire project.
+
+9. **Create .env File**: Inside `/data/compose/{id}/opt/discord-ruisbot/`, create a `.env` file with the necessary environment variables matching the titles. [Link to Environment Variables](#Environment-Variables)
+
+10. **Move Firestore Admin SDK**: Move your Firestore Admin SDK to `/data/compose/{id}/opt/discord-ruisbot/config`, aligning with the Configuration Files title. [Link to Configuration Files](#Configuration-Files)
+
+11. **Restart the Bot**: You can now restart the bot to apply the new configurations.
+
+
 ## Docker compose file
 It pulls node latest image, clones the repo and starts it
 Don't forget to check the requirements
 `com.centurylinklabs.watchtower.stop-signal` allows Watchtower to update the container. Not needed if you don't have Watchtower.
-```
-version: '3'
-services:
-  nodejs:
-    container_name: ruisbot
-    image: node:latest
-    labels:
-        com.centurylinklabs.watchtower.stop-signal: "SIGHUP"
-    command: bash -c "cd /opt;[ ! -d 'discord-ruisbot' ] && git clone https://github.com/RPDJF/discord-ruisbot.git || (cd discord-ruisbot && git checkout main && git pull); cd discord-ruisbot;npm i; npm start"
-    volumes:
-      - ./opt:/opt/ # don't forget to  upload .env file into /opt/ruisbot/
-    environment:
-      - TZ=Europe/Zurich
-    restart: always
-```
