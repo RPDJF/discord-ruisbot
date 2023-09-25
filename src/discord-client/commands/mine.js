@@ -35,24 +35,38 @@ async function execute(msg, args) {
       case "stat":
       case "stats":
         if (userData == undefined || userData.mine == undefined) {
-          msg.reply({
-            embeds: embedUtility.errorMessage(
-              "Tu n'as aucune donnée !",
-              "Joue d'abord au jeu avant de vouloir voir tes statistiques ;)",
-            ),
-          });
+          msg
+            .reply({
+              embeds: embedUtility.errorMessage(
+                "Tu n'as aucune donnée !",
+                "Joue d'abord au jeu avant de vouloir voir tes statistiques ;)",
+              ),
+            })
+            .catch((err) => {
+              console.error(err);
+              return 1;
+            });
           return 0;
         }
-        msg.reply({
-          embeds: mineStatsEmbedBuilder(guild, userData.mine.minedItems),
-          files: [gameLogo],
-        });
+        msg
+          .reply({
+            embeds: mineStatsEmbedBuilder(guild, userData.mine.minedItems),
+            files: [gameLogo],
+          })
+          .catch((err) => {
+            console.error(err);
+            return 1;
+          });
         break;
       default:
         break;
     }
 }
 
+/**
+ * @param {discord.Message} msg
+ * @param {Object} guild
+ */
 function play(msg, guild, userData) {
   // mining
   const inventory = mine();
@@ -62,35 +76,50 @@ function play(msg, guild, userData) {
     // check if CoolDown
     const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
     if (differenceInMinutes < gameCoolDownInMinute) {
-      msg.reply({
-        embeds: mineCoolDownEmbedBuilder(
-          guild,
-          gameCoolDownInMinute - Math.floor(differenceInMinutes),
-        ),
-        files: [gameLogo],
-      });
+      msg
+        .reply({
+          embeds: mineCoolDownEmbedBuilder(
+            guild,
+            gameCoolDownInMinute - Math.floor(differenceInMinutes),
+          ),
+          files: [gameLogo],
+        })
+        .catch((err) => {
+          console.error(err);
+          return 1;
+        });
       return 0;
     }
     const cloudInventory = userData.mine.minedItems;
     // display
-    msg.reply({
-      embeds: mineSuccessEmbedBuilder(
-        guild,
-        inventory,
-        getScore(cloudInventory),
-      ),
-      files: [gameLogo],
-    });
+    msg
+      .reply({
+        embeds: mineSuccessEmbedBuilder(
+          guild,
+          inventory,
+          getScore(cloudInventory),
+        ),
+        files: [gameLogo],
+      })
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      });
     // update database
     for (item in inventory) {
       inventory[item] += cloudInventory[item];
     }
   } else {
     // display
-    msg.reply({
-      embeds: mineSuccessEmbedBuilder(guild, inventory, 0),
-      files: [gameLogo],
-    });
+    msg
+      .reply({
+        embeds: mineSuccessEmbedBuilder(guild, inventory, 0),
+        files: [gameLogo],
+      })
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      });
   }
   db.writeData(`guilds/${msg.guildId}/users`, msg.author.id, {
     mine: {

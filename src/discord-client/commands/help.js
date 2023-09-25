@@ -1,4 +1,5 @@
 // imports
+const { Message } = require("discord.js");
 const embedUtility = require("../../modules/embedUtility");
 const db = require("../../modules/db");
 const { BOT_AUTHOR } = require("../../../config/bot-conf");
@@ -53,13 +54,18 @@ module.exports = {
             value: "```Commandes diverses```",
             inline: true,
           });
-          msg.reply({
-            embeds: embedUtility.fieldsMessage(
-              "Liste des commandes",
-              `Utilisez \`\`${guild.prefix}help <catégorie>\`\` pour avoir plus d'infos !`,
-              fields,
-            ),
-          });
+          msg
+            .reply({
+              embeds: embedUtility.fieldsMessage(
+                "Liste des commandes",
+                `Utilisez \`\`${guild.prefix}help <catégorie>\`\` pour avoir plus d'infos !`,
+                fields,
+              ),
+            })
+            .catch((err) => {
+              console.error(err);
+              return 1;
+            });
           break;
         default:
           fields.push({
@@ -92,13 +98,18 @@ module.exports = {
             value: "```Misc commands```",
             inline: true,
           });
-          msg.reply({
-            embeds: embedUtility.fieldsMessage(
-              "List of commands",
-              `Use \`\`${guild.prefix}help <category>\`\` for more details!`,
-              fields,
-            ),
-          });
+          msg
+            .reply({
+              embeds: embedUtility.fieldsMessage(
+                "List of commands",
+                `Use \`\`${guild.prefix}help <category>\`\` for more details!`,
+                fields,
+              ),
+            })
+            .catch((err) => {
+              console.error(err);
+              return 1;
+            });
           break;
       }
     } else {
@@ -112,15 +123,20 @@ module.exports = {
                   value: command.description[guild.lang],
                 });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "Liste de toutes les commandes",
-                  "bonne lecture !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "Liste de toutes les commandes",
+                    "bonne lecture !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "chatbot":
               fields.push({
@@ -161,7 +177,10 @@ module.exports = {
               embeds[0].data.thumbnail = {
                 url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
               };
-              msg.reply({ embeds: embeds });
+              msg.reply({ embeds: embeds }).catch((err) => {
+                console.error(err);
+                return 1;
+              });
               break;
             case "fun":
               msg.client.commands.forEach((command) => {
@@ -172,15 +191,20 @@ module.exports = {
                   });
                 }
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List des commandes fun",
-                  "Amuse-toi bien !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "List des commandes fun",
+                    "Amuse-toi bien !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "conf":
             case "configurations":
@@ -193,15 +217,20 @@ module.exports = {
                   });
                 }
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "Liste des commandes de configuration",
-                  "Amuse-toi bien !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "Liste des commandes de configuration",
+                    "Amuse-toi bien !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "interactions":
             case "interaction":
@@ -212,15 +241,20 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "Liste des commandes d'interaction",
-                  "Amuse-toi bien !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "Liste des commandes d'interaction",
+                    "Amuse-toi bien !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "misc":
               msg.client.commands.forEach((command) => {
@@ -230,34 +264,49 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "Liste des commandes diverses",
-                  "Amuse-toi bien !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "Liste des commandes diverses",
+                    "Amuse-toi bien !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             default:
               const command = msg.client.commands.get(args[1]);
               if (command)
-                msg.reply({
-                  embeds: embedUtility.message(
-                    args[1],
-                    `**description** : ${
-                      command.description[guild.lang]
-                    }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
-                  ),
-                });
+                msg
+                  .reply({
+                    embeds: embedUtility.message(
+                      args[1],
+                      `**description** : ${
+                        command.description[guild.lang]
+                      }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
+                    ),
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  });
               else
-                msg.reply({
-                  embeds: embedUtility.errorMessage(
-                    `${args[1]} ?`,
-                    `Il n'y a pas ${args[1]} dans la liste des commandes.`,
-                  ),
-                });
+                msg
+                  .reply({
+                    embeds: embedUtility.errorMessage(
+                      `${args[1]} ?`,
+                      `Il n'y a pas ${args[1]} dans la liste des commandes.`,
+                    ),
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  });
               break;
           }
           break;
@@ -270,15 +319,20 @@ module.exports = {
                   value: command.description[guild.lang],
                 });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List of all the commands",
-                  "enjoy !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "List of all the commands",
+                    "enjoy !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "chatbot":
               fields.push({
@@ -319,7 +373,10 @@ module.exports = {
               embeds[0].data.thumbnail = {
                 url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
               };
-              msg.reply({ embeds: embeds });
+              msg.reply({ embeds: embeds }).catch((err) => {
+                console.error(err);
+                return 1;
+              });
               break;
             case "fun":
               msg.client.commands.forEach((command) => {
@@ -330,13 +387,18 @@ module.exports = {
                   });
               });
               msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List of fun commands",
-                  "enjoy !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
+                embeds: embedUtility
+                  .fieldsMessage(
+                    "List of fun commands",
+                    "enjoy !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  )
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  }),
               });
               break;
             case "configurations":
@@ -350,13 +412,18 @@ module.exports = {
                 }
               });
               msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List of configuration commands",
-                  "enjoy !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
+                embeds: embedUtility
+                  .fieldsMessage(
+                    "List of configuration commands",
+                    "enjoy !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  )
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  }),
               });
               break;
             case "interactions":
@@ -368,15 +435,20 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List of interaction commands",
-                  "enjoy !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "List of interaction commands",
+                    "enjoy !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             case "misc":
               msg.client.commands.forEach((command) => {
@@ -386,34 +458,49 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg.reply({
-                embeds: embedUtility.fieldsMessage(
-                  "List of misc commands",
-                  "enjoy !",
-                  fields,
-                  BOT_AUTHOR,
-                  args[2],
-                ),
-              });
+              msg
+                .reply({
+                  embeds: embedUtility.fieldsMessage(
+                    "List of misc commands",
+                    "enjoy !",
+                    fields,
+                    BOT_AUTHOR,
+                    args[2],
+                  ),
+                })
+                .catch((err) => {
+                  console.error(err);
+                  return 1;
+                });
               break;
             default:
               const command = msg.client.commands.get(args[1]);
               if (command)
-                msg.reply({
-                  embeds: embedUtility.message(
-                    args[1],
-                    `**description** : ${
-                      command.description[guild.lang]
-                    }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
-                  ),
-                });
+                msg
+                  .reply({
+                    embeds: embedUtility.message(
+                      args[1],
+                      `**description** : ${
+                        command.description[guild.lang]
+                      }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
+                    ),
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  });
               else
-                msg.reply({
-                  embeds: embedUtility.errorMessage(
-                    `${args[1]} ?`,
-                    `There is no reference of ${args[1]} in list of commands.`,
-                  ),
-                });
+                msg
+                  .reply({
+                    embeds: embedUtility.errorMessage(
+                      `${args[1]} ?`,
+                      `There is no reference of ${args[1]} in list of commands.`,
+                    ),
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    return 1;
+                  });
               break;
           }
           break;

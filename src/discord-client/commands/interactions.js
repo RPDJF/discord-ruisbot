@@ -70,11 +70,7 @@ module.exports = {
    * 1: error
    */
   async execute(msg, args) {
-    // Check if the action is valid
-    if (args[0] && !availableActions.includes(args[0])) {
-      //msg.reply(messages[guild.lang].commands.interactions.invalidAction(msg, args[0]));
-      return 0;
-    }
+    // Get guild data
     const guild = await db.getData("guilds", msg.guildId);
 
     // If no user is specified, pick a random one

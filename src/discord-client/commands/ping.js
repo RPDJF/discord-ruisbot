@@ -12,9 +12,15 @@ module.exports = {
    * @param {Array} args
    */
   execute(msg, args) {
-    msg.reply("Pong!").catch((err) => {
-      console.error(err);
-      return 1;
-    });
+    msg
+      .reply("Pong!")
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      })
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      });
   },
 };

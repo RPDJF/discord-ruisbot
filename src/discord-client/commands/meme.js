@@ -58,6 +58,9 @@ module.exports = {
     embeds[0].data.thumbnail = {
       url: "https://www.redditinc.com/assets/images/site/reddit-logo.png",
     };
-    msg.reply({ embeds: embeds });
+    msg.reply({ embeds: embeds }).catch((err) => {
+      console.error(err);
+      return 1;
+    });
   },
 };

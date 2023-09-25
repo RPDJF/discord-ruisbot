@@ -55,7 +55,10 @@ module.exports = {
       );
       const embed = embedUtility.message(args, `${msg.author}`, author)[0];
       embed.data.image = { url: await response.data.data[0].url };
-      msg.reply({ embeds: [embed] });
+      msg.reply({ embeds: [embed] }).catch((err) => {
+        console.error(err);
+        return 1;
+      });
     } catch (error) {
       console.error("Erreur lors de la requête :", error);
       return 1;

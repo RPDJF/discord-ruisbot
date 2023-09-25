@@ -50,12 +50,17 @@ module.exports = {
     });
     switch (guild.lang) {
       case "fr":
-        msg.reply({
-          embeds: embedUtility.message(
-            `GPT4 est désormais ${args[1]}`,
-            "La feature GPT4 est aussi utilisée pour la génération d'images.",
-          ),
-        });
+        msg
+          .reply({
+            embeds: embedUtility.message(
+              `GPT4 est désormais ${args[1]}`,
+              "La feature GPT4 est aussi utilisée pour la génération d'images.",
+            ),
+          })
+          .catch((err) => {
+            console.error(err);
+            return 1;
+          });
         break;
       default:
         msg.reply({

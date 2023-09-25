@@ -14,8 +14,13 @@ module.exports = {
    * @param {Array} args
    */
   execute(msg, args) {
-    msg.reply({
-      embeds: embedUtility.message("invite", `${botConf.BOT_INVITE}`),
-    });
+    msg
+      .reply({
+        embeds: embedUtility.message("invite", `${botConf.BOT_INVITE}`),
+      })
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      });
   },
 };
