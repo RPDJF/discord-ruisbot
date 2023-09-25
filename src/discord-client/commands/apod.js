@@ -7,8 +7,8 @@ const embedUtility = require("../../modules/embedUtility");
 
 module.exports = {
   name: "apod",
-  description: messages.data.commands.ping.description,
-  usage: messages.data.commands.ping.usage,
+  description: messages.data.commands.apod.description,
+  usage: messages.data.commands.apod.usage,
   category: "fun",
   /**
    * @param {Message} msg
