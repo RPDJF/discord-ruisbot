@@ -8,7 +8,7 @@ const TENOR_RESULT_LIMIT = 10; // Number of results before randomizing
 
 // Tests
 if (!TENOR_API_KEY) {
-  console.error("TENOR_API_KEY not found in .env file.");
+  console.error("TENOR_API_KEY is not set!");
   process.exit(1);
 }
 

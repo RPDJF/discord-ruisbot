@@ -3,6 +3,13 @@ const messages = {
   data: {
     // In further updates, all of the text will be stored in here
     commands: {
+      apod: {
+        description: {
+          fr: "Afficher l'astronomie du jour.",
+          en: "Display the astronomy picture of the day.",
+        },
+        usage: "apod",
+      },
       dick: {
         description: {
           fr: "À quoi tu t'attends ?",

@@ -28,9 +28,7 @@ function getContext(msg) {
 
 // Tests
 if (!OPENAI_API_KEY || !OPENAI_ORGANIZATION_ID) {
-  console.error(
-    "OPENAI_API_KEY or OPENAI_ORGANIZATION_ID not found in .env file.",
-  );
+  console.error("OPENAI_API_KEY or OPENAI_ORGANIZATION_ID are not set.");
   process.exit(1);
 }
 
