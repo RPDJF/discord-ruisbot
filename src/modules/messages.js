@@ -1746,19 +1746,21 @@ const messages = {
         },
         usage: "invite",
         replies: {
-          fr:{
+          fr: {
             title: "Invite le bot sur ton serveur !",
-            description: "Clique sur les liens ci-dessous pour inviter le bot sur ton serveur.",
-            bot_invite: "Ajouter à un serveur",
-            server_invite: "Rejoindre le serveur"
+            description:
+              "Clique sur les liens ci-dessous pour inviter le bot sur ton serveur.",
+            botInvite: "Ajouter à un serveur",
+            supportServer: "Rejoindre le serveur",
           },
-          en:{
+          en: {
             title: "Invite the bot to your server!",
-            description: "Click on the links below to invite the bot to your server.",
-            bot_invite: "Add to a server",
-            server_invite: "Join the server"
-          }
-        }
+            description:
+              "Click on the links below to invite the bot to your server.",
+            botInvite: "Add to a server",
+            supportServer: "Join the server",
+          },
+        },
       },
       lang: {
         description: {

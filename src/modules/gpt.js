@@ -24,10 +24,12 @@ async function execute(msg, client) {
     return 0;
   }
   // load context
-  const context = require("../../config/openai-conf").getContext(msg).map((entry) => ({
-    role: "system",
-    content: entry.replace("{botid}", client.user.id),
-  }));
+  const context = require("../../config/openai-conf")
+    .getContext(msg)
+    .map((entry) => ({
+      role: "system",
+      content: entry.replace("{botid}", client.user.id),
+    }));
   // get 10 last message
   const lastMessages = await msg.channel.messages.fetch({
     limit: 10,

@@ -22,19 +22,23 @@ module.exports = {
     });
     const fields = [
       {
-        name: "Invite me to your server",
-        value: `[Click here](${botConf.BOT_INVITE})`,
+        name: `${commandMessage.replies[guild.lang].botInvite}`,
+        value: `:arrow_forward: [Click here](${botConf.BOT_INVITE})`,
         inline: true,
       },
       {
-        name: "Join my support server",
-        value: `[Click here](${botConf.SERVER_SUPPORT_INVITE})`,
+        name: `${commandMessage.replies[guild.lang].supportServer}`,
+        value: `:arrow_forward: [Click here](${botConf.SERVER_SUPPORT_INVITE})`,
         inline: true,
       },
     ];
     msg
       .reply({
-        embeds: embedUtility.fieldsMessage(commandMessage.replies[guild.lang].title, commandMessage.replies[guild.lang].description, fields),
+        embeds: embedUtility.fieldsMessage(
+          commandMessage.replies[guild.lang].title,
+          commandMessage.replies[guild.lang].description,
+          fields,
+        ),
       })
       .catch((err) => {
         console.error(err);
