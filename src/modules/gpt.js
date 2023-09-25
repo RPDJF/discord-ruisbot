@@ -3,7 +3,7 @@ const { Message, Client } = require("discord.js");
 const { OpenAI } = require("openai");
 const embedUtility = require("./embedUtility");
 const { OPENAI_API_KEY, context } = require("../../config/openai-conf");
-const db = require("./db");
+const db = require("../modules/db");
 
 // init
 const openai = new OpenAI({
@@ -24,7 +24,7 @@ async function execute(msg, client) {
     return 0;
   }
   // load context
-  const context = require("../../config/openai-conf").context.map((entry) => ({
+  const context = require("../../config/openai-conf").getContext(msg).map((entry) => ({
     role: "system",
     content: entry.replace("{botid}", client.user.id),
   }));

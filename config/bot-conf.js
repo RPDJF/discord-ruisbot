@@ -11,6 +11,7 @@ const BOT_AUTHOR = {
   name: BOT_NAME,
   iconURL: BOT_ICON,
 };
+const SERVER_SUPPORT_INVITE = "https://discord.gg/ApcGtB3M6M";
 
 module.exports = {
   DEFAULT_PREFIX,
@@ -20,4 +21,5 @@ module.exports = {
   BOT_INVITE,
   BOT_ICON,
   BOT_AUTHOR,
+  SERVER_SUPPORT_INVITE
 };

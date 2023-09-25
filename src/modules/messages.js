@@ -1745,6 +1745,20 @@ const messages = {
           en: "Invite the bot to a server.",
         },
         usage: "invite",
+        replies: {
+          fr:{
+            title: "Invite le bot sur ton serveur !",
+            description: "Clique sur les liens ci-dessous pour inviter le bot sur ton serveur.",
+            bot_invite: "Ajouter à un serveur",
+            server_invite: "Rejoindre le serveur"
+          },
+          en:{
+            title: "Invite the bot to your server!",
+            description: "Click on the links below to invite the bot to your server.",
+            bot_invite: "Add to a server",
+            server_invite: "Join the server"
+          }
+        }
       },
       lang: {
         description: {
