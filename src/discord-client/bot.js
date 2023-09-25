@@ -84,10 +84,14 @@ client.on(Events.MessageCreate, async (msg) => {
     // format args and commandName
     const args = msg.content.slice(guild.prefix.length).trim().split(" ");
     const commandName = args[0];
-    // Check if it was a command or gpt usage, skips otherwise
-    if (!msg.content.startsWith(guild.prefix) || msg.author.bot) {
+    // Check if author is a bot
+    if (msg.author.bot) return;
+    // Check if message is a command
+    if (!msg.content.startsWith(guild.prefix)) {
+      // Check if message is a prefix command
       if (msg.content.startsWith(`${DEFAULT_PREFIX}prefix`)) {
-        const command = client.commands.get(commandName);
+        // Execute prefix command (in case of forgotten prefix)
+        const command = client.commands.get("prefix");
         if (command)
           if (await command.execute(msg, args))
             embedUtility.genericErrorMessage(msg, guild);
