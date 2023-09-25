@@ -34,8 +34,8 @@ module.exports = {
     guild = await db.getData("guilds", msg.guildId);
     switch (guild.lang) {
       case "fr":
-        msg
-          .reply({
+        msg.channel
+          .send({
             embeds: embedUtility.message(
               "langue changée",
               `La langue du serveur est \`\`\`${guild.lang}\`\`\` désormais.`,
@@ -47,8 +47,8 @@ module.exports = {
           });
         break;
       default:
-        msg
-          .reply({
+        msg.channel
+          .send({
             embeds: embedUtility.message(
               "language changed",
               `The server's language is now \`\`\`${guild.lang}\`\`\``,

@@ -14,7 +14,7 @@ module.exports = {
   execute(msg, args) {
     // Code to execute when command is run
     // Return a message to the user
-    msg.reply("Pong!").catch((err) => {
+    msg.channel.send("Pong!").catch((err) => {
       console.error(err);
       return 1;
     });

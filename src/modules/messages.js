@@ -46,62 +46,6 @@ const messages = {
         usage: "help <command|category> <page>",
       },
       interactions: {
-        airkiss: {
-          description: {
-            fr: "Envoyer un baiser.",
-            en: "Send an airkiss.",
-          },
-          usage: "airkiss <user>",
-          getAction: {
-            fr: (msg, target) => {
-              const actionMessages = [
-                `:kissing_heart: ${msg.author} envoie un baiser à ${target} ! :heart:`,
-                `${msg.author} fait un bisou à ${target} ! :kissing_closed_eyes:`,
-                `:heart_eyes: ${msg.author} envoie un baiser volant à ${target} ! :kissing_smiling_eyes:`,
-                `:sparkling_heart: ${msg.author} envoie un baiser rempli d'amour à ${target} !`,
-              ];
-            },
-            en: (msg, target) => {
-              const actionMessages = [
-                `:kissing_heart: ${msg.author} sends a kiss to ${target}! :heart:`,
-                `${msg.author} gives ${target} a kiss! :kissing_closed_eyes:`,
-                `:heart_eyes: ${msg.author} sends a flying kiss to ${target}! :kissing_smiling_eyes:`,
-                `:sparkling_heart: ${msg.author} sends a kiss full of love to ${target}!`,
-              ];
-            },
-          },
-        },
-        angrystare: {
-          description: {
-            fr: "Lancer un regard en colère à quelqu'un.",
-            en: "Stare angrily at someone.",
-          },
-          usage: "angrystare <user>",
-          getAction: {
-            fr: (msg, target) => {
-              const actionMessages = [
-                `:angry: ${msg.author} fusille ${target} du regard ! :rage:`,
-                `${msg.author} lance un regard de tueur à ${target} ! :triumph:`,
-                `:face_with_symbols_over_mouth: ${msg.author} regarde ${target} d'un air super mécontent ! :angry:`,
-                `:rage: ${msg.author} a les yeux qui lancent des éclairs en direction de ${target} !`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg, target) => {
-              const actionMessages = [
-                `:angry: ${msg.author} angrily stares at ${target}! :rage:`,
-                `${msg.author} glares angrily at ${target}! :triumph:`,
-                `:triumph: ${msg.author} stares angrily at ${target}! :angry:`,
-                `${msg.author} is really angry and it shows! :rage:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
         bite: {
           description: {
             fr: "Mordre quelqu'un.",
@@ -111,10 +55,10 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `:rage: ${msg.author} mord méchamment ${target}! :tooth:`,
-                `${msg.author} plante ses dents dans ${target}! :triumph:`,
-                `:wolf: ${msg.author} donne un coup de dents à ${target}! :angry:`,
-                `:face_with_symbols_over_mouth: ${msg.author} mord ${target} avec colère! :angry:`,
+                `😡 ${msg.author} mord méchamment ${target}! 👄`,
+                `${msg.author} plante ses dents dans ${target}! 😤`,
+                `🐺 ${msg.author} donne un coup de dents à ${target}! 😠`,
+                `😡 ${msg.author} mord ${target} avec colère! 😡`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -122,41 +66,10 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `:rage: ${msg.author} angrily bites ${target}! :tooth:`,
-                `${msg.author} sinks their teeth into ${target}! :triumph:`,
-                `:wolf: ${msg.author} takes a bite out of ${target}! :angry:`,
-                `:face_with_symbols_over_mouth: ${msg.author} bites ${target} with anger! :angry:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        bleh: {
-          description: {
-            fr: "Faire une grimace de dégoût.",
-            en: "Make a disgusted face.",
-          },
-          usage: "bleh",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} fait une grimace de dégoût ! :face_vomiting:`,
-                `Beurk, ${msg.author} n'aime pas ça ! :nauseated_face:`,
-                `Oh non, ${msg.author} est tout dégoûté ! :confounded:`,
-                `${msg.author} montre une belle grimace de dégoût en ce moment ! :face_with_symbols_over_mouth:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} makes a disgusted face! :face_vomiting:`,
-                `Ew, ${msg.author} doesn't like that! :nauseated_face:`,
-                `Oh no, ${msg.author} looks all grossed out! :confounded:`,
-                `${msg.author} shows a nice disgusted face right now! :face_with_symbols_over_mouth:`,
+                `😡 ${msg.author} angrily bites ${target}! 👄`,
+                `${msg.author} sinks their teeth into ${target}! 😤`,
+                `🐺 ${msg.author} takes a bite out of ${target}! 😠`,
+                `😡 ${msg.author} bites ${target} with anger! 😡`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -173,10 +86,10 @@ const messages = {
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} rougit comme une tomate ! :blush:`,
-                `Les joues de ${msg.author} prennent feu ! :flushed:`,
-                `Oh là là, ${msg.author} est tout gêné ! :grin:`,
-                `${msg.author} montre une belle rougeur en ce moment ! :star_struck:`,
+                `${msg.author} rougit ! 😳`,
+                `Les joues de ${msg.author} deviennent roses ! 🥺`,
+                `Oh là là, ${msg.author} tout gêné ! 😅`,
+                `${msg.author} affiche une belle rougeur ! 😊`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -184,10 +97,10 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} blushes like a tomato! :blush:`,
-                `A soft blush spreads across ${msg.author}'s cheeks! :flushed:`,
-                `Oh my, ${msg.author} looks all embarrassed! :grin:`,
-                `${msg.author}'s cheeks turn pink like rose petals! :rose:`,
+                `${msg.author} blushes! 😳`,
+                `${msg.author}'s cheeks turn pink! 🥺`,
+                `Oh my, ${msg.author} looks embarrassed! 😅`,
+                `${msg.author} shows a nice blush! 😊`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -195,7 +108,7 @@ const messages = {
             },
           },
         },
-        brofist: {
+        bonk: {
           description: {
             fr: "Donner un coup de poing amical à quelqu'un.",
             en: "Give someone a friendly fist bump.",
@@ -204,10 +117,10 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} fait un brofist avec ${target} ! :fist:`,
-                `En signe de camaraderie, ${msg.author} fist bump ${target}! :handshake:`,
-                `:fist_bump: ${msg.author} et ${target} high five chacun avec enthousiasme !`,
-                `:fist_right::fist_left: ${msg.author} fist bump ${target} dans un geste amical !`,
+                `${msg.author} donne un coup de poing amical à ${target} ! ✊`,
+                `En signe de camaraderie, ${msg.author} fait un fist bump avec ${target} ! 🤝`,
+                `👊 ${msg.author} et ${target} se donnent un high five avec enthousiasme !`,
+                `🤜🤛 ${msg.author} fait un fist bump à ${target} dans un geste amical !`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -215,10 +128,10 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} gives ${target} a friendly fist bump! :fist:`,
-                `In a sign of camaraderie, ${msg.author} fist bumps ${target}! :handshake:`,
-                `:fist_bump: ${msg.author} and ${target} high five each other enthusiastically!`,
-                `:fist_right::fist_left: ${msg.author} fist bumps ${target} in a friendly gesture!`,
+                `${msg.author} gives ${target} a friendly fist bump! ✊`,
+                `In a sign of camaraderie, ${msg.author} fist bumps ${target}! 🤝`,
+                `👊 ${msg.author} and ${target} high five each other enthusiastically!`,
+                `🤜🤛 ${msg.author} fist bumps ${target} in a friendly gesture!`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -226,59 +139,19 @@ const messages = {
             },
           },
         },
-        celebrate: {
+        bully: {
           description: {
-            fr: "Célébrer joyeusement une occasion spéciale !",
-            en: "Celebrate joyfully a special occasion!",
+            fr: "Embêter quelqu'un.",
+            en: "Tease someone.",
           },
-          usage: "celebrate",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} célèbre joyeusement ! :tada:`,
-                `C'est le moment de faire la fête avec ${msg.author} ! :confetti_ball:`,
-                `:tada: ${msg.author} fait la fête !`,
-                `Les festivités sont en cours avec ${msg.author} ! :balloon:`,
-                `${msg.author} répand la joie en célébrant ! :partying_face:`,
-                `:sparkles: ${msg.author} s'unit à la célébration avec enthousiasme !`,
-                `Que la fête commence avec ${msg.author} en tête ! :fireworks:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} celebrates joyfully! :tada:`,
-                `It's time to party with ${msg.author}! :confetti_ball:`,
-                `:tada: ${msg.author} is partying!`,
-                `The festivities are underway with ${msg.author}! :balloon:`,
-                `${msg.author} spreads joy by celebrating! :partying_face:`,
-                `:sparkles: ${msg.author} joins the celebration with enthusiasm!`,
-                `Let the party begin with ${msg.author} in the lead! :fireworks:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        cheers: {
-          description: {
-            fr: "Trinquer avec quelqu'un !.",
-            en: "Cheers with someone !.",
-          },
-          usage: "cheers <user>",
+          usage: "tease <user>",
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `:tada: ${msg.author} lève son verre et trinque ! :champagne_glass:`,
-                `${msg.author} se joint aux acclamations ! :tada:`,
-                `:champagne_glass: ${msg.author} fait un toast et trinque ! :tada:`,
-                `${msg.author} célèbre et trinque ! :champagne_glass:`,
-                `:tada: ${msg.author} lève son verre et trinque avec ${target} ! :champagne_glass:`,
-                `${msg.author} se joint aux acclamations avec ${target} ! :tada:`,
-                `:champagne_glass: ${msg.author} fait un toast et trinque avec ${target} ! :tada:`,
+                `😄 ${msg.author} embête ${target} ! 😜`,
+                `Préparez-vous, ${msg.author} taquine ${target} ! 😆`,
+                `C'est l'heure des moqueries avec ${msg.author} et ${target} ! 😂`,
+                `😝 ${msg.author} fait des blagues pour embêter ${target} !`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -286,13 +159,10 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `:tada: ${msg.author} raises their glass and cheers! :champagne_glass:`,
-                `${msg.author} joins the cheers! :tada:`,
-                `:champagne_glass: ${msg.author} makes a toast and cheers! :tada:`,
-                `${msg.author} celebrates and cheers! :champagne_glass:`,
-                `:tada: ${msg.author} raises their glass and cheers with ${target}! :champagne_glass:`,
-                `${msg.author} joins the cheers with ${target}! :tada:`,
-                `:champagne_glass: ${msg.author} makes a toast and cheers with ${target}! :tada:`,
+                `😄 ${msg.author} playfully teases ${target}! 😜`,
+                `Get ready, ${msg.author} teases ${target}! 😆`,
+                `It's time for some banter with ${msg.author} and ${target}! 😂`,
+                `😝 ${msg.author} cracks jokes to tease ${target}!`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -300,30 +170,34 @@ const messages = {
             },
           },
         },
-        clap: {
+        cuddle: {
           description: {
-            fr: "Applaudir avec enthousiasme !",
-            en: "Clap enthusiastically!",
+            fr: "Faire un câlin chaleureux.",
+            en: "Give a warm hug.",
           },
-          usage: "clap",
+          usage: "cuddle <user>",
           getAction: {
-            fr: (msg) => {
+            fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} applaudit avec enthousiasme ! :clap:`,
-                `Les applaudissements de ${msg.author} retentissent ! :raised_hands:`,
-                `Bravo ! ${msg.author} applaudit bruyamment ! :grin:`,
-                `Les applaudissements de ${msg.author} sont contagieux ! :star_struck:`,
+                `${msg.author} câline tendrement ${target} ! 🤗`,
+                `${msg.author} serre ${target} dans ses bras ! ❤️`,
+                `🤗 ${msg.author} enlace ${target} avec douceur !`,
+                `${msg.author} et ${target} se blottissent dans un câlin apaisant ! 😌`,
+                `Un câlin amical entre ${msg.author} et ${target} ! 🤗`,
+                `🤗 ${msg.author} offre un câlin réconfortant à ${target} ! 💓`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
               ];
             },
-            en: (msg) => {
+            en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} claps enthusiastically! :clap:`,
-                `Applause erupts from ${msg.author}! :raised_hands:`,
-                `Bravo! ${msg.author} claps loudly! :grin:`,
-                `${msg.author}'s applause is infectious! :star_struck:`,
+                `${msg.author} gives a warm hug to ${target}! 🤗`,
+                `${msg.author} embraces ${target}! ❤️`,
+                `🤗 ${msg.author} wraps ${target} in a gentle hug!`,
+                `${msg.author} and ${target} snuggle in a soothing hug! 😌`,
+                `A friendly hug between ${msg.author} and ${target}! 🤗`,
+                `🤗 ${msg.author} offers a comforting hug to ${target}! 💓`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -331,21 +205,21 @@ const messages = {
             },
           },
         },
-        confused: {
+        cringe: {
           description: {
-            fr: "Exprimer la confusion de manière comique.",
-            en: "Express confusion in a comical way.",
+            fr: "Faire une grimace de dégoût.",
+            en: "Make a cringe face.",
           },
-          usage: "confused",
+          usage: "cringe",
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} est tout perdu ! :thinking:`,
-                `Regardez ${msg.author} avec son air perplexe ! :man_shrugging:`,
-                `:thinking: ${msg.author} n'y comprend rien !`,
-                `La tête de ${msg.author} tourne à 1000 à l'heure ! :dizzy_face:`,
-                `C'est le grand mystère pour ${msg.author} ! :question:`,
-                `:thinking: ${msg.author} essaie de démêler cet imbroglio ! :confused:`,
+                `${msg.author} fait une grimace de dégoût. 😬`,
+                `Oh non, ${msg.author} fait une moue de déplaisir. 😖`,
+                `:grimacing: ${msg.author} grimace de façon cringe. 😬`,
+                `${msg.author} est en mode cringe. 😟`,
+                `Tout le monde regarde ${msg.author} avec perplexité. 😵`,
+                `${msg.author} se tortille de dégoût. 😫`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -353,12 +227,12 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} is totally confused! :thinking:`,
-                `Look at ${msg.author} with their perplexed look! :man_shrugging:`,
-                `:thinking: ${msg.author} has no clue!`,
-                `${msg.author}'s head is spinning at 1000 miles per hour! :dizzy_face:`,
-                `It's a big mystery for ${msg.author}! :question:`,
-                `:thinking: ${msg.author} is trying to untangle this mess! :confused:`,
+                `${msg.author} makes a cringe face. 😬`,
+                `Oh no, ${msg.author} makes a displeased expression. 😖`,
+                `:grimacing: ${msg.author} cringes in a cringe-worthy way. 😬`,
+                `${msg.author} is in cringe mode. 😟`,
+                `Everyone looks at ${msg.author} with bewilderment. 😵`,
+                `${msg.author} twists in disgust. 😫`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -375,13 +249,10 @@ const messages = {
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} fond en larmes... :sob:`,
-                `Les larmes de ${msg.author} coulent à flots... :cry:`,
-                `:sob: ${msg.author} pleure à chaudes larmes...`,
-                `La tristesse envahit ${msg.author} qui ne peut retenir ses émotions ! :disappointed_relieved:`,
-                `C'est un moment émotionnel pour ${msg.author} qui pleure en silence... :broken_heart:`,
-                `:disappointed::cry: ${msg.author} a besoin de réconfort en ce moment !`,
-                `Oh non, ${msg.author} pleure à chaudes larmes ! :cry:`,
+                `${msg.author} fond en larmes... 😢`,
+                `${msg.author} pleure à chaudes larmes... 😭`,
+                `${msg.author} est submergé par la tristesse... 😞`,
+                `Oh non, ${msg.author} a besoin de réconfort ! 😔`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -389,50 +260,10 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} is crying their heart out... :sob:`,
-                `Tears are streaming down ${msg.author}'s face... :cry:`,
-                `:sob: ${msg.author} is sobbing uncontrollably...`,
-                `Sadness overwhelms ${msg.author} who can't hold back the tears! :disappointed_relieved:`,
-                `It's an emotional moment for ${msg.author} who is crying in silence... :broken_heart:`,
-                `:disappointed::cry: ${msg.author} needs some comforting right now!`,
-                `Oh no, ${msg.author} is crying buckets! :cry:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        cuddle: {
-          description: {
-            fr: "Faire un câlin chaleureux à quelqu'un.",
-            en: "Give someone a warm hug.",
-          },
-          usage: "cuddle <user>",
-          getAction: {
-            fr: (msg, target) => {
-              const actionMessages = [
-                `${msg.author} serre tendrement ${target} dans ses bras pour un câlin chaleureux ! :hugging_face:`,
-                `En quête de réconfort, ${msg.author} câline ${target} avec affection ! :heart:`,
-                `:hugging_face: ${msg.author} enveloppe ${target} dans une étreinte douce et réconfortante !`,
-                `${msg.author} et ${target} se blottissent l'un contre l'autre dans un câlin apaisant ! :relieved:`,
-                `C'est un câlin amical entre ${msg.author} et ${target} ! :hug:`,
-                `:hug_right::hug_left: ${msg.author} étreint ${target} avec amour et chaleur !`,
-                `Dans un geste plein de tendresse, ${msg.author} offre un câlin réconfortant à ${target} ! :heartpulse:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg, target) => {
-              const actionMessages = [
-                `${msg.author} tenderly hugs ${target} for a warm hug! :hugging_face:`,
-                `In search of comfort, ${msg.author} cuddles ${target} affectionately! :heart:`,
-                `:hugging_face: ${msg.author} wraps ${target} in a soft, comforting embrace!`,
-                `${msg.author} and ${target} snuggle up to each other in a soothing hug! :relieved:`,
-                `It's a friendly hug between ${msg.author} and ${target}! :hug:`,
-                `:hug_right::hug_left: ${msg.author} hugs ${target} with love and warmth!`,
-                `In a gesture full of tenderness, ${msg.author} offers a comforting hug to ${target}! :heartpulse:`,
+                `${msg.author} is crying... 😢`,
+                `${msg.author}'s tears are flowing... 😭`,
+                `${msg.author} is overwhelmed by sadness... 😞`,
+                `Oh no, ${msg.author} needs comfort! 😔`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -449,13 +280,13 @@ const messages = {
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} danse avec enthousiasme ! :dancer:`,
-                `La piste de danse appartient à ${msg.author} ce soir ! :dancer:`,
-                `:musical_note: ${msg.author} se déhanche au rythme de la musique ! :dancing_women:`,
-                `C'est une danse incroyable de ${msg.author} ! :star_struck:`,
-                `La foule est en feu grâce à la danse de ${msg.author} ! :fire:`,
-                `:dancer::dancer: ${msg.author} fait tourner la tête à tout le monde avec sa danse !`,
-                `La soirée est plus folle grâce à la danse de ${msg.author} ! :tada:`,
+                `${msg.author} danse avec enthousiasme ! 💃`,
+                `La piste de danse appartient à ${msg.author} ce soir ! 💃`,
+                `💃 ${msg.author} se déhanche au rythme de la musique ! 🎶`,
+                `La danse incroyable de ${msg.author} ! 💫`,
+                `La foule est en feu grâce à la danse de ${msg.author} ! 🔥`,
+                `💃💃 ${msg.author} fait tourner la tête à tout le monde avec sa danse !`,
+                `La soirée est plus folle grâce à la danse de ${msg.author} ! 🎉`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -463,85 +294,11 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} dances with enthusiasm! :dancer:`,
-                `The dance floor belongs to ${msg.author} tonight! :dancer:`,
-                `${msg.author} dances with joy! :dancer:`,
-                `:dancer: ${msg.author} dances! :dancer:`,
-                `${msg.author} dances! :dancer:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        evillaugh: {
-          description: {
-            fr: "Rire diaboliquement !",
-            en: "Evilly laugh!",
-          },
-          usage: "evillaugh",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} éclate d'un rire diabolique ! :smiling_imp:`,
-                `Un rire maléfique retentit de la part de ${msg.author} ! :japanese_goblin:`,
-                `:smiling_imp: ${msg.author} ricanne méchamment...`,
-                `Les plans sinistres de ${msg.author} sont en marche, et il rit diaboliquement ! :smirk:`,
-                `On dirait que ${msg.author} a quelques tours machiavéliques en tête ! :sunglasses:`,
-                `:smirk::smiling_imp: ${msg.author} laisse échapper un rire vraiment méchant !`,
-                `Quelqu'un arrête ${msg.author} avant qu'il ne cause plus de chaos avec ce rire diabolique ! :fire:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} bursts into an evil laugh! :smiling_imp:`,
-                `An evil laugh rings out from ${msg.author}! :japanese_goblin:`,
-                `:smiling_imp: ${msg.author} cackles evilly...`,
-                `${msg.author}'s sinister plans are underway, and they laugh evilly! :smirk:`,
-                `Looks like ${msg.author} has some evil schemes in mind! :sunglasses:`,
-                `:smirk::smiling_imp: ${msg.author} lets out a really evil laugh!`,
-                `Someone stop ${msg.author} before they cause more chaos with this evil laugh! :fire:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        facepalm: {
-          description: {
-            fr: "Faire un facepalm en signe de frustration.",
-            en: "Facepalm in frustration.",
-          },
-          usage: "facepalm",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} se donne un facepalm en signe de frustration. :facepalm:`,
-                `:man_facepalming: ${msg.author} est tellement désespéré qu'il fait un facepalm.`,
-                `:facepalm: ${msg.author} ne peut tout simplement pas y croire !`,
-                `${msg.author} a besoin d'une pause, c'est un facepalm de frustration ! :weary:`,
-                `La frustration atteint un nouveau sommet avec ${msg.author} qui fait un facepalm ! :sweat:`,
-                `:weary::facepalm: ${msg.author} ne peut que secouer la tête face à la situation !`,
-                `Oh non, ${msg.author} fait un facepalm à cause de ça ! :persevere:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} facepalms in frustration. :man_facepalming:`,
-                `:man_facepalming: ${msg.author} is so exasperated, he facepalms.`,
-                `:man_facepalming: ${msg.author} just can't believe it!`,
-                `${msg.author} needs a break, it's a frustration facepalm! :weary:`,
-                `Frustration reaches new heights with ${msg.author} facepalming! :sweat:`,
-                `:weary::man_facepalming: ${msg.author} can only shake his head at the situation!`,
-                `Oh no, ${msg.author} facepalms because of this! :persevere:`,
+                `${msg.author} dances with enthusiasm! 💃`,
+                `The dance floor belongs to ${msg.author} tonight! 💃`,
+                `${msg.author} dances with joy! 💃`,
+                `💃 ${msg.author} dances! 🎶`,
+                `${msg.author} dances! 💃`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -558,12 +315,12 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} tient doucement la main de ${target}. :handshake:`,
-                `Avec tendresse, ${msg.author} prend la main de ${target}. :handshake:`,
-                `Les doigts de ${msg.author} s'entrelacent délicatement avec ceux de ${target}. :handshake:`,
-                `Un doux geste de ${msg.author} envers ${target}, qui lui tient la main. :handshake:`,
-                `La main de ${msg.author} trouve naturellement celle de ${target}, et ils se serrent la main avec amour. :handshake:`,
-                `Dans un geste réconfortant, ${msg.author} prend la main de ${target} et sourit. :handshake:`,
+                `${msg.author} tient doucement la main de ${target}. 🤝`,
+                `Avec tendresse, ${msg.author} prend la main de ${target}. 🤝`,
+                `Les doigts de ${msg.author} s'entrelacent délicatement avec ceux de ${target}. 🤝`,
+                `Un doux geste de ${msg.author} envers ${target}, qui lui tient la main. 🤝`,
+                `La main de ${msg.author} trouve naturellement celle de ${target}, et ils se serrent la main avec amour. 🤝`,
+                `Dans un geste réconfortant, ${msg.author} prend la main de ${target} et sourit. 🤝`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -571,12 +328,12 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} gently holds ${target}'s hand. :handshake:`,
-                `With tenderness, ${msg.author} takes ${target}'s hand. :handshake:`,
-                `${msg.author}'s fingers delicately interlock with ${target}'s. :handshake:`,
-                `A soft gesture from ${msg.author} to ${target}, holding their hand. :handshake:`,
-                `Naturally, ${msg.author} and ${target} find their hands and shake them lovingly. :handshake:`,
-                `In a comforting gesture, ${msg.author} takes ${target}'s hand and smiles. :handshake:`,
+                `${msg.author} gently holds ${target}'s hand. 🤝`,
+                `With tenderness, ${msg.author} takes ${target}'s hand. 🤝`,
+                `${msg.author}'s fingers delicately interlock with ${target}'s. 🤝`,
+                `A soft gesture from ${msg.author} to ${target}, holding their hand. 🤝`,
+                `Naturally, ${msg.author} and ${target} find their hands and shake them lovingly. 🤝`,
+                `In a comforting gesture, ${msg.author} takes ${target}'s hand and smiles. 🤝`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -593,12 +350,12 @@ const messages = {
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} rayonne de bonheur et le partage avec tout le monde ! :smile:`,
-                `La joie inonde ${msg.author} et illumine la journée de tous ! :bliss:`,
-                `:bliss: ${msg.author} est tellement heureux que cela se voit à des kilomètres ! :smile:`,
-                `${msg.author} déborde de joie, c'est contagieux ! :bliss:`,
-                `La bonne humeur de ${msg.author} est contagieuse, tout le monde sourit ! :smile:`,
-                `Le bonheur est au rendez-vous avec ${msg.author} qui ne peut s'empêcher de sourire ! :bliss:`,
+                `${msg.author} rayonne de bonheur ! 😄`,
+                `La joie inonde ${msg.author} ! 😃`,
+                `😃 ${msg.author} est tellement heureux que cela se voit ! 😁`,
+                `${msg.author} déborde de joie, c'est contagieux ! 😄`,
+                `La bonne humeur de ${msg.author} est contagieuse ! 😃`,
+                `Le bonheur est au rendez-vous avec ${msg.author} ! 😁`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -606,12 +363,43 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} radiates happiness and shares it with everyone! :smile:`,
-                `Joy floods ${msg.author}, brightening everyone's day! :bliss:`,
-                `:bliss: ${msg.author} is so happy it can be seen from miles away! :smile:`,
-                `${msg.author} is overflowing with joy, and it's contagious! :bliss:`,
-                `${msg.author}'s good mood is contagious, and everyone is smiling! :smile:`,
-                `Happiness is in the air as ${msg.author} can't help but smile! :bliss:`,
+                `${msg.author} radiates happiness! 😄`,
+                `Joy floods ${msg.author}! 😃`,
+                `😃 ${msg.author} is so happy it's visible! 😁`,
+                `${msg.author} is overflowing with joy, and it's contagious! 😄`,
+                `${msg.author}'s good mood is contagious! 😃`,
+                `Happiness is in the air as ${msg.author} can't help but smile! 😁`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        highfive: {
+          description: {
+            fr: "Donner un high five à quelqu'un.",
+            en: "Give someone a high five.",
+          },
+          usage: "highfive <user>",
+          getAction: {
+            fr: (msg, target) => {
+              const actionMessages = [
+                `${msg.author} donne un high five à ${target} ! 🤝`,
+                `En signe de camaraderie, ${msg.author} fait un high five avec ${target} ! 🤝`,
+                `🤝 ${msg.author} et ${target} se donnent un high five avec enthousiasme !`,
+                `🤝 ${msg.author} fait un high five à ${target} dans un geste amical !`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg, target) => {
+              const actionMessages = [
+                `${msg.author} gives ${target} a high five! 🤝`,
+                `In a sign of camaraderie, ${msg.author} high fives ${target}! 🤝`,
+                `🤝 ${msg.author} and ${target} high five each other enthusiastically!`,
+                `🤝 ${msg.author} high fives ${target} in a friendly gesture!`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -628,12 +416,12 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} prend ${target} dans ses bras chaleureusement. :hugging:`,
-                `Dans un geste tendre, ${msg.author} serre ${target} dans ses bras. :hugging:`,
-                `${msg.author} enlace doucement ${target}. :hugging:`,
-                `Un câlin affectueux de ${msg.author} à ${target}. :hugging:`,
-                `Les bras de ${msg.author} entourent doucement ${target}. :hugging:`,
-                `${msg.author} serre ${target} dans une étreinte chaleureuse. :hugging:`,
+                `${msg.author} prend ${target} dans ses bras chaleureusement. 🤗`,
+                `${msg.author} serre ${target} dans une étreinte tendre. 🤗`,
+                `${msg.author} enlace doucement ${target}. 🤗`,
+                `Un câlin affectueux de ${msg.author} à ${target}. 🤗`,
+                `Les bras de ${msg.author} entourent doucement ${target}. 🤗`,
+                `${msg.author} serre ${target} dans une étreinte chaleureuse. 🤗`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -641,12 +429,74 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} warmly hugs ${target}. :hugging:`,
-                `In a tender gesture, ${msg.author} embraces ${target}. :hugging:`,
-                `${msg.author} gently wraps their arms around ${target}. :hugging:`,
-                `An affectionate hug from ${msg.author} to ${target}. :hugging:`,
-                `${msg.author}'s arms softly envelop ${target}. :hugging:`,
-                `${msg.author} gives ${target} a warm embrace. :hugging:`,
+                `${msg.author} warmly hugs ${target}. 🤗`,
+                `In a tender gesture, ${msg.author} embraces ${target}. 🤗`,
+                `${msg.author} gently wraps their arms around ${target}. 🤗`,
+                `An affectionate hug from ${msg.author} to ${target}. 🤗`,
+                `${msg.author}'s arms softly envelop ${target}. 🤗`,
+                `${msg.author} gives ${target} a warm embrace. 🤗`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        kick: {
+          description: {
+            fr: "Donner un coup de pied à quelqu'un.",
+            en: "Kick someone.",
+          },
+          usage: "kick <user>",
+          getAction: {
+            fr: (msg, target) => {
+              const actionMessages = [
+                `:rage: ${msg.author} donne un coup de pied à ${target} ! 👢`,
+                `${msg.author} donne un coup de pied à ${target} ! 👢`,
+                `👢 ${msg.author} donne un coup de pied à ${target} ! 😡`,
+                `👢 ${msg.author} donne un coup de pied à ${target} ! 😡`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg, target) => {
+              const actionMessages = [
+                `:rage: ${msg.author} kicks ${target}! 👢`,
+                `${msg.author} kicks ${target}! 👢`,
+                `👢 ${msg.author} kicks ${target}! 😡`,
+                `👢 ${msg.author} kicks ${target}! 😡`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        kill: {
+          description: {
+            fr: "Tuer quelqu'un.",
+            en: "Kill someone.",
+          },
+          usage: "kill <user>",
+          getAction: {
+            fr: (msg, target) => {
+              const actionMessages = [
+                `${msg.author} vient de tuer ${target} devant tout le monde. 😱`,
+                `${msg.author} laisse ${target} pour mort. 🔪`,
+                `${msg.author} vient de faire un kill sur ${target} ! 🫢\nPas de respawn cette fois !`,
+                `${msg.author} avait des envies meurtrières, ${target} était là au mauvais endroit au mauvais moment. 😔`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg, target) => {
+              const actionMessages = [
+                `${msg.author} just killed ${target} in front of everyone. 😱`,
+                `${msg.author} leaves ${target} for dead. 🔪`,
+                `${msg.author} scored a kill on ${target}! 🫢\nNo respawn this time!`,
+                `${msg.author} had murderous intentions, and ${target} was in the wrong place at the wrong time. 😔`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -663,12 +513,12 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} envoie un doux baiser à ${target}. :kissing_heart:`,
-                `${msg.author} dépose un tendre baiser sur la joue de ${target}. :kiss:`,
-                `${msg.author} embrasse délicatement ${target}. :kissing_face:`,
-                `${msg.author} scelle son affection avec un baiser pour ${target}. :heart:`,
-                `Les lèvres de ${msg.author} rencontrent doucement celles de ${target} dans un baiser. :kissing_heart:`,
-                `${msg.author} offre un baiser affectueux à ${target}. :kiss:`,
+                `${msg.author} envoie un doux baiser à ${target}. 😘`,
+                `${msg.author} dépose un tendre baiser sur la joue de ${target}. 😘`,
+                `${msg.author} embrasse délicatement ${target}. 😘`,
+                `${msg.author} scelle son affection avec un baiser pour ${target}. ❤️`,
+                `Les lèvres de ${msg.author} rencontrent doucement celles de ${target} dans un baiser. 😘`,
+                `${msg.author} offre un baiser affectueux à ${target}. 😘`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -676,47 +526,12 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} sends a sweet kiss to ${target}. :kissing_heart:`,
-                `${msg.author} gently plants a kiss on ${target}'s cheek. :kiss:`,
-                `${msg.author} softly kisses ${target}. :kissing_face:`,
-                `${msg.author} seals their affection with a kiss for ${target}. :heart:`,
-                `${msg.author}'s lips meet ${target}'s in a gentle kiss. :kissing_heart:`,
-                `${msg.author} gives ${target} an affectionate kiss. :kiss:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        laugh: {
-          description: {
-            fr: "Exprimer le rire et la joie.",
-            en: "Express laughter and joy.",
-          },
-          usage: "laugh",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} éclate de rire joyeusement ! :joy:`,
-                `Le rire contagieux de ${msg.author} résonne dans la pièce ! :laughing:`,
-                `:laughing: ${msg.author} ne peut pas s'arrêter de rire ! :joy:`,
-                `Les éclats de rire de ${msg.author} mettent tout le monde de bonne humeur ! :laughing:`,
-                `L'humour de ${msg.author} provoque un rire sincère chez tout le monde ! :joy:`,
-                `Un rire joyeux s'échappe des lèvres de ${msg.author} ! :laughing:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} bursts into laughter! :joy:`,
-                `The contagious laughter of ${msg.author} echoes in the room! :laughing:`,
-                `:laughing: ${msg.author} can't stop laughing! :joy:`,
-                `${msg.author}'s laughter brightens everyone's mood! :laughing:`,
-                `${msg.author}'s humor elicits genuine laughter from everyone! :joy:`,
-                `A joyful laugh escapes ${msg.author}'s lips! :laughing:`,
+                `${msg.author} sends a sweet kiss to ${target}. 😘`,
+                `${msg.author} gently plants a kiss on ${target}'s cheek. 😘`,
+                `${msg.author} softly kisses ${target}. 😘`,
+                `${msg.author} seals their affection with a kiss for ${target}. ❤️`,
+                `${msg.author}'s lips meet ${target}'s in a gentle kiss. 😘`,
+                `${msg.author} gives ${target} an affectionate kiss. 😘`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -733,12 +548,12 @@ const messages = {
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
-                `${msg.author} donne une petite léchouille affectueuse à ${target}. :stuck_out_tongue_closed_eyes:`,
-                `Avec douceur, ${msg.author} effleure ${target} d'une petite léchouille. :stuck_out_tongue:`,
-                `${msg.author} fait une petite léchouille espiègle à ${target}. :stuck_out_tongue_winking_eye:`,
-                `Dans un geste ludique, ${msg.author} passe sa langue sur ${target}. :stuck_out_tongue_closed_eyes:`,
-                `Les papilles de ${msg.author} goûtent brièvement ${target} dans une léchouille taquine. :stuck_out_tongue:`,
-                `${msg.author} offre une léchouille amicale à ${target}. :stuck_out_tongue_winking_eye:`,
+                `${msg.author} donne une petite léchouille affectueuse à ${target}. 😛`,
+                `Avec douceur, ${msg.author} effleure ${target} d'une petite léchouille. 😛`,
+                `${msg.author} fait une petite léchouille espiègle à ${target}. 😉`,
+                `Dans un geste ludique, ${msg.author} passe sa langue sur ${target}. 😛`,
+                `Les papilles de ${msg.author} goûtent brièvement ${target} dans une léchouille taquine. 😛`,
+                `${msg.author} offre une léchouille amicale à ${target}. 😉`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -746,10 +561,10 @@ const messages = {
             },
             en: (msg, target) => {
               const actionMessages = [
-                `${msg.author} gives ${target} a playful lick. :stuck_out_tongue_closed_eyes:`,
-                `Gently, ${msg.author} grazes ${target} with a little lick. :stuck_out_tongue:`,
-                `${msg.author} playfully licks ${target}. :stuck_out_tongue_winking_eye:`,
-                `In a playful gesture, ${msg.author} runs their tongue over ${target}. :stuck_out_tongue_closed_eyes:`,
+                `${msg.author} gives ${target} a playful lick. 😛`,
+                `Gently, ${msg.author} grazes ${target} with a little lick. 😛`,
+                `${msg.author} playfully licks ${target}. 😉`,
+                `In a playful gesture, ${msg.author} runs their tongue over ${target}. 😛`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -757,21 +572,18 @@ const messages = {
             },
           },
         },
-        love: {
+        neko: {
           description: {
-            fr: "Exprimer l'amour et l'affection.",
-            en: "Express love and affection.",
+            fr: "Envoyer une image de neko.",
+            en: "Send a neko image.",
           },
           usage: "love",
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} déborde d'amour et d'affection pour tout le monde ! :heart:`,
-                `L'amour de ${msg.author} illumine la journée de tous ! :heart_eyes:`,
-                `:heart_eyes: ${msg.author} exprime son amour de manière éclatante ! :heart:`,
-                `L'affection de ${msg.author} est inépuisable et réchauffe les cœurs ! :heart_eyes:`,
-                `Le cœur de ${msg.author} déborde d'amour, et tout le monde en profite ! :heart:`,
-                `Avec une tendre affection, ${msg.author} partage son amour avec le monde entier ! :heart_eyes:`,
+                `${msg.author} demande une image de neko ! 😸`,
+                `${msg.author} veut voir un neko ! 😺`,
+                `😺 ${msg.author} veut voir un neko !`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -779,117 +591,8 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} overflows with love and affection for everyone! :heart:`,
-                `The love of ${msg.author} brightens everyone's day! :heart_eyes:`,
-                `:heart_eyes: ${msg.author} expresses their love brightly! :heart:`,
-                `${msg.author}'s affection is boundless and warms hearts! :heart_eyes:`,
-                `${msg.author}'s heart is full of love, and everyone benefits from it! :heart:`,
-                `With tender affection, ${msg.author} shares their love with the world! :heart_eyes:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        mad: {
-          description: {
-            fr: "Exprimer la colère et la frustration.",
-            en: "Express anger and frustration.",
-          },
-          usage: "mad",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} est en colère et exprime sa frustration ! :angry:`,
-                `La colère de ${msg.author} est palpable ! :rage:`,
-                `:rage: ${msg.author} ne peut pas contenir sa colère ! :angry:`,
-                `La frustration de ${msg.author} atteint son apogée ! :triumph:`,
-                `${msg.author} est furieux et cela se voit ! :rage:`,
-                `:triumph: ${msg.author} exprime sa colère ouvertement ! :angry:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} is angry and expresses frustration! :angry:`,
-                `${msg.author}'s anger is palpable! :rage:`,
-                `:rage: ${msg.author} can't contain their anger! :angry:`,
-                `${msg.author}'s frustration reaches its peak! :triumph:`,
-                `${msg.author} is furious, and it shows! :rage:`,
-                `:triumph: ${msg.author} openly expresses anger! :angry:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        nervous: {
-          description: {
-            fr: "Exprimer la nervosité ou l'anxiété.",
-            en: "Express nervousness or anxiety.",
-          },
-          usage: "nervous",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} est nerveux et cela se voit ! :cold_sweat:`,
-                `La nervosité de ${msg.author} est palpable ! :anxious:`,
-                `:anxious: ${msg.author} ne peut pas cacher son anxiété ! :cold_sweat:`,
-                `Les signes d'anxiété de ${msg.author} sont évidents ! :fearful:`,
-                `${msg.author} est anxieux, et cela se ressent ! :cold_sweat:`,
-                `:fearful: ${msg.author} exprime ouvertement sa nervosité ! :anxious:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} is nervous, and it shows! :cold_sweat:`,
-                `${msg.author}'s nervousness is palpable! :anxious:`,
-                `:anxious: ${msg.author} can't hide their anxiety! :cold_sweat:`,
-                `${msg.author}'s signs of anxiety are evident! :fearful:`,
-                `${msg.author} is anxious, and it's noticeable! :cold_sweat:`,
-                `:fearful: ${msg.author} openly expresses their nervousness! :anxious:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        no: {
-          description: {
-            fr: "Dire non.",
-            en: "Say no.",
-          },
-          usage: "no",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} secoue la tête avec conviction. ::x:`,
-                `Non, non, non, ${msg.author} ne peut pas faire ça ! ::no_entry:`,
-                `:no_entry: ${msg.author} refuse catégoriquement !`,
-                `${msg.author} dit un non retentissant ! ::x:`,
-                `La réponse de ${msg.author} est un clair et net non ! ::no_entry:`,
-                `:x::no_entry: ${msg.author} n'accepte pas du tout !`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} shakes their head emphatically. ::x:`,
-                `No, no, no, ${msg.author} can't do that! ::no_entry:`,
-                `:no_entry: ${msg.author} categorically refuses!`,
-                `${msg.author} delivers a resounding no! ::x:`,
-                `The answer from ${msg.author} is a clear and firm no! ::no_entry:`,
-                `:x::no_entry: ${msg.author} doesn't accept it at all!`,
+                `${msg.author} wants to see a neko! 😸`,
+                `😸 ${msg.author} wants to see a neko!`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -932,72 +635,6 @@ const messages = {
             },
           },
         },
-        nosebleed: {
-          description: {
-            fr: "Saigner du nez comme dans les mangas coquins !",
-            en: "Bleed from the nose like in naughty manga!",
-          },
-          usage: "nosebleed",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} a un saignement de nez de manga ! :stuck_out_tongue_closed_eyes:`,
-                `Oh non, ${msg.author} saigne du nez en voyant quelque chose d'excitant ! :scream:`,
-                `:scream: Regardez ! ${msg.author} a un saignement de nez sexy ! :nosebleed:`,
-                `${msg.author} attrape rapidement un mouchoir pour son saignement de nez manga. :tissue:`,
-                `Les yeux de ${msg.author} brillent, et voilà un saignement de nez ! :nosebleed:`,
-                `${msg.author} essaie de gérer son saignement de nez comme dans un manga ecchi. :tourniquet:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} has a manga-style nosebleed! :stuck_out_tongue_closed_eyes:`,
-                `Oh no, ${msg.author} is nosebleeding upon seeing something exciting! :scream:`,
-                `:scream: Look! ${msg.author} has a sexy nosebleed! :nosebleed:`,
-                `${msg.author} quickly grabs a tissue for their manga nosebleed. :tissue:`,
-                `${msg.author}'s eyes sparkle, and there's a nosebleed! :nosebleed:`,
-                `${msg.author} tries to handle their nosebleed like in an ecchi manga. :tourniquet:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        nyah: {
-          description: {
-            fr: "Dire nyah !",
-            en: "Say nyah!",
-          },
-          usage: "nyah",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} dit "Nyah !". :cat:`,
-                `:cat: "Nyah !" dit ${msg.author}.`,
-                `:cat::speech_balloon: ${msg.author} lance un "Nyah !" enthousiaste !`,
-                `:cat: "Nyah !" répète ${msg.author} joyeusement.`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} says "Nyah!" :cat:`,
-                `:cat: ${msg.author} goes "Nyah!"`,
-                `:cat::speech_balloon: ${msg.author} exclaims "Nyah!" enthusiastically!`,
-                `:cat: ${msg.author} cheerfully repeats "Nyah!"`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
         pat: {
           description: {
             fr: "Tapoter la tête de quelqu'un.",
@@ -1026,37 +663,6 @@ const messages = {
                 `${msg.author} shows affection by patting ${target}'s head. :heart:`,
                 `${msg.author} offers a friendly pat to ${target}. :hand_splayed:`,
                 `${msg.author} gives ${target}'s head a gentle caress. :blush:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        peek: {
-          description: {
-            fr: "Jeter un coup d'œil à quelque chose.",
-            en: "Peek at something.",
-          },
-          usage: "peek",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} jette un coup d'œil curieux. :eyes:`,
-                `${msg.author} s'approche furtivement pour regarder. :mag:`,
-                `${msg.author} regarde discrètement quelque chose. :shushing_face:`,
-                `${msg.author} jette un coup d'œil rapide. :eyes:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} takes a curious peek. :eyes:`,
-                `${msg.author} stealthily approaches to take a look. :mag:`,
-                `${msg.author} discreetly checks something out. :shushing_face:`,
-                `${msg.author} quickly glances at something. :eyes:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1099,181 +705,6 @@ const messages = {
             },
           },
         },
-        punch: {
-          description: {
-            fr: "Donner un coup de poing à quelqu'un.",
-            en: "Punch someone.",
-          },
-          usage: "punch <user>",
-          getAction: {
-            fr: (msg, target) => {
-              const actionMessages = [
-                `${msg.author} donne un coup de poing bien placé à ${target} ! :punch::face_with_symbols_over_mouth:`,
-                `Boom ! ${msg.author} vient de frapper ${target} avec une force colossale ! :boom::angry:`,
-                `Oh là là, ${msg.author} est vraiment énervé et ${target} en a fait les frais ! :angry::face_with_head_bandage:`,
-                `Attention, ${msg.author} est en mode Hulk et ${target} a été la cible de sa colère ! :muscle::angry:`,
-                `${msg.author} se défoule en donnant un coup de poing à ${target} ! :boxing_glove::triumph:`,
-                `:angry: ${msg.author} frappe ${target} tellement fort que c'est presque un K.O. ! :knockdown:`,
-                `Soyez témoins de l'énorme coup de poing de ${msg.author} sur ${target} ! :punch::exploding_head:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg, target) => {
-              const actionMessages = [
-                `${msg.author} punches ${target} right in the face! :punch::face_with_symbols_over_mouth:`,
-                `Boom! ${msg.author} just hit ${target} with colossal force! :boom::angry:`,
-                `Oh boy, ${msg.author} is really ticked off, and ${target} is on the receiving end! :angry::face_with_head_bandage:`,
-                `Watch out, ${msg.author} is in Hulk mode, and ${target} felt the wrath! :muscle::angry:`,
-                `${msg.author} vents by punching ${target}! :boxing_glove::triumph:`,
-                `:angry: ${msg.author} hits ${target} so hard, it's almost a knockout! :knockdown:`,
-                `Witness ${msg.author}'s massive punch on ${target}! :punch::exploding_head:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        roll: {
-          description: {
-            fr: "Faire rouler quelque chose.",
-            en: "Roll something.",
-          },
-          usage: "roll",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} fait rouler quelque chose. :game_die:`,
-                `${msg.author} lance un dé et le laisse rouler. :game_die:`,
-                `:game_die: Le dé de ${msg.author} roule sur la table. :game_die:`,
-                `${msg.author} fait rouler un objet sur le sol. :game_die:`,
-                `:game_die: ${msg.author} s'amuse à faire rouler un dé. :game_die:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} rolls something. :game_die:`,
-                `${msg.author} rolls a die and lets it roll. :game_die:`,
-                `:game_die: ${msg.author}'s die rolls on the table. :game_die:`,
-                `${msg.author} rolls an object on the floor. :game_die:`,
-                `:game_die: ${msg.author} has fun rolling a die. :game_die:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        sad: {
-          description: {
-            fr: "Exprimer la tristesse.",
-            en: "Express sadness.",
-          },
-          usage: "sad",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} exprime sa tristesse. :cry:`,
-                `${msg.author} est visiblement triste. :disappointed_relieved:`,
-                `:disappointed: ${msg.author} se sent vraiment triste. :cry:`,
-                `${msg.author} a besoin d'un câlin pour se remonter le moral. :hugging:`,
-                `La tristesse envahit ${msg.author}. :cry:`,
-                `${msg.author} fait une moue triste. :persevere:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} expresses sadness. :cry:`,
-                `${msg.author} looks visibly sad. :disappointed_relieved:`,
-                `:disappointed: ${msg.author} is really feeling sad. :cry:`,
-                `${msg.author} needs a hug to feel better. :hugging:`,
-                `Sadness overwhelms ${msg.author}. :cry:`,
-                `${msg.author} makes a sad face. :persevere:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        scared: {
-          description: {
-            fr: "Exprimer la peur.",
-            en: "Express fear.",
-          },
-          usage: "scared",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} exprime sa peur. :scream:`,
-                `${msg.author} est terrifié. :fearful:`,
-                `:fearful: ${msg.author} a vraiment peur. :scream:`,
-                `${msg.author} a besoin de réconfort en raison de la peur. :hugging:`,
-                `La peur s'empare de ${msg.author}. :scream:`,
-                `${msg.author} regarde effrayé. :anguished:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} expresses fear. :scream:`,
-                `${msg.author} looks terrified. :fearful:`,
-                `:fearful: ${msg.author} is really scared. :scream:`,
-                `${msg.author} needs comfort because of fear. :hugging:`,
-                `Fear takes over ${msg.author}. :scream:`,
-                `${msg.author} looks frightened. :anguished:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        shy: {
-          description: {
-            fr: "Être timide.",
-            en: "Be shy.",
-          },
-          usage: "shy",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} est tout timide. :blush:`,
-                `${msg.author} rougit de timidité. :flushed:`,
-                `:flushed: ${msg.author} est vraiment timide. :blush:`,
-                `${msg.author} a besoin d'un petit encouragement pour sortir de sa coquille. :blush:`,
-                `La timidité envahit ${msg.author}. :blush:`,
-                `${msg.author} esquisse un sourire timide. :blush:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} is feeling shy. :blush:`,
-                `${msg.author} blushes with shyness. :flushed:`,
-                `:flushed: ${msg.author} is really shy. :blush:`,
-                `${msg.author} needs a little encouragement to come out of their shell. :blush:`,
-                `Shyness takes over ${msg.author}. :blush:`,
-                `${msg.author} gives a shy smile. :blush:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
         slap: {
           description: {
             fr: "Donner une gifle à quelqu'un.",
@@ -1302,41 +733,6 @@ const messages = {
                 `${msg.author} is really angry and it shows! :rage:`,
                 `:rage: ${msg.author} is furious and can't hide it! :triumph:`,
                 `${msg.author} lets their anger out for everyone to see! :rage:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        sleep: {
-          description: {
-            fr: "Dormir.",
-            en: "Sleep.",
-          },
-          usage: "sleep",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} s'endort paisiblement. :zzz:`,
-                `${msg.author} ferme les yeux pour une sieste bien méritée. :sleeping:`,
-                `:sleeping: ${msg.author} part dormir. :zzz:`,
-                `${msg.author} a besoin de repos. :zzz:`,
-                `Le sommeil emporte ${msg.author}. :sleeping:`,
-                `${msg.author} s'assoupit. :sleeping:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} peacefully falls asleep. :zzz:`,
-                `${msg.author} closes their eyes for a well-deserved nap. :sleeping:`,
-                `:sleeping: ${msg.author} is going to sleep. :zzz:`,
-                `${msg.author} needs some rest. :zzz:`,
-                `Sleep takes over ${msg.author}. :sleeping:`,
-                `${msg.author} drifts off to sleep. :sleeping:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1379,21 +775,21 @@ const messages = {
             },
           },
         },
-        sneeze: {
+        smug: {
           description: {
-            fr: "Éternuer.",
-            en: "Sneeze.",
+            fr: "Avoir un air suffisant.",
+            en: "Look smug.",
           },
-          usage: "sneeze",
+          usage: "smug",
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `${msg.author} éternue bruyamment. :sneezing_face:`,
-                `Aïe ! ${msg.author} éternue tout à coup. :mask:`,
-                `:sneezing_face: ${msg.author} éternue de manière épique. :sneezing_face:`,
-                `${msg.author} a besoin d'un mouchoir après cet éternuement. :face_with_thermometer:`,
-                `Un éternuement surprise de ${msg.author} ! :astonished:`,
-                `${msg.author} éternue et surprend tout le monde. :scream:`,
+                `${msg.author} arbore un air suffisant. :smirk:`,
+                `${msg.author} a l'air tellement satisfait de lui-même. :satisfied:`,
+                `:smirk: ${msg.author} affiche un sourire suffisant. :smirk:`,
+                `${msg.author} a un petit rictus de satisfaction. :grinning:`,
+                `${msg.author} se sent supérieur. :smug:`,
+                `Le regard suffisant de ${msg.author} dit tout. :smirk:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1401,12 +797,12 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `${msg.author} sneezes loudly. :sneezing_face:`,
-                `Ouch! ${msg.author} suddenly sneezes. :mask:`,
-                `:sneezing_face: ${msg.author} sneezes epically. :sneezing_face:`,
-                `${msg.author} needs a tissue after that sneeze. :face_with_thermometer:`,
-                `${msg.author} with a surprise sneeze! :astonished:`,
-                `${msg.author} sneezes and surprises everyone. :scream:`,
+                `${msg.author} looks smug. :smirk:`,
+                `${msg.author} seems so pleased with themselves. :satisfied:`,
+                `:smirk: ${msg.author} wears a smug smile. :smirk:`,
+                `${msg.author} has a little smirk of satisfaction. :grinning:`,
+                `${msg.author} feels superior. :smug:`,
+                `${msg.author}'s smug look says it all. :smirk:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1414,21 +810,21 @@ const messages = {
             },
           },
         },
-        sorry: {
+        waifu: {
           description: {
-            fr: "S'excuser.",
-            en: "Apologize.",
+            fr: "Afficher une image de sa waifu préférée.",
+            en: "Display an image of your favorite waifu.",
           },
-          usage: "sorry",
+          usage: "waifu",
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `Désolé, ${msg.author} s'excuse. :disappointed:`,
-                `${msg.author} exprime des regrets. :pensive:`,
-                `:pensive: ${msg.author} s'excuse sincèrement. :pray:`,
-                `${msg.author} s'excuse pour toute confusion. :confused:`,
-                `Désolé, ${msg.author} fait amende honorable. :face_with_hand_over_mouth:`,
-                `:face_with_hand_over_mouth: ${msg.author} présente ses excuses. :disappointed_relieved:`,
+                `${msg.author} affiche une image de sa waifu préférée. :heart:`,
+                `${msg.author} partage une image de sa waifu avec tendresse. :sparkling_heart:`,
+                `:heart: ${msg.author} a choisi une waifu exceptionnelle. :heart:`,
+                `${msg.author} partage un moment magique avec sa waifu en affichant une image. :stars:`,
+                `${msg.author} émerveille tout le monde en montrant une image de sa waifu préférée. :blush:`,
+                `Les pensées de ${msg.author} sont remplies d'amour pour sa waifu, qu'elle partage avec une image. :heartpulse:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1436,222 +832,12 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `Sorry, ${msg.author} apologizes. :disappointed:`,
-                `${msg.author} expresses regret. :pensive:`,
-                `:pensive: ${msg.author} apologizes sincerely. :pray:`,
-                `${msg.author} apologizes for any confusion. :confused:`,
-                `Sorry, ${msg.author} makes amends. :face_with_hand_over_mouth:`,
-                `:face_with_hand_over_mouth: ${msg.author} offers apologies. :disappointed_relieved:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        stop: {
-          description: {
-            fr: "Arrêter quelque chose.",
-            en: "Stop something.",
-          },
-          usage: "stop",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} dit : "Stop, c'est assez !" :stop_sign:`,
-                `${msg.author} arrête tout à coup. :raised_hand:`,
-                `:raised_hand: ${msg.author} décide d'arrêter. :stop_sign:`,
-                `${msg.author} met fin à la situation. :no_entry_sign:`,
-                `Un arrêt inattendu de ${msg.author}. :astonished:`,
-                `${msg.author} stoppe tout brusquement. :raised_hand:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} says, "Stop, that's enough!" :stop_sign:`,
-                `${msg.author} stops suddenly. :raised_hand:`,
-                `:raised_hand: ${msg.author} decides to stop. :stop_sign:`,
-                `${msg.author} puts an end to the situation. :no_entry_sign:`,
-                `${msg.author} with an unexpected stop. :astonished:`,
-                `${msg.author} abruptly stops everything. :raised_hand:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        surprised: {
-          description: {
-            fr: "Exprimer la surprise.",
-            en: "Express surprise.",
-          },
-          usage: "surprised",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `Oh là là ! ${msg.author} est vraiment surpris. :astonished:`,
-                `${msg.author} sursaute de surprise. :scream:`,
-                `:scream: ${msg.author} est complètement étonné. :astonished:`,
-                `${msg.author} est choqué. :open_mouth:`,
-                `Une expression de surprise de ${msg.author} ! :astonished:`,
-                `${msg.author} est étonné au-delà des mots. :exploding_head:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `Oh my goodness! ${msg.author} is really surprised. :astonished:`,
-                `${msg.author} jumps in surprise. :scream:`,
-                `:scream: ${msg.author} is completely astonished. :astonished:`,
-                `${msg.author} is shocked. :open_mouth:`,
-                `${msg.author} with a surprised expression! :astonished:`,
-                `${msg.author} is amazed beyond words. :exploding_head:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        sweat: {
-          description: {
-            fr: "Transpirer.",
-            en: "Sweat.",
-          },
-          usage: "sweat",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} transpire à grosses gouttes. :sweat_drops:`,
-                `C'est chaud ici ! ${msg.author} commence à transpirer. :hot_face:`,
-                `:hot_face: ${msg.author} est en train de fondre de chaleur. :sweat_drops:`,
-                `${msg.author} transpire comme un athlète. :muscle:`,
-                `Un peu trop de chaleur pour ${msg.author}. :fire:`,
-                `${msg.author} est tout trempé de sueur. :sweat_drops:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} is sweating profusely. :sweat_drops:`,
-                `It's hot in here! ${msg.author} starts sweating. :hot_face:`,
-                `:hot_face: ${msg.author} is melting from the heat. :sweat_drops:`,
-                `${msg.author} sweats like an athlete. :muscle:`,
-                `A bit too much heat for ${msg.author}. :fire:`,
-                `${msg.author} is all soaked in sweat. :sweat_drops:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        thumbsup: {
-          description: {
-            fr: "Donner un pouce levé.",
-            en: "Give a thumbs up.",
-          },
-          usage: "thumbsup",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `:thumbsup: ${msg.author} donne un pouce levé. :+1:`,
-                `${msg.author} approuve avec un pouce levé. :+1:`,
-                `:+1: ${msg.author} fait un signe positif avec son pouce. :thumbsup:`,
-                `${msg.author} soutient d'un pouce levé. :+1:`,
-                `:thumbsup: ${msg.author} est d'accord. :+1:`,
-                `${msg.author} donne un pouce levé en signe d'approbation. :+1:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `:thumbsup: ${msg.author} gives a thumbs up. :+1:`,
-                `${msg.author} approves with a thumbs up. :+1:`,
-                `:+1: ${msg.author} gives a positive sign with their thumb. :thumbsup:`,
-                `${msg.author} supports with a thumbs up. :+1:`,
-                `:thumbsup: ${msg.author} agrees. :+1:`,
-                `${msg.author} gives a thumbs up as a sign of approval. :+1:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        tickle: {
-          description: {
-            fr: "Chatouiller quelqu'un.",
-            en: "Tickle someone.",
-          },
-          usage: "tickle <user>",
-          getAction: {
-            fr: (msg, target) => {
-              const actionMessages = [
-                `:laughing: ${msg.author} chatouille ${target} ! :grin:`,
-                `${msg.author} chatouille ${target} et provoque des rires ! :joy:`,
-                `:joy: ${msg.author} fait rire ${target} en le chatouillant. :laughing:`,
-                `${msg.author} chatouille ${target} avec succès ! :grinning:`,
-                `:grinning: ${msg.author} amuse ${target} en le chatouillant. :joy:`,
-                `${msg.author} chatouille ${target} jusqu'à ce que ça devienne incontrôlable ! :laughing:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg, target) => {
-              const actionMessages = [
-                `:laughing: ${msg.author} tickles ${target}! :grin:`,
-                `${msg.author} tickles ${target} and triggers laughter! :joy:`,
-                `:joy: ${msg.author} makes ${target} laugh by tickling them. :laughing:`,
-                `${msg.author} successfully tickles ${target}! :grinning:`,
-                `:grinning: ${msg.author} amuses ${target} by tickling them. :joy:`,
-                `${msg.author} tickles ${target} until it becomes uncontrollable! :laughing:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        tired: {
-          description: {
-            fr: "Exprimer la fatigue.",
-            en: "Express tiredness.",
-          },
-          usage: "tired",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} est épuisé. :weary:`,
-                `:weary: ${msg.author} a vraiment besoin de repos. :sleeping:`,
-                `${msg.author} se sent fatigué. :tired_face:`,
-                `C'est le moment de la sieste pour ${msg.author}. :zzz:`,
-                `${msg.author} ne peut plus continuer. :dizzy_face:`,
-                `:dizzy_face: ${msg.author} est complètement épuisé. :zzz:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} is exhausted. :weary:`,
-                `:weary: ${msg.author} really needs some rest. :sleeping:`,
-                `${msg.author} feels tired. :tired_face:`,
-                `It's nap time for ${msg.author}. :zzz:`,
-                `${msg.author} can't go on anymore. :dizzy_face:`,
-                `:dizzy_face: ${msg.author} is completely worn out. :zzz:`,
+                `${msg.author} displays an image of their favorite waifu. :heart:`,
+                `${msg.author} shares an image of their waifu with affection. :sparkling_heart:`,
+                `:heart: ${msg.author} has chosen an exceptional waifu. :heart:`,
+                `${msg.author} shares a magical moment with their waifu by displaying an image. :stars:`,
+                `${msg.author} delights everyone by showing an image of their favorite waifu. :blush:`,
+                `${msg.author}'s thoughts are filled with love for their waifu, which they share with an image. :heartpulse:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1729,21 +915,21 @@ const messages = {
             },
           },
         },
-        woah: {
+        yeet: {
           description: {
-            fr: "Exprimer l'étonnement.",
-            en: "Express amazement.",
+            fr: "Lancer quelque chose avec force.",
+            en: "Throw something forcefully.",
           },
-          usage: "woah",
+          usage: "yeet",
           getAction: {
             fr: (msg) => {
               const actionMessages = [
-                `Woah, ${msg.author} est vraiment étonné. :astonished:`,
-                `${msg.author} sursaute d'étonnement. :scream:`,
-                `:scream: ${msg.author} est complètement stupéfait. :astonished:`,
-                `${msg.author} est choqué. :open_mouth:`,
-                `${msg.author} avec une expression surprise ! :astonished:`,
-                `${msg.author} est époustouflé au-delà des mots. :exploding_head:`,
+                `${msg.author} lance quelque chose avec une force incroyable ! :muscle:`,
+                `${msg.author} projette un objet avec puissance ! :rocket:`,
+                `:muscle: ${msg.author} montre sa force en lançant un objet loin ! :dart:`,
+                `${msg.author} yeet avec vigueur ! :boom:`,
+                `:boom: ${msg.author} prépare un lancer impressionnant ! :rocket:`,
+                `${msg.author} fait un yeet spectaculaire ! :dart:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -1751,117 +937,12 @@ const messages = {
             },
             en: (msg) => {
               const actionMessages = [
-                `Oh my goodness! ${msg.author} is really surprised. :astonished:`,
-                `${msg.author} jumps in surprise. :scream:`,
-                `:scream: ${msg.author} is completely astonished. :astonished:`,
-                `${msg.author} is shocked. :open_mouth:`,
-                `${msg.author} with a surprised expression! :astonished:`,
-                `${msg.author} is amazed beyond words. :exploding_head:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        yawn: {
-          description: {
-            fr: "Bailler.",
-            en: "Yawn.",
-          },
-          usage: "yawn",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `${msg.author} baille en signe de fatigue. :yawning_face:`,
-                `:yawning_face: ${msg.author} a vraiment besoin de sommeil. :sleeping:`,
-                `${msg.author} se sent fatigué et baille. :zzz:`,
-                `C'est l'heure de la sieste pour ${msg.author}. :sleepy:`,
-                `${msg.author} ne peut plus cacher son bâillement. :weary:`,
-                `:weary: ${msg.author} baille de manière contagieuse. :sleeping:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `${msg.author} yawns as a sign of tiredness. :yawning_face:`,
-                `:yawning_face: ${msg.author} really needs some sleep. :sleeping:`,
-                `${msg.author} feels tired and yawns. :zzz:`,
-                `It's nap time for ${msg.author}. :sleepy:`,
-                `${msg.author} can't hide the yawn anymore. :weary:`,
-                `:weary: ${msg.author} yawns in a contagious manner. :sleeping:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        yay: {
-          description: {
-            fr: "Exprimer l'excitation.",
-            en: "Express excitement.",
-          },
-          usage: "yay",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `Hourra ! ${msg.author} est super excité ! :tada:`,
-                `${msg.author} saute de joie ! :confetti_ball:`,
-                `:tada: ${msg.author} est en folie de bonheur ! :partying_face:`,
-                `${msg.author} exprime son excitation ! :fireworks:`,
-                `:fireworks: ${msg.author} est prêt à faire la fête ! :confetti_ball:`,
-                `${msg.author} crie de joie ! :tada:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `Hooray! ${msg.author} is super excited! :tada:`,
-                `${msg.author} jumps for joy! :confetti_ball:`,
-                `:tada: ${msg.author} is in a happiness frenzy! :partying_face:`,
-                `${msg.author} expresses excitement! :fireworks:`,
-                `:fireworks: ${msg.author} is ready to party! :confetti_ball:`,
-                `${msg.author} shouts with joy! :tada:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-          },
-        },
-        yes: {
-          description: {
-            fr: "Dire oui.",
-            en: "Say yes.",
-          },
-          usage: "yes",
-          getAction: {
-            fr: (msg) => {
-              const actionMessages = [
-                `:white_check_mark: ${msg.author} dit oui avec enthousiasme !`,
-                `${msg.author} accepte volontiers. :thumbsup:`,
-                `:thumbsup: ${msg.author} est d'accord !`,
-                `${msg.author} répond positivement. :+1:`,
-                `:white_check_mark: ${msg.author} donne son accord !`,
-                `${msg.author} est tout à fait d'accord ! :thumbsup:`,
-              ];
-              return actionMessages[
-                Math.floor(Math.random() * actionMessages.length)
-              ];
-            },
-            en: (msg) => {
-              const actionMessages = [
-                `:white_check_mark: ${msg.author} enthusiastically says yes!`,
-                `${msg.author} gladly agrees. :thumbsup:`,
-                `:thumbsup: ${msg.author} is on board!`,
-                `${msg.author} responds positively. :+1:`,
-                `:white_check_mark: ${msg.author} gives their approval!`,
-                `${msg.author} is all in! :thumbsup:`,
+                `${msg.author} yeets something with incredible force! :muscle:`,
+                `${msg.author} hurls an object with power! :rocket:`,
+                `:muscle: ${msg.author} shows their strength by throwing an object far! :dart:`,
+                `${msg.author} yeets vigorously! :boom:`,
+                `:boom: ${msg.author} prepares for an impressive yeet! :rocket:`,
+                `${msg.author} pulls off a spectacular yeet! :dart:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)

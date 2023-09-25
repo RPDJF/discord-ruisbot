@@ -8,59 +8,33 @@ const messages = require("../../modules/messages");
 // data
 // List of all availableActions and specific properties
 const availableActions = [
-  "airkiss",
-  "angrystare",
   "bite",
-  "bleh",
   "blush",
-  "brofist",
-  "celebrate",
-  "cheers",
-  "clap",
-  "confused",
-  "cry",
+  "bonk",
+  "bully",
   "cuddle",
+  "cringe",
+  "cry",
   "dance",
-  "evillaugh",
-  "facepalm",
   "handhold",
   "happy",
+  "highfive",
   "hug",
+  "kick",
+  "kill",
   "kiss",
-  "laugh",
   "lick",
-  "love",
-  "mad",
-  "nervous",
-  "no",
+  "neko",
   "nom",
-  "nosebleed",
-  "nyah",
   "pat",
-  "peek",
   "poke",
-  "punch",
-  "roll",
-  "sad",
-  "scared",
-  "shy",
   "slap",
-  "sleep",
   "smile",
-  "sneeze",
-  "sorry",
-  "stop",
-  "surprised",
-  "sweat",
-  "thumbsup",
-  "tickle",
-  "tired",
+  "smug",
+  "waifu",
   "wave",
   "wink",
-  "woah",
-  "yawn",
-  "yay",
-  "yes",
+  "yeet",
 ];
 
 module.exports = {
@@ -81,28 +55,28 @@ module.exports = {
     const target = args[1] || msg.guild.members.cache.random().user;
 
     const author = {
-      name: "OtakuGifs",
-      iconURL: "https://otakugifs.xyz/img/logo.png",
-      url: "https://otakugifs.xyz/",
+      name: "waifu.pics",
+      iconURL: "https://waifu.pics/favicon.png",
+      url: "https://waifu.pics/",
     };
 
     // Get the image from the API
-    const image = (
-      await axios.get(`https://api.otakugifs.xyz/gif?reaction=${args[0]}`)
-    ).data;
-    const embeds = embedUtility.short(
-      messages.data.commands.interactions[args[0]].getAction[guild.lang](
-        msg,
-        target,
-      ),
-    );
-    embeds[0].data.image = { url: image.url };
+    const image = (await axios.get(`https://api.waifu.pics/sfw/${args[0]}`))
+      .data;
+    const embeds = embedUtility.image(image.url, author);
 
     // Send the message
-    msg.reply({ embeds }).catch((err) => {
-      console.error(err);
-      return 1;
-    });
+    msg.channel
+      .send({
+        content: messages.data.commands.interactions[args[0]].getAction[
+          guild.lang
+        ](msg, target),
+        embeds,
+      })
+      .catch((err) => {
+        console.error(err);
+        return 1;
+      });
   },
   /**
    * @param {Message} msg

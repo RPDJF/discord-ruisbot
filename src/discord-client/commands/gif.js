@@ -56,7 +56,7 @@ module.exports = {
       gif.media_formats.gif.url,
       author,
     );
-    msg.reply({ embeds: embed }).catch((err) => {
+    msg.channel.send({ embeds: embed }).catch((err) => {
       console.error(err);
       return 1;
     });

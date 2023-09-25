@@ -15,7 +15,7 @@ module.exports = {
     const authorId = msg.author.id;
     const dSize = authorId[1] + authorId[4];
     const dRslt = "8" + "=".repeat(dSize) + ">";
-    msg.reply(dRslt).catch((err) => {
+    msg.channel.send(dRslt).catch((err) => {
       console.error(err);
       return 1;
     });

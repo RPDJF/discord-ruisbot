@@ -33,8 +33,8 @@ module.exports = {
         "https://cdn.freebiesupply.com/logos/large/2x/nasa-6-logo-png-transparent.png",
     };
     // Return a message to the user
-    msg
-      .reply({
+    msg.channel
+      .send({
         embeds: embedUtility.imageMessage(
           response.title,
           response.date,

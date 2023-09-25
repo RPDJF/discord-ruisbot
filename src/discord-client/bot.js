@@ -101,7 +101,7 @@ client.on(Events.MessageCreate, async (msg) => {
           };
           switch (guild.prefix) {
             case "fr":
-              msg.reply({
+              msg.channel.send({
                 embeds: embedUtility.errorMessage(
                   "Oh non...",
                   "Un problème est survenu, réessayez dans un petit moment.",
@@ -110,7 +110,7 @@ client.on(Events.MessageCreate, async (msg) => {
               });
               break;
             default:
-              msg.reply({
+              msg.channel.send({
                 embeds: embedUtility.errorMessage(
                   "Oh nooo...",
                   "Something went wrong, please retry later.",
@@ -141,7 +141,7 @@ client.on(Events.MessageCreate, async (msg) => {
           );
           break;
       }
-      msg.reply({ embeds: embedReply });
+      msg.channel.send({ embeds: embedReply });
       return;
     }
 

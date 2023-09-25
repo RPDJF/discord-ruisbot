@@ -32,8 +32,8 @@ module.exports = {
         inline: true,
       },
     ];
-    msg
-      .reply({
+    msg.channel
+      .send({
         embeds: embedUtility.fieldsMessage(
           commandMessage.replies[guild.lang].title,
           commandMessage.replies[guild.lang].description,

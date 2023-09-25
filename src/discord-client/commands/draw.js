@@ -68,7 +68,7 @@ module.exports = {
         response.data.data[0].url,
         author,
       );
-      msg.reply({ embeds: embed }).catch((err) => {
+      msg.channel.send({ embeds: embed }).catch((err) => {
         console.error(err);
         return 1;
       });

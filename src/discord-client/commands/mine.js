@@ -54,8 +54,8 @@ async function execute(msg, args) {
               minedItems: [],
             },
           };
-        msg
-          .reply({
+        msg.channel
+          .send({
             embeds: mineStatsEmbedBuilder(
               guild,
               targetUserData.mine.minedItems,
@@ -87,8 +87,8 @@ function play(msg, guild, userData) {
     // check if CoolDown
     const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
     if (differenceInMinutes < gameCoolDownInMinute) {
-      msg
-        .reply({
+      msg.channel
+        .send({
           embeds: mineCoolDownEmbedBuilder(
             guild,
             gameCoolDownInMinute - Math.floor(differenceInMinutes),
@@ -103,8 +103,8 @@ function play(msg, guild, userData) {
     }
     const cloudInventory = userData.mine.minedItems;
     // display
-    msg
-      .reply({
+    msg.channel
+      .send({
         embeds: mineSuccessEmbedBuilder(
           guild,
           inventory,
@@ -122,8 +122,8 @@ function play(msg, guild, userData) {
     }
   } else {
     // display
-    msg
-      .reply({
+    msg.channel
+      .send({
         embeds: mineSuccessEmbedBuilder(guild, inventory, 0),
         files: [gameLogo],
       })

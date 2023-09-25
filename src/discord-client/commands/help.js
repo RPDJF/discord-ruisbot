@@ -54,8 +54,8 @@ module.exports = {
             value: "```Commandes diverses```",
             inline: true,
           });
-          msg
-            .reply({
+          msg.channel
+            .send({
               embeds: embedUtility.fieldsMessage(
                 "Liste des commandes",
                 `Utilisez \`\`${guild.prefix}help <catégorie>\`\` pour avoir plus d'infos !`,
@@ -98,8 +98,8 @@ module.exports = {
             value: "```Misc commands```",
             inline: true,
           });
-          msg
-            .reply({
+          msg.channel
+            .send({
               embeds: embedUtility.fieldsMessage(
                 "List of commands",
                 `Use \`\`${guild.prefix}help <category>\`\` for more details!`,
@@ -123,8 +123,8 @@ module.exports = {
                   value: command.description[guild.lang],
                 });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "Liste de toutes les commandes",
                     "bonne lecture !",
@@ -177,7 +177,7 @@ module.exports = {
               embeds[0].data.thumbnail = {
                 url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
               };
-              msg.reply({ embeds: embeds }).catch((err) => {
+              msg.channel.send({ embeds: embeds }).catch((err) => {
                 console.error(err);
                 return 1;
               });
@@ -191,8 +191,8 @@ module.exports = {
                   });
                 }
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "List des commandes fun",
                     "Amuse-toi bien !",
@@ -217,8 +217,8 @@ module.exports = {
                   });
                 }
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "Liste des commandes de configuration",
                     "Amuse-toi bien !",
@@ -241,8 +241,8 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "Liste des commandes d'interaction",
                     "Amuse-toi bien !",
@@ -264,8 +264,8 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "Liste des commandes diverses",
                     "Amuse-toi bien !",
@@ -282,8 +282,8 @@ module.exports = {
             default:
               const command = msg.client.commands.get(args[1]);
               if (command)
-                msg
-                  .reply({
+                msg.channel
+                  .send({
                     embeds: embedUtility.message(
                       args[1],
                       `**description** : ${
@@ -296,8 +296,8 @@ module.exports = {
                     return 1;
                   });
               else
-                msg
-                  .reply({
+                msg.channel
+                  .send({
                     embeds: embedUtility.errorMessage(
                       `${args[1]} ?`,
                       `Il n'y a pas ${args[1]} dans la liste des commandes.`,
@@ -319,8 +319,8 @@ module.exports = {
                   value: command.description[guild.lang],
                 });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "List of all the commands",
                     "enjoy !",
@@ -373,7 +373,7 @@ module.exports = {
               embeds[0].data.thumbnail = {
                 url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
               };
-              msg.reply({ embeds: embeds }).catch((err) => {
+              msg.channel.send({ embeds: embeds }).catch((err) => {
                 console.error(err);
                 return 1;
               });
@@ -386,8 +386,8 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "List of fun commands",
                     "enjoy !",
@@ -411,7 +411,7 @@ module.exports = {
                   });
                 }
               });
-              msg.reply({
+              msg.channel.send({
                 embeds: embedUtility
                   .fieldsMessage(
                     "List of configuration commands",
@@ -435,8 +435,8 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "List of interaction commands",
                     "enjoy !",
@@ -458,8 +458,8 @@ module.exports = {
                     value: command.description[guild.lang],
                   });
               });
-              msg
-                .reply({
+              msg.channel
+                .send({
                   embeds: embedUtility.fieldsMessage(
                     "List of misc commands",
                     "enjoy !",
@@ -476,8 +476,8 @@ module.exports = {
             default:
               const command = msg.client.commands.get(args[1]);
               if (command)
-                msg
-                  .reply({
+                msg.channel
+                  .send({
                     embeds: embedUtility.message(
                       args[1],
                       `**description** : ${
@@ -490,8 +490,8 @@ module.exports = {
                     return 1;
                   });
               else
-                msg
-                  .reply({
+                msg.channel
+                  .send({
                     embeds: embedUtility.errorMessage(
                       `${args[1]} ?`,
                       `There is no reference of ${args[1]} in list of commands.`,

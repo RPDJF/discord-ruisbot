@@ -39,6 +39,21 @@ function message(title, description, author) {
   return [embed];
 }
 
+function image(image, author) {
+  if (!author) author = BOT_AUTHOR;
+  const embed = new EmbedBuilder()
+    .setColor(PRIMARY_COLOR)
+    .setImage(image)
+    .setFooter({
+      text: `${name} ${version}`,
+      iconURL:
+        "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+    })
+    .setAuthor(author)
+    .setTimestamp();
+  return [embed];
+}
+
 function imageMessage(title, description, image, author) {
   if (!author) author = BOT_AUTHOR;
   const embed = message(title, description, author)[0];
@@ -90,7 +105,7 @@ function fieldsMessage(title, description, fields, author, page = 1) {
 function genericErrorMessage(msg, guild) {
   switch (guild.lang) {
     case "fr":
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "oh non...",
           "Un problème est survenu, réessayez dans un petit moment.",
@@ -98,7 +113,7 @@ function genericErrorMessage(msg, guild) {
       });
       break;
     default:
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "oh nooo...",
           "Something went wrong, please retry later.",
@@ -111,7 +126,7 @@ function genericErrorMessage(msg, guild) {
 function genericPermissionMessage(msg, guild) {
   switch (guild.lang) {
     case "fr":
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "rh petit margoulin !",
           "Seuls les administrateurs du serveur sont en mesure de lancer cette commande ! ",
@@ -119,7 +134,7 @@ function genericPermissionMessage(msg, guild) {
       });
       break;
     default:
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "I saw ya !",
           "You can't use this command, it's only for administrators.",
@@ -133,7 +148,7 @@ async function genericWrongUsageMessage(msg, args, command) {
   const guild = await db.getData("guilds", msg.guildId);
   switch (guild.lang) {
     case "fr":
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "mauvaise utilisation",
           `**${args[0]}**\n${
@@ -143,7 +158,7 @@ async function genericWrongUsageMessage(msg, args, command) {
       });
       break;
     default:
-      msg.reply({
+      msg.channel.send({
         embeds: errorMessage(
           "wrong usage",
           `**${args[0]}**\n${
@@ -158,8 +173,8 @@ async function genericWrongUsageMessage(msg, args, command) {
 function genericDisabledOpenAIMessage(msg, guild) {
   switch (guild.lang) {
     case "fr":
-      msg
-        .reply({
+      msg.channel
+        .send({
           embeds: errorMessage(
             "GPT4 est désactivé sur ce serveur",
             "Les services OpenAI ont été désactivés par les administrateurs du serveur.",
@@ -171,8 +186,8 @@ function genericDisabledOpenAIMessage(msg, guild) {
         });
       break;
     default:
-      msg
-        .reply({
+      msg.channel
+        .send({
           embeds: errorMessage(
             "GPT4 is disabled on this server",
             "OpenAI services have been turned of by this server's administrators.",
@@ -188,6 +203,7 @@ function genericDisabledOpenAIMessage(msg, guild) {
 
 module.exports = {
   message,
+  image,
   imageMessage,
   errorMessage,
   fieldsMessage,
