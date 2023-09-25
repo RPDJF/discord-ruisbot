@@ -20,7 +20,7 @@ module.exports = {
       return 0;
     }
     if (args.length < 2) {
-      embedUtility.genericWrongUsageMessage(msg, args, guild, this);
+      await embedUtility.genericWrongUsageMessage(msg, args, this);
       return 0;
     }
     let data;

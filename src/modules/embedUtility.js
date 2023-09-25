@@ -6,6 +6,7 @@ const {
   PRIMARY_COLOR,
   BOT_AUTHOR,
 } = require("../../config/bot-conf");
+const db = require("./db");
 
 // Message type
 /**
@@ -35,6 +36,13 @@ function message(title, description, author) {
   if (!author) author = BOT_AUTHOR;
   const embed = short(description, author)[0];
   embed.data.title = title;
+  return [embed];
+}
+
+function imageMessage(title, description, image, author) {
+  if (!author) author = BOT_AUTHOR;
+  const embed = message(title, description, author)[0];
+  embed.data.image = { url: image };
   return [embed];
 }
 /**
@@ -121,7 +129,8 @@ function genericPermissionMessage(msg, guild) {
   }
 }
 
-function genericWrongUsageMessage(msg, args, guild, command) {
+async function genericWrongUsageMessage(msg, args, command) {
+  const guild = await db.getData("guilds", msg.guildId);
   switch (guild.lang) {
     case "fr":
       msg.reply({
@@ -179,6 +188,7 @@ function genericDisabledOpenAIMessage(msg, guild) {
 
 module.exports = {
   message,
+  imageMessage,
   errorMessage,
   fieldsMessage,
   genericErrorMessage,

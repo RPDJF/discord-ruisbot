@@ -31,31 +31,36 @@ module.exports = {
       iconURL: "https://game-tournaments.com/media/logo/t25349.png",
       url: "https://openai.com/api/",
     };
-    // generate image
-    const prompt = args;
-    const n = 1;
-    const size = "512x512";
 
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
-    };
-
-    const data = {
-      prompt,
-      n,
-      size,
-    };
-
+    // Send request to OpenAI API
     try {
-      const response = await axios.post(
-        "https://api.openai.com/v1/images/generations",
-        data,
-        { headers },
+      const response = await axios
+        .post(
+          "https://api.openai.com/v1/images/generations",
+          {
+            prompt: args,
+            n: 1,
+            size: "512x512",
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${OPENAI_API_KEY}`,
+            },
+          },
+        )
+        .catch((err) => {
+          console.error(err);
+          return 1;
+        });
+      // Return a message to the user
+      const embed = embedUtility.imageMessage(
+        args,
+        `${msg.author}`,
+        response.data.data[0].url,
+        author,
       );
-      const embed = embedUtility.message(args, `${msg.author}`, author)[0];
-      embed.data.image = { url: await response.data.data[0].url };
-      msg.reply({ embeds: [embed] }).catch((err) => {
+      msg.reply({ embeds: embed }).catch((err) => {
         console.error(err);
         return 1;
       });

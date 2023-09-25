@@ -1,9 +1,12 @@
+// Configuration file for the game "Rui's Mine"
 const gameName = "Rui's Mine";
 const gameLogo = "https://i.ibb.co/L84rGdT/ruismine-logo.png";
 const gameThumbnail =
   "https://cdn-icons-png.flaticon.com/512/1213/1213235.png?w=360";
 const gameCoolDownInMinute = 30;
 const minimumRounds = 2;
+
+// Items
 const items = [
   {
     value: 3,

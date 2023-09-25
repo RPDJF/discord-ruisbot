@@ -38,7 +38,7 @@ async function execute(msg, args) {
       msg.mentions.users.at(0).id,
     );
     user = msg.mentions.users.at(0);
-  }else{
+  } else {
     // if not, use author data
     targetUserData = userData;
     user = msg.author;
@@ -59,7 +59,7 @@ async function execute(msg, args) {
             embeds: mineStatsEmbedBuilder(
               guild,
               targetUserData.mine.minedItems,
-              user
+              user,
             ),
             files: [gameLogo],
           })
@@ -69,6 +69,7 @@ async function execute(msg, args) {
           });
         break;
       default:
+        embedUtility.genericWrongUsageMessage(msg, args, this);
         break;
     }
 }
@@ -255,7 +256,9 @@ function mineStatsEmbedBuilder(guild, cloudInventory, user) {
   const fields = [];
   fields.push({
     name: messages.data.commands.mine.replies.stats.title[guild.lang],
-    value: `${messages.data.commands.mine.replies.stats.description[guild.lang]} ${user}`,
+    value: `${
+      messages.data.commands.mine.replies.stats.description[guild.lang]
+    } ${user}`,
     inline: false,
   });
   for (item in items) {
