@@ -39,14 +39,14 @@ const messages = {
         usage: "help <command|category> <page>",
       },
       interactions: {
-        airkiss:{
-          description:{
+        airkiss: {
+          description: {
             fr: "Envoyer un baiser.",
-            en: "Send an airkiss."
+            en: "Send an airkiss.",
           },
           usage: "airkiss <user>",
-          getAction:{
-            fr: (msg, target) =>{
+          getAction: {
+            fr: (msg, target) => {
               const actionMessages = [
                 `:kissing_heart: ${msg.author} envoie un baiser à ${target} ! :heart:`,
                 `${msg.author} fait un bisou à ${target} ! :kissing_closed_eyes:`,
@@ -54,15 +54,15 @@ const messages = {
                 `:sparkling_heart: ${msg.author} envoie un baiser rempli d'amour à ${target} !`,
               ];
             },
-            en: (msg, target) =>{
+            en: (msg, target) => {
               const actionMessages = [
                 `:kissing_heart: ${msg.author} sends a kiss to ${target}! :heart:`,
                 `${msg.author} gives ${target} a kiss! :kissing_closed_eyes:`,
                 `:heart_eyes: ${msg.author} sends a flying kiss to ${target}! :kissing_smiling_eyes:`,
                 `:sparkling_heart: ${msg.author} sends a kiss full of love to ${target}!`,
               ];
-            }
-          }
+            },
+          },
         },
         angrystare: {
           description: {
@@ -358,7 +358,7 @@ const messages = {
               ];
             },
           },
-        },        
+        },
         cry: {
           description: {
             fr: "Exprimer tristesse en pleurant.",

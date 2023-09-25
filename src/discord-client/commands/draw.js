@@ -46,7 +46,7 @@ module.exports = {
         .post(
           "https://api.openai.com/v1/images/generations",
           {
-            prompt: args,
+            prompt: query,
             n: 1,
             size: "512x512",
           },
@@ -63,7 +63,7 @@ module.exports = {
         });
       // Return a message to the user
       const embed = embedUtility.imageMessage(
-        args,
+        query,
         `${msg.author}`,
         response.data.data[0].url,
         author,
