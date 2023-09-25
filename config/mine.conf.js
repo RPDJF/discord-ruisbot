@@ -10,7 +10,7 @@ const minimumRounds = 2;
 const items = [
   {
     value: 3,
-    occurence: 1000,
+    occurence: 1000, // 100%
     name: {
       fr: "pierre",
       en: "stone",
@@ -18,8 +18,8 @@ const items = [
     emoji: ":rock:",
   },
   {
-    value: 7,
-    occurence: 600,
+    value: 8,
+    occurence: 500, // 50%
     name: {
       fr: "charbon",
       en: "coal",
@@ -27,8 +27,8 @@ const items = [
     emoji: "<:coal_dust:1155122780166160394>",
   },
   {
-    value: 45,
-    occurence: 200,
+    value: 25,
+    occurence: 250, // 25%
     name: {
       fr: "lingot de fer",
       en: "iron",
@@ -36,8 +36,8 @@ const items = [
     emoji: "<:Iron_ingot:1155120062286536724>",
   },
   {
-    value: 200,
-    occurence: 70,
+    value: 120,
+    occurence: 125, // 12.5%
     name: {
       fr: "lingot d'or",
       en: "gold",
@@ -45,8 +45,8 @@ const items = [
     emoji: "<a:gold:1155121920119934976>",
   },
   {
-    value: 1200,
-    occurence: 10,
+    value: 400,
+    occurence: 30, // 3%
     name: {
       fr: "diamant",
       en: "diamond",
@@ -54,8 +54,8 @@ const items = [
     emoji: "<a:diamond:1155119834045087774>",
   },
   {
-    value: 8000,
-    occurence: 1,
+    value: 1500,
+    occurence: 10, // 1%
     name: {
       fr: "émeraude",
       en: "emerald",
