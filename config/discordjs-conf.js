@@ -7,9 +7,7 @@ const DISCORD_BOT_ID = process.env.DISCORD_BOT_ID;
 
 // Tests
 if (!DISCORD_BOT_TOKEN || !DISCORD_BOT_ID) {
-  console.error(
-    "DISCORD_BOT_TOKEN and DISCORD_BOT_ID environment variables are required.",
-  );
+  console.error("DISCORD_BOT_TOKEN or DISCORD_BOT_ID not found in .env file.");
   process.exit(1);
 }
 

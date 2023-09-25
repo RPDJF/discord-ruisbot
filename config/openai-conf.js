@@ -35,7 +35,7 @@ function getContext(msg) {
 // Tests
 if (!OPENAI_API_KEY || !OPENAI_ORGANIZATION_ID) {
   console.error(
-    "OPENAI_API_KEY and OPENAI_ORGANIZATION_ID environment variables are required to use GPT4 & DallE command.",
+    "OPENAI_API_KEY or OPENAI_ORGANIZATION_ID not found in .env file.",
   );
   process.exit(1);
 }

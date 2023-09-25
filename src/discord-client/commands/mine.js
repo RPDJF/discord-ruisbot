@@ -29,6 +29,7 @@ async function execute(msg, args) {
     `guilds/${msg.guildId}/users`,
     msg.author.id,
   );
+  let user;
   let targetUserData;
   // Check if msg has mention
   if (msg.mentions.users.size > 0) {
@@ -36,7 +37,12 @@ async function execute(msg, args) {
       `guilds/${msg.guildId}/users`,
       msg.mentions.users.at(0).id,
     );
-  } else targetUserData = userData; // if not, use author data
+    user = msg.mentions.users.at(0);
+  }else{
+    // if not, use author data
+    targetUserData = userData;
+    user = msg.author;
+  }
   if (args.length < 2) play(msg, guild, userData);
   else
     switch (args[1]) {
@@ -53,6 +59,7 @@ async function execute(msg, args) {
             embeds: mineStatsEmbedBuilder(
               guild,
               targetUserData.mine.minedItems,
+              user
             ),
             files: [gameLogo],
           })
@@ -243,25 +250,14 @@ function mineCoolDownEmbedBuilder(guild, timeLeft) {
   return [embed];
 }
 
-function mineStatsEmbedBuilder(guild, cloudInventory) {
+function mineStatsEmbedBuilder(guild, cloudInventory, user) {
   const score = getScore(cloudInventory);
   const fields = [];
-  switch (guild.lang) {
-    case "fr":
-      fields.push({
-        name: "Inventaire",
-        value: "ㅤ",
-        inline: false,
-      });
-      break;
-    default:
-      fields.push({
-        name: "Inventory",
-        value: "ㅤ",
-        inline: false,
-      });
-      break;
-  }
+  fields.push({
+    name: messages.data.commands.mine.replies.stats.title[guild.lang],
+    value: `${messages.data.commands.mine.replies.stats.description[guild.lang]} ${user}`,
+    inline: false,
+  });
   for (item in items) {
     if (cloudInventory[item] == undefined) {
       fields.push({

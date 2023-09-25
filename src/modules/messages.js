@@ -1789,6 +1789,18 @@ const messages = {
           en: "Mine resources.",
         },
         usage: "mine``\n``mine stats <user?>",
+        replies: {
+          stats: {
+            title: {
+              fr: "Statistiques de minage",
+              en: "Mining statistics",
+            },
+            description: {
+              fr: "Statistiques de ",
+              en: "Statistics of ",
+            },
+          },
+        },
       },
       ping: {
         description: {

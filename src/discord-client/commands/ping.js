@@ -12,6 +12,8 @@ module.exports = {
    * @param {Array} args
    */
   execute(msg, args) {
+    // Code to execute when command is run
+    // Return a message to the user
     msg
       .reply("Pong!")
       .catch((err) => {
