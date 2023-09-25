@@ -46,7 +46,7 @@ async function getData(collectionName, documentId) {
       console.log(`Fetched data from Firestore ${cacheKey}`);
       return data;
     } else {
-      console.log(`Now data was found in Firestore for ${cacheKey}.`);
+      console.log(`No data was found in Firestore for ${cacheKey}.`);
       return null;
     }
   }

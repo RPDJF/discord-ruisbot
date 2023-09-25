@@ -39,6 +39,31 @@ const messages = {
         usage: "help <command|category> <page>",
       },
       interactions: {
+        airkiss:{
+          description:{
+            fr: "Envoyer un baiser.",
+            en: "Send an airkiss."
+          },
+          usage: "airkiss <user>",
+          getAction:{
+            fr: (msg, target) =>{
+              const actionMessages = [
+                `:kissing_heart: ${msg.author} envoie un baiser à ${target} ! :heart:`,
+                `${msg.author} fait un bisou à ${target} ! :kissing_closed_eyes:`,
+                `:heart_eyes: ${msg.author} envoie un baiser volant à ${target} ! :kissing_smiling_eyes:`,
+                `:sparkling_heart: ${msg.author} envoie un baiser rempli d'amour à ${target} !`,
+              ];
+            },
+            en: (msg, target) =>{
+              const actionMessages = [
+                `:kissing_heart: ${msg.author} sends a kiss to ${target}! :heart:`,
+                `${msg.author} gives ${target} a kiss! :kissing_closed_eyes:`,
+                `:heart_eyes: ${msg.author} sends a flying kiss to ${target}! :kissing_smiling_eyes:`,
+                `:sparkling_heart: ${msg.author} sends a kiss full of love to ${target}!`,
+              ];
+            }
+          }
+        },
         angrystare: {
           description: {
             fr: "Lancer un regard en colère à quelqu'un.",
@@ -63,6 +88,68 @@ const messages = {
                 `${msg.author} glares angrily at ${target}! :triumph:`,
                 `:triumph: ${msg.author} stares angrily at ${target}! :angry:`,
                 `${msg.author} is really angry and it shows! :rage:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        bite: {
+          description: {
+            fr: "Mordre quelqu'un.",
+            en: "Bite someone.",
+          },
+          usage: "bite <user>",
+          getAction: {
+            fr: (msg, target) => {
+              const actionMessages = [
+                `:rage: ${msg.author} mord méchamment ${target}! :tooth:`,
+                `${msg.author} plante ses dents dans ${target}! :triumph:`,
+                `:wolf: ${msg.author} donne un coup de dents à ${target}! :angry:`,
+                `:face_with_symbols_over_mouth: ${msg.author} mord ${target} avec colère! :angry:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg, target) => {
+              const actionMessages = [
+                `:rage: ${msg.author} angrily bites ${target}! :tooth:`,
+                `${msg.author} sinks their teeth into ${target}! :triumph:`,
+                `:wolf: ${msg.author} takes a bite out of ${target}! :angry:`,
+                `:face_with_symbols_over_mouth: ${msg.author} bites ${target} with anger! :angry:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        bleh: {
+          description: {
+            fr: "Faire une grimace de dégoût.",
+            en: "Make a disgusted face.",
+          },
+          usage: "bleh",
+          getAction: {
+            fr: (msg) => {
+              const actionMessages = [
+                `${msg.author} fait une grimace de dégoût ! :face_vomiting:`,
+                `Beurk, ${msg.author} n'aime pas ça ! :nauseated_face:`,
+                `Oh non, ${msg.author} est tout dégoûté ! :confounded:`,
+                `${msg.author} montre une belle grimace de dégoût en ce moment ! :face_with_symbols_over_mouth:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg) => {
+              const actionMessages = [
+                `${msg.author} makes a disgusted face! :face_vomiting:`,
+                `Ew, ${msg.author} doesn't like that! :nauseated_face:`,
+                `Oh no, ${msg.author} looks all grossed out! :confounded:`,
+                `${msg.author} shows a nice disgusted face right now! :face_with_symbols_over_mouth:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -171,8 +258,8 @@ const messages = {
         },
         cheers: {
           description: {
-            fr: "Trinquer avec tout le monde !.",
-            en: "Cheers with everybody !.",
+            fr: "Trinquer avec quelqu'un !.",
+            en: "Cheers with someone !.",
           },
           usage: "cheers <user>",
           getAction: {
@@ -199,6 +286,37 @@ const messages = {
                 `:tada: ${msg.author} raises their glass and cheers with ${target}! :champagne_glass:`,
                 `${msg.author} joins the cheers with ${target}! :tada:`,
                 `:champagne_glass: ${msg.author} makes a toast and cheers with ${target}! :tada:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+          },
+        },
+        clap: {
+          description: {
+            fr: "Applaudir avec enthousiasme !",
+            en: "Clap enthusiastically!",
+          },
+          usage: "clap",
+          getAction: {
+            fr: (msg) => {
+              const actionMessages = [
+                `${msg.author} applaudit avec enthousiasme ! :clap:`,
+                `Les applaudissements de ${msg.author} retentissent ! :raised_hands:`,
+                `Bravo ! ${msg.author} applaudit bruyamment ! :grin:`,
+                `Les applaudissements de ${msg.author} sont contagieux ! :star_struck:`,
+              ];
+              return actionMessages[
+                Math.floor(Math.random() * actionMessages.length)
+              ];
+            },
+            en: (msg) => {
+              const actionMessages = [
+                `${msg.author} claps enthusiastically! :clap:`,
+                `Applause erupts from ${msg.author}! :raised_hands:`,
+                `Bravo! ${msg.author} claps loudly! :grin:`,
+                `${msg.author}'s applause is infectious! :star_struck:`,
               ];
               return actionMessages[
                 Math.floor(Math.random() * actionMessages.length)
@@ -240,8 +358,7 @@ const messages = {
               ];
             },
           },
-        },
-
+        },        
         cry: {
           description: {
             fr: "Exprimer tristesse en pleurant.",
@@ -1788,7 +1905,7 @@ const messages = {
           fr: "Miner des ressources.",
           en: "Mine resources.",
         },
-        usage: "mine``\n``mine stats <user?>",
+        usage: "mine```\n```mine stats <user?>",
         replies: {
           stats: {
             title: {

@@ -16,13 +16,21 @@ module.exports = {
    * @param {Array} args
    */
   async execute(msg, args) {
-    // Transforms arguments into an only string, removing command name
-    args.shift();
-    args = args.join(" ");
-    // check if GPT is disabled
-    const guild = await db.getData("guilds", msg.guildId);
-    if (!(guild == undefined || guild.gpt == undefined || guild.gpt.status)) {
-      embedUtility.genericDisabledOpenAIMessage(msg, guild);
+    // Get the query, remove first element then join the rest
+    const argsCopy = [...args];
+    const query = (() => {
+      args.shift();
+      return args.join(" ");
+    })();
+    args = argsCopy;
+    // Check if query is empty
+    if (!query) {
+      await embedUtility.genericWrongUsageMessage(msg, args, this);
+      return 0;
+    }
+    // Check if arguments are empty
+    if (args.length === 0) {
+      embedUtility.genericWrongUsageMessage(msg, args, this);
       return 0;
     }
     // default author object

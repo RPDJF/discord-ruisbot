@@ -35,6 +35,7 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `DISCORD_BOT_ID`: [Bot's id from discord developer portal]
 - `OPENAI_API_KEY`: [Openai API Key which you can get from their portal]
 - `OPENAI_ORGANIZATION_ID`: [OpenAI ID which you can get from their portal]
+- `TENOR_API_KEY`: [Tenor API Key which you can get from their portal]
 
 ## <a id="Configuration-Files"></a> Configuration Files
 Don't forget to import firebase-adminsdk-credential into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from firestore portal

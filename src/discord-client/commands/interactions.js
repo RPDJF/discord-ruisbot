@@ -8,11 +8,15 @@ const messages = require("../../modules/messages");
 // data
 // List of all availableActions and specific properties
 const availableActions = [
+  "airkiss",
   "angrystare",
+  "bite",
+  "bleh",
   "blush",
   "brofist",
   "celebrate",
   "cheers",
+  "clap",
   "confused",
   "cry",
   "cuddle",
@@ -75,6 +79,12 @@ module.exports = {
 
     // If no user is specified, pick a random one
     const target = args[1] || msg.guild.members.cache.random().user;
+
+    const author = {
+      name: "OtakuGifs",
+      iconURL: "https://otakugifs.xyz/img/logo.png",
+      url: "https://otakugifs.xyz/",
+    };
 
     // Get the image from the API
     const image = (

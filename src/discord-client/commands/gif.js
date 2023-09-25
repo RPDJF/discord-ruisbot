@@ -20,10 +20,12 @@ module.exports = {
    */
   async execute(msg, args) {
     // Get the query, remove first element then join the rest
+    const argsCopy = [...args];
     const query = (() => {
       args.shift();
       return args.join(" ");
     })();
+    args = argsCopy;
     // Check if query is empty
     if (!query) {
       await embedUtility.genericWrongUsageMessage(msg, args, this);
