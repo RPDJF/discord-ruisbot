@@ -54,7 +54,11 @@ client.login(DISCORD_BOT_TOKEN);
 
 // events
 client.on(Events.ClientReady, () => {
+  // Log client ready
   console.info(`Successfully logged in as ${client.user.tag}.`);
+  // Start webhooks
+  require("../modules/topggWebhook");
+  // Start dynamic activity
   dynamicActivity(client);
 });
 
@@ -163,3 +167,5 @@ client.on(Events.MessageCreate, async (msg) => {
     embedUtility.genericErrorMessage(msg, guild);
   }
 });
+
+module.exports = client;

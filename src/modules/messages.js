@@ -1021,6 +1021,83 @@ const messages = {
         },
         usage: "prefix <prefix>",
       },
+      vote: {
+        description: {
+          fr: "Voter pour gagner des <a:stars:1156021313471787058> !",
+          en: "Vote to earn <a:stars:1156021313471787058>!",
+        },
+        usage: "vote",
+        replies: {
+          hasVoted: {
+            false: {
+              fr: "Tu n'as pas voté aujourd'hui !\n**Voter te permet d'avoir des <a:stars:1156021313471787058> !**",
+              en: "You haven't voted today!\n**Voting allows you to get <a:stars:1156021313471787058>!**",
+            },
+            true: {
+              fr: "Tu as déjà voté aujourd'hui !\nTu dois encore attendre **{timeleft} heures avant de pouvoir voter à nouveau !**",
+              en: "You have already voted today!\nYou still have to wait **{timeleft} hours before you can vote again!**",
+            },
+          },
+          clickHere: {
+            fr: "Clique ici pour voter !",
+            en: "Click here to vote!",
+          },
+          voteNow: {
+            fr: "👉 **Voter maintenant !**",
+            en: "👉 **Vote now!**",
+          },
+          stars: {
+            fr: "Tu as {stars} <a:stars:1156021313471787058> !\nTu peux échange les <a:stars:1156021313471787058> contre des récompenses en utilisant la commande `${prefix}exchange <mine|gpt>` !",
+            en: "You have {stars} <a:stars:1156021313471787058>!\nYou can exchange <a:stars:1156021313471787058> for rewards by using the command `${prefix}exchange <mine|gpt>`!",
+          },
+          doNotForgetToClaim: {
+            fr: "N'oublie pas de réclamer tes récompenses !\n```{prefix}claim```",
+            en: "Don't forget to claim your rewards!\n```{prefix}claim```",
+          },
+        },
+      },
+      claim: {
+        description: {
+          fr: "Réclamer ses <a:stars:1156021313471787058> !",
+          en: "Claim your <a:stars:1156021313471787058>!",
+        },
+        usage: "claim",
+        replies: {
+          hasClaims: {
+            fr: "Tu as réclamé tes <a:stars:1156021313471787058> !",
+            en: "You claimed your <a:stars:1156021313471787058>!",
+          },
+          hasNoClaims: {
+            fr: "Tu n'as rien à réclamer !",
+            en: "You have nothing to claim!",
+          },
+          checkStars: {
+            fr: "Tu peux voir le nombre de <a:stars:1156021313471787058> que tu as en utilisant la commande ```{prefix}stars``` !",
+            en: "You can see the number of <a:stars:1156021313471787058> you have by using the command ```{prefix}stars```!",
+          },
+        },
+      },
+      stars: {
+        description: {
+          fr: "Voir le nombre de <a:stars:1156021313471787058> possédées.",
+          en: "See the number of <a:stars:1156021313471787058> owned.",
+        },
+        usage: "stars",
+        replies: {
+          title: {
+            fr: "Nombre d'étoiles possédées",
+            en: "Number of owned stars",
+          } /*
+          description: {
+            fr: "Tu as {stars} <a:stars:1156021313471787058> !\nTu peux les échanger contre des récompenses en utilisant la commande ```{prefix}exchange <mine|gpt>``` !",
+            en: "You have {stars} <a:stars:1156021313471787058>!\nYou can exchange them for rewards by using the command ```{prefix}exchange <mine|gpt>```!",
+          },*/,
+          description: {
+            fr: "**Tu as {stars}x <a:stars:1156021313471787058> !**\nPlus tard tu pourras les échanger contre des récompenses super chouettes !\nAlors collecte-les en votant !",
+            en: "**You have {stars}x <a:stars:1156021313471787058>!**\nLater you will be able to exchange them for super cool rewards!\nSo collect them by voting!",
+          },
+        },
+      },
     },
   },
 };

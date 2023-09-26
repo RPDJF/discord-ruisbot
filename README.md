@@ -27,6 +27,7 @@ A nodejs server is requiered.
 This project uses APIs from Discord, OpenAI and Firestore, make sure to get your own API keys.
 You need to setup environment variables, or at least, create an .env file to the src folder of the project.
 You need to import the firebase configuration file (more details on `Configuration Files` section).
+You also need to create a webhook from TOP.GG to get the server voting system working `(/config/top.gg.js)`.
 
 ## <a id="Environment-Variables"></a> Environment Variables
 The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. 

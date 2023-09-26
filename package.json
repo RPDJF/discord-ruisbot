@@ -31,9 +31,11 @@
   },
   "homepage": "https://github.com/RPDJF/discord-ruisbot#readme",
   "dependencies": {
+    "@top-gg/sdk": "^3.1.6",
     "axios": "^1.5.0",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "firebase-admin": "^11.10.1",
     "fs": "^0.0.1-security",
     "openai": "^4.10.0",

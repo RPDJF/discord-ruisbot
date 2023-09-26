@@ -43,10 +43,10 @@ async function getData(collectionName, documentId) {
 
       // Write data in the cache
       inMemoryCache[cacheKey] = data;
-      console.log(`Fetched data from Firestore ${cacheKey}`);
+      console.info(`Fetched data from Firestore ${cacheKey}`);
       return data;
     } else {
-      console.log(`No data was found in Firestore for ${cacheKey}.`);
+      console.info(`No data was found in Firestore for ${cacheKey}.`);
       return null;
     }
   }
@@ -60,14 +60,38 @@ async function getData(collectionName, documentId) {
  * @param {boolean} merge - Whether to merge the data (default: true).
  */
 async function writeData(collectionName, documentId, newData, merge = true) {
+  await getData(collectionName, documentId);
   const cacheKey = generateCacheKey(collectionName, documentId);
 
   // Get existing data from cache if available
   const existingData = inMemoryCache[cacheKey] || {};
 
-  // Merge existing data with new data
-  const mergedData = { ...existingData, ...newData };
+  // Define a function for deep merging
+  function deepMerge(existingData, newData) {
+    if (typeof newData === "object") {
+      var merged = { ...existingData };
+      for (var key in newData) {
+        if (existingData.hasOwnProperty(key)) {
+          if (
+            typeof newData[key] === "object" &&
+            typeof existingData[key] === "object"
+          ) {
+            merged[key] = deepMerge(existingData[key], newData[key]);
+          } else {
+            merged[key] = newData[key];
+          }
+        } else {
+          merged[key] = newData[key];
+        }
+      }
+      return merged;
+    } else {
+      return newData;
+    }
+  }
 
+  // Merge existing data with new data using deepMerge function
+  const mergedData = deepMerge(existingData, newData);
   // Update Firestore data
   await db
     .collection(collectionName)
@@ -77,7 +101,7 @@ async function writeData(collectionName, documentId, newData, merge = true) {
   // Update the in-memory cache with merged data
   inMemoryCache[cacheKey] = mergedData;
 
-  console.log(
+  console.info(
     "Data updated in Firestore and merged in-memory cache:",
     mergedData,
   );
