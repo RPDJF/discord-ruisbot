@@ -34,7 +34,7 @@ async function getData(collectionName, documentId) {
   const cachedData = inMemoryCache[cacheKey];
 
   if (cachedData) {
-    console.log(`Data found in cache for ${cacheKey}`);
+    // Data found in cache
     return cachedData;
   } else {
     try {
@@ -54,7 +54,7 @@ async function getData(collectionName, documentId) {
         return null;
       }
     } catch (error) {
-      console.error(`Error fetching data from Firestore: ${error}`);
+      console.error(`Error fetching data from Firestore:`, error);
       return null;
     }
   }
