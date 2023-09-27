@@ -76,14 +76,8 @@ async function writeData(collectionName, documentId, newData, merge = true) {
   // erase in-memory cache for this document
   inMemoryCache[cacheKey] = undefined;
 
-  console.log("1");
-  console.log(inMemoryCache[cacheKey]);
-
   // reload in-memory cache
   await getData(collectionName, documentId);
-
-  console.log("2");
-  console.log(inMemoryCache[cacheKey]);
 
   console.info("Data updated in Firestore:");
 }
