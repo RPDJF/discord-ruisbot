@@ -3,6 +3,18 @@
 
 [![License](https://img.shields.io/badge/License-CC%20BY-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+## Table of Contents
+- [Description](#description)
+- [Contact](#contact)
+- [License](#license)
+- [Project Disclaimer](#project-disclaimer)
+- [Requirements](#requirements)
+- [Environment Variables](#environment-variables)
+- [Configuration Files](#configuration-files)
+- [Getting Started](#getting-started)
+- [Step-by-Step Guide: Adding a New Docker Stack with Portainer](#docker-stack-guide)
+- [Docker Compose File](#docker-compose-file)
+
 ## Description
 discord-ruisbot is a Discord bot developed by RPDJF (also known as Banatawa) from ruinformatique. The bot utilizes various features and APIs to enhance your Discord server experience.
 Official bot : https://discord.com/oauth2/authorize?client_id=956303957439955007&permissions=8&scope=bot.
