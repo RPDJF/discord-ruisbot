@@ -83,7 +83,7 @@ function play(msg, guild, userData) {
   const inventory = mine();
   // check if user is new
   if (!(userData == undefined || userData.mine == undefined)) {
-    const lastUsage = new Date(userData.mine.lastusage);
+    const lastUsage = userData.mine.lastusage.toDate();
     // check if CoolDown
     const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
     if (differenceInMinutes < gameCoolDownInMinute) {

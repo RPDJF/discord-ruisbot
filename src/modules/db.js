@@ -31,34 +31,69 @@ function generateCacheKey(collectionName, documentId) {
 async function getData(collectionName, documentId) {
   const cacheKey = generateCacheKey(collectionName, documentId);
 
-  if (inMemoryCache[cacheKey]) {
-    return inMemoryCache[cacheKey];
+  const cachedData = inMemoryCache[cacheKey];
+
+  if (cachedData) {
+    console.log(`Data found in cache for ${cacheKey}`);
+    return cachedData;
   } else {
-    // If no data is found, fetch them from firestore
-    const docRef = db.collection(collectionName).doc(documentId);
-    const snapshot = await docRef.get();
+    try {
+      const docRef = db.collection(collectionName).doc(documentId);
+      const snapshot = await docRef.get();
 
-    if (snapshot.exists) {
-      const data = snapshot.data();
+      if (snapshot.exists) {
+        const data = snapshot.data();
 
-      // Write data in the cache
-      inMemoryCache[cacheKey] = data;
-      console.info(`Fetched data from Firestore ${cacheKey}`);
-      return data;
-    } else {
-      console.info(`No data was found in Firestore for ${cacheKey}.`);
+        // Write data in the cache
+        inMemoryCache[cacheKey] = data;
+
+        console.info(`Fetched data from Firestore ${cacheKey}`);
+        return data;
+      } else {
+        console.info(`No data was found in Firestore for ${cacheKey}.`);
+        return null;
+      }
+    } catch (error) {
+      console.error(`Error fetching data from Firestore: ${error}`);
       return null;
     }
   }
 }
 
 /**
- * Writes data to Firestore and updates the in-memory cache by merging with existing data.
+ * Writes data to Firestore and reloads the in-memory cache.
  * @param {string} collectionName - The name of the Firestore collection.
  * @param {string} documentId - The ID of the Firestore document.
  * @param {Object} newData - The new data to write to Firestore.
  * @param {boolean} merge - Whether to merge the data (default: true).
  */
+async function writeData(collectionName, documentId, newData, merge = true) {
+  await getData(collectionName, documentId);
+  const cacheKey = generateCacheKey(collectionName, documentId);
+
+  await db.collection(collectionName).doc(documentId).set(newData, { merge });
+
+  // erase in-memory cache for this document
+  inMemoryCache[cacheKey] = undefined;
+
+  console.log("1");
+  console.log(inMemoryCache[cacheKey]);
+
+  // reload in-memory cache
+  await getData(collectionName, documentId);
+
+  console.log("2");
+  console.log(inMemoryCache[cacheKey]);
+
+  console.info("Data updated in Firestore:");
+}
+// Need to fix deepMerge = breaks when merging firestore objects (ex timestamps)
+// * Writes data to Firestore and updates the in-memory cache by merging with existing data.
+// * @param {string} collectionName - The name of the Firestore collection.
+// * @param {string} documentId - The ID of the Firestore document.
+// * @param {Object} newData - The new data to write to Firestore.
+// * @param {boolean} merge - Whether to merge the data (default: true).
+/*
 async function writeData(collectionName, documentId, newData, merge = true) {
   await getData(collectionName, documentId);
   const cacheKey = generateCacheKey(collectionName, documentId);
@@ -105,6 +140,16 @@ async function writeData(collectionName, documentId, newData, merge = true) {
     "Data updated in Firestore and merged in-memory cache:",
     mergedData,
   );
-}
+
+  console.log(`Write:\n\n\n`);
+  console.log("newData:");
+  console.log(newData);
+  console.log(`\n\n`);
+  console.log("existingData:");
+  console.log(existingData);
+  console.log(`\n\n`);
+  console.log("mergedData:");
+
+}*/
 
 module.exports = { getData, writeData };
