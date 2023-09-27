@@ -8,7 +8,7 @@ const {
   gameName,
   gameThumbnail,
   gameCoolDownInMinute,
-} = require("../../..//config/mine.conf");
+} = require("../../..//config/mine-conf");
 const { BOT_AUTHOR, PRIMARY_COLOR } = require("../../../config/bot-conf");
 const { name, version } = require("../../../package.json");
 const embedUtility = require("../../modules/embedUtility");

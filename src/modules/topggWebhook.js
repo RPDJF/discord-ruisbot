@@ -5,7 +5,7 @@ const {
   TOP_GG_WEBHOOK_AUTH,
   TOP_GG_WEBHOOK_PORT,
   CHANNEL_ID,
-} = require("../../config/top.gg");
+} = require("../../config/top.gg-conf");
 const client = require("../discord-client/bot");
 const embedUtility = require("../modules/embedUtility");
 const db = require("../modules/db");

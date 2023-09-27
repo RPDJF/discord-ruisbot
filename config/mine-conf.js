@@ -27,7 +27,7 @@ const items = [
     emoji: "<:coal_dust:1155122780166160394>",
   },
   {
-    value: 25,
+    value: 20,
     occurence: 250, // 25%
     name: {
       fr: "lingot de fer",
@@ -36,7 +36,7 @@ const items = [
     emoji: "<:Iron_ingot:1155120062286536724>",
   },
   {
-    value: 120,
+    value: 100,
     occurence: 125, // 12.5%
     name: {
       fr: "lingot d'or",
@@ -45,7 +45,7 @@ const items = [
     emoji: "<a:gold:1155121920119934976>",
   },
   {
-    value: 400,
+    value: 600,
     occurence: 30, // 3%
     name: {
       fr: "diamant",
@@ -54,7 +54,7 @@ const items = [
     emoji: "<a:diamond:1155119834045087774>",
   },
   {
-    value: 1500,
+    value: 3000,
     occurence: 10, // 1%
     name: {
       fr: "émeraude",
