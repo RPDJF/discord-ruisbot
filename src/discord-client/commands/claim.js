@@ -27,7 +27,7 @@ module.exports = {
     // Check if user has voted
     if (!userData || !userData.vote || !userData.vote.claim) {
       const embed = embedUtility.message(
-        "Emoji",
+        "Claims",
         `${messages.data.commands.claim.replies.hasNoClaims[guild.lang]}
 
         ${messages.data.commands.claim.replies.checkStars[guild.lang]}`.replace(
