@@ -10,7 +10,7 @@ Support server : https://discord.gg/ApcGtB3M6M
 
 ## Contact
 - Creator: RPDJF (Banatawa)
-- Discord: Banatawa
+- Discord: [Support server](https://discord.gg/ApcGtB3M6M)
 - Email: contact@ruinformatique.ch
 
 ## License
