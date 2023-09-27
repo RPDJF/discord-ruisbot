@@ -36,10 +36,11 @@ module.exports = {
     const lastVote = (() => {
       if (!userData) return 0;
       if (!userData.vote.date) return 0;
-      else return userData.vote.date;
+      else return new Date(userData.vote.date);
     })();
 
     // Check if last vote was 12 hours before
+    // 43200000 milliseconds = 12 hours
     if (Date.now() - lastVote < 43200000) {
       // Send message to user if last vote was less than 12 hours ago
       msg.channel.send({
@@ -48,10 +49,24 @@ module.exports = {
           `${messages.data.commands.vote.replies.hasVoted.true[guild.lang]}\n
           ${messages.data.commands.vote.replies.doNotForgetToClaim[guild.lang]}`
             .replace("{prefix}", guild.prefix)
-            .replace(
-              "{timeleft}",
-              Math.floor((43200000 - (Date.now() - lastVote)) / 3600000),
-            ),
+            // if time left is less than 1 hour, show minutes
+            // 1 hour = 3600000 milliseconds
+            .replace("{timeleft}", function () {
+              // 43200000 milliseconds = 12 hours
+              const timeleft = 43200000 - (Date.now() - lastVote);
+              // 360000 milliseconds = 1 hour
+              if (timeleft < 3600000) {
+                // if time left is less than 1 hour, show minutes
+                return `${Math.floor(timeleft / 60000)} ${
+                  messages.data.system.time.minutes[guild.lang]
+                }`;
+              } else {
+                // if time left is more than 1 hour, show hours
+                return `${Math.floor(timeleft / 3600000)} ${
+                  messages.data.system.time.hours[guild.lang]
+                }`;
+              }
+            }),
           author,
         ),
       });

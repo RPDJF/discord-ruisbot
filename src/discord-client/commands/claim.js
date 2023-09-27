@@ -25,16 +25,15 @@ module.exports = {
         return 1;
       });
     // Check if user has voted
-    const author = {
-      name: "top.gg",
-      iconURL: "https://top.gg/images/dblnew.png",
-      url: "https://top.gg/",
-    };
     if (!userData || !userData.vote || !userData.vote.claim) {
       const embed = embedUtility.message(
-        "Vote top.gg",
-        messages.data.commands.claim.replies.hasNoClaims[guild.lang],
-        author,
+        "Emoji",
+        `${messages.data.commands.claim.replies.hasNoClaims[guild.lang]}
+
+        ${messages.data.commands.claim.replies.checkStars[guild.lang]}`.replace(
+          "{prefix}",
+          guild.prefix,
+        ),
       );
       msg.reply({
         embeds: embed,
@@ -55,13 +54,13 @@ module.exports = {
           return 1;
         });
       const embed = embedUtility.message(
-        "Vote top.gg",
+        "Claims",
         `${messages.data.commands.claim.replies.hasClaims[guild.lang]}
+
         ${messages.data.commands.claim.replies.checkStars[guild.lang]}`.replace(
           "{prefix}",
           guild.prefix,
         ),
-        author,
       );
       msg.reply({
         embeds: embed,

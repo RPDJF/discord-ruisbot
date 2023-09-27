@@ -83,7 +83,7 @@ function play(msg, guild, userData) {
   const inventory = mine();
   // check if user is new
   if (!(userData == undefined || userData.mine == undefined)) {
-    const lastUsage = userData.mine.lastusage;
+    const lastUsage = new Date(userData.mine.lastusage);
     // check if CoolDown
     const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
     if (differenceInMinutes < gameCoolDownInMinute) {
@@ -135,7 +135,7 @@ function play(msg, guild, userData) {
   db.writeData(`guilds/${msg.guildId}/users`, msg.author.id, {
     mine: {
       minedItems: inventory,
-      lastusage: new Date().getTime(),
+      lastusage: new Date(),
     },
   });
 }

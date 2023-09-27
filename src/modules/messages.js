@@ -2,6 +2,18 @@
 const messages = {
   data: {
     // In further updates, all of the text will be stored in here
+    system: {
+      time: {
+        hours: {
+          fr: "heures",
+          en: "hours",
+        },
+        minutes: {
+          fr: "minutes",
+          en: "minutes",
+        },
+      },
+    },
     commands: {
       apod: {
         description: {
@@ -1034,8 +1046,8 @@ const messages = {
               en: "You haven't voted today!\n**Voting allows you to get <a:stars:1156021313471787058>!**",
             },
             true: {
-              fr: "Tu as déjà voté aujourd'hui !\nTu dois encore attendre **{timeleft} heures avant de pouvoir voter à nouveau !**",
-              en: "You have already voted today!\nYou still have to wait **{timeleft} hours before you can vote again!**",
+              fr: "Tu as déjà voté aujourd'hui !\nTu dois encore attendre **{timeleft}** avant de pouvoir voter à nouveau !",
+              en: "You have already voted today!\nYou still have to wait **{timeleft}** before you can vote again!",
             },
           },
           clickHere: {
@@ -1072,8 +1084,8 @@ const messages = {
             en: "You have nothing to claim!",
           },
           checkStars: {
-            fr: "Tu peux voir le nombre de <a:stars:1156021313471787058> que tu as en utilisant la commande ```{prefix}stars``` !",
-            en: "You can see the number of <a:stars:1156021313471787058> you have by using the command ```{prefix}stars```!",
+            fr: "Tu peux vérifier ton solde en utilisant : ```{prefix}stars```",
+            en: "You can check your balance by using typing: ```{prefix}stars```",
           },
         },
       },
@@ -1087,11 +1099,7 @@ const messages = {
           title: {
             fr: "Nombre d'étoiles possédées",
             en: "Number of owned stars",
-          } /*
-          description: {
-            fr: "Tu as {stars} <a:stars:1156021313471787058> !\nTu peux les échanger contre des récompenses en utilisant la commande ```{prefix}exchange <mine|gpt>``` !",
-            en: "You have {stars} <a:stars:1156021313471787058>!\nYou can exchange them for rewards by using the command ```{prefix}exchange <mine|gpt>```!",
-          },*/,
+          },
           description: {
             fr: "**Tu as {stars}x <a:stars:1156021313471787058> !**\nPlus tard tu pourras les échanger contre des récompenses super chouettes !\nAlors collecte-les en votant !",
             en: "**You have {stars}x <a:stars:1156021313471787058>!**\nLater you will be able to exchange them for super cool rewards!\nSo collect them by voting!",

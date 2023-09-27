@@ -32,7 +32,7 @@ app.post(
       await db.writeData("users", user.id, {
         vote: {
           claim: true,
-          date: Date.now(),
+          date: new Date(),
         },
       }); // Write the user data to the database
       // Create an embed for the vote message
