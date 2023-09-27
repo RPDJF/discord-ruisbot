@@ -1,4 +1,3 @@
-
 # discord-ruisbot
 
 [![License](https://img.shields.io/badge/License-CC%20BY-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
@@ -15,37 +14,37 @@
 - [Step-by-Step Guide: Adding a New Docker Stack with Portainer](#docker-stack-guide)
 - [Docker Compose File](#docker-compose-file)
 
-## Description
+## Description<a id="description"></a>
 discord-ruisbot is a Discord bot developed by RPDJF (also known as Banatawa) from ruinformatique. The bot utilizes various features and APIs to enhance your Discord server experience.
-Official bot : https://discord.com/oauth2/authorize?client_id=956303957439955007&permissions=8&scope=bot.
-Support server : https://discord.gg/ApcGtB3M6M
 
-## Contact
+- [Official bot](https://discord.com/oauth2/authorize?client_id=956303957439955007&permissions=8&scope=bot)
+- [Support server](https://discord.gg/ApcGtB3M6M)
+
+## Contact<a id="contact"></a>
 - Creator: RPDJF (Banatawa)
 - Discord: [Support server](https://discord.gg/ApcGtB3M6M)
 - Email: contact@ruinformatique.ch
 
-## License
+## License<a id="license"></a>
 This project is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/).
 
 It means that you can do pretty much everything with this project, as long as I get credited.
 
-## Project Disclaimer
-
+## Project Disclaimer<a id="project-disclaimer"></a>
 **Important: This project is developed by a passionate individual who learns development in his spare time. The project may not be well-structured, and updates may not be frequent. Long periods of inactivity are to be expected.**
 
-## <a id="Requirements"></a> Requirements
-- A nodejs server is requiered.
-- This project uses APIs from Discord, OpenAI and Firestore, make sure to get your own API keys.
-- You need to setup environment variables, or at least, create an .env file to the src folder of the project.
-- You need to import the firebase configuration file (more details on `Configuration Files` section).
-- You also need to create a webhook from TOP.GG to get the server voting system working `(/config/top.gg.js)`.
+## Requirements<a id="requirements"></a>
+- A nodejs server is required.
+- This project uses APIs from Discord, OpenAI, and Firestore, make sure to get your own API keys.
+- You need to set up environment variables, or at least, create an .env file in the src folder of the project.
+- You need to import the firebase configuration file (more details in the `Configuration Files` section).
+- You also need to create a webhook from TOP.GG to get the server voting system working (`/config/top.gg.js`).
   - On the webhook settings from TOP.GG, you need to specify the port you are using on the URL, if not using standard port 80 (HTTP) or 443 (HTTPS).
   - You also need to specify the `/vote` endpoint in the webhook URL setting from TOP.GG.
   - For the webhook instance to work, you need to have a public IP address with port forwarding on the port you specified in the webhook settings from TOP.GG.
 
-## <a id="Environment-Variables"></a> Environment Variables
-The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. 
+## Environment Variables<a id="environment-variables"></a>
+The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values.
 
 - `DISCORD_BOT_TOKEN`: [Bot's token from discord developer portal]
 - `DISCORD_BOT_ID`: [Bot's id from discord developer portal]
@@ -53,18 +52,19 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `OPENAI_ORGANIZATION_ID`: [OpenAI ID which you can get from their portal]
 - `TENOR_API_KEY`: [Tenor API Key which you can get from their portal]
 - `NASA_API_KEY`: [NASA API Key which you can get from their portal]
-- `TOPGG_WEBHOOK_AUTH`: [Top.gg webhook authentification key which you can **create** in their portal]
-- `TOPGG_WEBHOOK_PORT`: [Top.gg webhook port's to listen to] (you want it to be 80 or 443)
+- `TOPGG_WEBHOOK_AUTH`: [Top.gg webhook authentication key which you can **create** in their portal]
+- `TOPGG_WEBHOOK_PORT`: [Top.gg webhook port to listen to] (you want it to be 80 or 443)
 
-## <a id="Configuration-Files"></a> Configuration Files
-Don't forget to import firebase-adminsdk-credential into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from firestore portal
+## Configuration Files<a id="configuration-files"></a>
+Don't forget to import `firebase-adminsdk-credential` into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from the Firestore portal.
 
-The rest of the configuration files are mostly default settings that you can change
+The rest of the configuration files are mostly default settings that you can change.
 
-## Getting Started
+## Getting Started<a id="getting-started"></a>
 ### Global
-**Make sure you have already seen the requirements above. [Link to Requirements](#Requirements)**
+**Make sure you have already seen the requirements above. [Link to Requirements](#requirements)**
 To run the project, simply use the following command:
+
 ```bash
 npm i
 npm start
