@@ -79,11 +79,18 @@ async function execute(msg, args) {
  * @param {Object} guild
  */
 function play(msg, guild, userData) {
-  // mining
+  // mine from start, even if cooldown is not over
   const inventory = mine();
   // check if user is new
   if (!(userData == undefined || userData.mine == undefined)) {
-    const lastUsage = userData.mine.lastusage.toDate();
+    let lastUsage;
+    try {
+      lastUsage = userData.mine.lastusage.toDate();
+    } catch {
+      // today minus 24 hours
+      lastUsage = new Date(new Date().setDate(new Date().getDate() - 1));
+      console.info("Converted deprecated date format in mine.js");
+    }
     // check if CoolDown
     const differenceInMinutes = (new Date() - lastUsage) / (1000 * 60);
     if (differenceInMinutes < gameCoolDownInMinute) {
