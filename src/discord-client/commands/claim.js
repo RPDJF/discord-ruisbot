@@ -26,17 +26,19 @@ module.exports = {
       });
     // Check if user has voted
     if (!userData || !userData.vote || !userData.vote.claim) {
-      const embed = embedUtility.message(
-        "Claims",
-        `${messages.data.commands.claim.replies.hasNoClaims[guild.lang]}
+      const embeds = [
+        embedUtility.message(
+          "Claims",
+          `${messages.data.commands.claim.replies.hasNoClaims[guild.lang]}
 
         ${messages.data.commands.claim.replies.checkStars[guild.lang]}`.replace(
-          "{prefix}",
-          guild.prefix,
+            "{prefix}",
+            guild.prefix,
+          ),
         ),
-      );
+      ];
       msg.reply({
-        embeds: embed,
+        embeds: embeds,
       });
     } else {
       await db
@@ -53,17 +55,19 @@ module.exports = {
           console.error(err);
           return 1;
         });
-      const embed = embedUtility.message(
-        "Claims",
-        `${messages.data.commands.claim.replies.hasClaims[guild.lang]}
+      const embeds = [
+        embedUtility.message(
+          "Claims",
+          `${messages.data.commands.claim.replies.hasClaims[guild.lang]}
 
         ${messages.data.commands.claim.replies.checkStars[guild.lang]}`.replace(
-          "{prefix}",
-          guild.prefix,
+            "{prefix}",
+            guild.prefix,
+          ),
         ),
-      );
+      ];
       msg.reply({
-        embeds: embed,
+        embeds: embeds,
       });
     }
   },

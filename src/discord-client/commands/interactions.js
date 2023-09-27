@@ -38,7 +38,7 @@ const availableActions = [
 ];
 
 module.exports = {
-  category: "interaction",
+  category: "interactions",
   hasMultipleCommands: true, // Will tell the bot to load all commands from getSubCommands() instead of this one
   /**
    * @param {Message} msg
@@ -63,7 +63,7 @@ module.exports = {
     // Get the image from the API
     const image = (await axios.get(`https://api.waifu.pics/sfw/${args[0]}`))
       .data;
-    const embeds = embedUtility.image(image.url, author);
+    const embeds = [embedUtility.image(image.url, author)];
 
     // Send the message
     msg.channel

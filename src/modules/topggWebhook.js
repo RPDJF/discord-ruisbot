@@ -35,12 +35,14 @@ app.post(
           date: new Date(),
         },
       }); // Write the user data to the database
-      // Create an embed for the vote message
-      const embed = embedUtility.message(
-        "Vote top.gg",
-        `User: **${user.username}** \`(${user.id})\` just voted!\nYou can vote on top.gg [**here**](https://top.gg/bot/${client.user.id}/vote) every 12 hours!`,
-      );
-      await channel.send({ embeds: embed }); // Send the vote message to the channel
+      // Create an embeds for the vote message
+      const embeds = [
+        embedUtility.message(
+          "Vote top.gg",
+          `User: **${user.username}** \`(${user.id})\` just voted!\nYou can vote on top.gg [**here**](https://top.gg/bot/${client.user.id}/vote) every 12 hours!`,
+        ),
+      ];
+      await channel.send({ embeds: embeds }); // Send the vote message to the channel
     } catch (e) {
       console.error(e); // Log any errors that occur during vote processing
     }

@@ -12,6 +12,10 @@ const BOT_AUTHOR = {
   name: BOT_NAME,
   iconURL: BOT_ICON,
 };
+const BOT_PAGINATOR_EMOJIS = {
+  previous: "<a:remleft:1156670469840318574>",
+  next: "<a:ramright:1156670397027209296>",
+};
 const SERVER_SUPPORT_INVITE = "https://discord.gg/ApcGtB3M6M";
 
 module.exports = {
@@ -22,5 +26,6 @@ module.exports = {
   BOT_INVITE,
   BOT_ICON,
   BOT_AUTHOR,
+  BOT_PAGINATOR_EMOJIS,
   SERVER_SUPPORT_INVITE,
 };

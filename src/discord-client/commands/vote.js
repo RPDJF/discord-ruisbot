@@ -44,47 +44,51 @@ module.exports = {
     if (Date.now() - lastVote < 43200000) {
       // Send message to user if last vote was less than 12 hours ago
       msg.channel.send({
-        embeds: embedUtility.message(
-          "Vote top.gg",
-          `${messages.data.commands.vote.replies.hasVoted.true[guild.lang]}\n
+        embeds: [
+          embedUtility.message(
+            "Vote top.gg",
+            `${messages.data.commands.vote.replies.hasVoted.true[guild.lang]}\n
           ${messages.data.commands.vote.replies.doNotForgetToClaim[guild.lang]}`
-            .replace("{prefix}", guild.prefix)
-            // if time left is less than 1 hour, show minutes
-            // 1 hour = 3600000 milliseconds
-            .replace("{timeleft}", function () {
-              // 43200000 milliseconds = 12 hours
-              const timeleft = 43200000 - (Date.now() - lastVote);
-              // 360000 milliseconds = 1 hour
-              if (timeleft < 3600000) {
-                // if time left is less than 1 hour, show minutes
-                return `${Math.floor(timeleft / 60000)} ${
-                  messages.data.system.time.minutes[guild.lang]
-                }`;
-              } else {
-                // if time left is more than 1 hour, show hours
-                return `${Math.floor(timeleft / 3600000)} ${
-                  messages.data.system.time.hours[guild.lang]
-                }`;
-              }
-            }),
-          author,
-        ),
+              .replace("{prefix}", guild.prefix)
+              // if time left is less than 1 hour, show minutes
+              // 1 hour = 3600000 milliseconds
+              .replace("{timeleft}", function () {
+                // 43200000 milliseconds = 12 hours
+                const timeleft = 43200000 - (Date.now() - lastVote);
+                // 360000 milliseconds = 1 hour
+                if (timeleft < 3600000) {
+                  // if time left is less than 1 hour, show minutes
+                  return `${Math.floor(timeleft / 60000)} ${
+                    messages.data.system.time.minutes[guild.lang]
+                  }`;
+                } else {
+                  // if time left is more than 1 hour, show hours
+                  return `${Math.floor(timeleft / 3600000)} ${
+                    messages.data.system.time.hours[guild.lang]
+                  }`;
+                }
+              }),
+            author,
+          ),
+        ],
       });
       return;
     } else {
       // Send message to user if last vote was more than 12 hours ago
       msg.channel.send({
-        embeds: embedUtility.message(
-          "Vote top.gg",
-          `${messages.data.commands.vote.replies.hasVoted.false[guild.lang]}\n
+        embeds: [
+          embedUtility.message(
+            "Vote top.gg",
+            `${messages.data.commands.vote.replies.hasVoted.false[guild.lang]}\n
             [${
               messages.data.commands.vote.replies.voteNow[guild.lang]
             }](https://top.gg/bot/${DISCORD_BOT_ID}/vote)\n
             ${
               messages.data.commands.vote.replies.doNotForgetToClaim[guild.lang]
             }`.replace("{prefix}", guild.prefix),
-          author,
-        ),
+            author,
+          ),
+        ],
       });
     }
   },

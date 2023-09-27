@@ -52,10 +52,12 @@ module.exports = {
       case "fr":
         msg.channel
           .send({
-            embeds: embedUtility.message(
-              `GPT4 est désormais ${args[1]}`,
-              "La feature GPT4 est aussi utilisée pour la génération d'images.",
-            ),
+            embeds: [
+              embedUtility.message(
+                `GPT4 est désormais ${args[1]}`,
+                "La feature GPT4 est aussi utilisée pour la génération d'images.",
+              ),
+            ],
           })
           .catch((err) => {
             console.error(err);
@@ -64,10 +66,12 @@ module.exports = {
         break;
       default:
         msg.channel.send({
-          embeds: embedUtility.message(
-            `GPT4 is now ${args[1]}`,
-            "GPT4 feature is also used for AI image generation.",
-          ),
+          embeds: [
+            embedUtility.message(
+              `GPT4 is now ${args[1]}`,
+              "GPT4 feature is also used for AI image generation.",
+            ),
+          ],
         });
         break;
     }

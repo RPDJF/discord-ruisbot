@@ -56,6 +56,132 @@ const messages = {
           en: "List of commands",
         },
         usage: "help <command|category> <page>",
+        replies: {
+          default: {
+            title: {
+              fr: "Liste des commandes",
+              en: "List of commands",
+            },
+            description: {
+              fr: "Utilise ``{prefix}help <catégorie>`` pour plus de détails !",
+              en: "Use ``{prefix}help <category>`` for more details!",
+            },
+            chatbot: {
+              name: {
+                fr: "Chatbot",
+                en: "Chatbot",
+              },
+              value: {
+                fr: "```Mentionne moi pour discuter avec moi !```",
+                en: "```Mention me to chat with me!```",
+              },
+            },
+          },
+          categories: {
+            all: {
+              title: {
+                fr: "Liste de toutes les commandes",
+                en: "List of all commands",
+              },
+              description: {
+                fr: "Afficher toutes les commandes",
+                en: "Display all commands",
+              },
+            },
+            fun: {
+              title: {
+                fr: "Liste des commandes fun",
+                en: "List of fun commands",
+              },
+              description: {
+                fr: "Commandes sympathiques",
+                en: "Fun commands",
+              },
+            },
+            interactions: {
+              title: {
+                fr: "Liste des commandes d'interaction",
+                en: "List of interaction commands",
+              },
+              description: {
+                fr: "Besoin de frapper quelqu'un ?",
+                en: "Need to hit someone ?",
+              },
+            },
+            configurations: {
+              title: {
+                fr: "Liste des commandes de configuration",
+                en: "List of configuration commands",
+              },
+              description: {
+                fr: "Configurer le bot",
+                en: "Configure the bot",
+              },
+            },
+            misc: {
+              title: {
+                fr: "Liste des commandes diverses",
+                en: "List of miscellaneous commands",
+              },
+              description: {
+                fr: "Commandes diverses",
+                en: "Miscellaneous commands",
+              },
+            },
+          },
+          notFound: {
+            title: {
+              fr: "Commande inconnue",
+              en: "Unknown command",
+            },
+            description: {
+              fr: "La commande ``{command}`` n'existe pas !\nConsulte ``{prefix}help`` pour voir la liste des commandes.",
+              en: "The command ``{command}`` doesn't exist!\nUse ``{prefix}help`` to see the list of commands.",
+            },
+          },
+          chatBot: {
+            title: {
+              fr: "Chatbot propulsé par GPT4 !",
+              en: "Chatbot powered by GPT4!",
+            },
+            description: {
+              fr: "Grâce à GPT4 d'OpenAI, **{botName}** est capable d'interagir avec vous tant que vous **le mentionnez dans votre message**, ou **lui répondez directement**.",
+              en: "Thanks to OpenAI's GPT4, **{botName}** is able to interact with you as long as you **mention him in your message**, or **directly reply to him**.",
+            },
+            features: {
+              context: {
+                title: {
+                  fr: "Suivi du contexte",
+                  en: "Content Tracking",
+                },
+                description: {
+                  fr: "Le contexte de la conversation est suivi, ce qui permet à **{botName}** de comprendre le sujet de la conversation !.",
+                  en: "The context of the conversation is tracked, allowing **{botName}** to understand the subject of the conversation!",
+                },
+              },
+              buddy: {
+                title: {
+                  en: "Your AI buddy",
+                  fr: "Votre pote IA",
+                },
+                description: {
+                  fr: "L'IA est spécifiquement entraînée pour être votre pote !",
+                  en: "The AI is specifically trained to be a super cool companion!",
+                },
+              },
+            },
+            privacy: {
+              title: {
+                fr: "Confidentialità",
+                en: "Privacy",
+              },
+              description: {
+                fr: "Le bot ne stocke ni ne partage aucune donnée de conversation par défaut. L'historique des conversations n'est accessible que lorsque le bot est spécifiquement mentionné. Cependant, si vous préférez vous assurer qu'OpenAI n'a pas accès à ces conversations lors de la génération de texte, vous pouvez désactiver cette fonctionnalité dans les paramètres.",
+                en: "The bot does not store or share any conversation data by default. Conversation history is only accessed when the bot is specifically mentioned. However, if you prefer to ensure that OpenAI does not have access to these conversations during text generation, you can disable this feature in the settings.",
+              },
+            },
+          },
+        },
       },
       interactions: {
         bite: {
@@ -1070,8 +1196,8 @@ const messages = {
       },
       claim: {
         description: {
-          fr: "Réclamer ses <a:stars:1156021313471787058> !",
-          en: "Claim your <a:stars:1156021313471787058>!",
+          fr: "Réclamer les <a:stars:1156021313471787058> en attente !",
+          en: "Claim pending <a:stars:1156021313471787058>!",
         },
         usage: "claim",
         replies: {

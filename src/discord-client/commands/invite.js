@@ -34,11 +34,13 @@ module.exports = {
     ];
     msg.channel
       .send({
-        embeds: embedUtility.fieldsMessage(
-          commandMessage.replies[guild.lang].title,
-          commandMessage.replies[guild.lang].description,
-          fields,
-        ),
+        embeds: [
+          embedUtility.fieldsMessage(
+            commandMessage.replies[guild.lang].title,
+            commandMessage.replies[guild.lang].description,
+            fields,
+          ),
+        ],
       })
       .catch((err) => {
         console.error(err);

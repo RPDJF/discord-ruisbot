@@ -5,6 +5,7 @@ const { OPENAI_API_KEY } = require("../../../config/openai-conf");
 const { default: axios } = require("axios");
 const db = require("../../modules/db");
 const messages = require("../../modules/messages");
+const { DiscordEmbedsPaginator } = require("../../modules/paginator");
 
 module.exports = {
   name: "draw",
@@ -16,6 +17,8 @@ module.exports = {
    * @param {Array} args
    */
   async execute(msg, args) {
+    // Number of pictures
+    const nbPictures = 3;
     // Get the query, remove first element then join the rest
     const argsCopy = [...args];
     const query = (() => {
@@ -47,7 +50,7 @@ module.exports = {
           "https://api.openai.com/v1/images/generations",
           {
             prompt: query,
-            n: 1,
+            n: nbPictures,
             size: "512x512",
           },
           {
@@ -62,13 +65,23 @@ module.exports = {
           return 1;
         });
       // Return a message to the user
-      const embed = embedUtility.imageMessage(
-        query,
-        `${msg.author}`,
-        response.data.data[0].url,
-        author,
-      );
-      msg.channel.send({ embeds: embed }).catch((err) => {
+      const embeds = [];
+      let i = 0;
+      for (const picture in response.data.data)
+        embeds.push(
+          embedUtility.imageMessage(
+            query,
+            `${msg.author}\n📷 **${++i}/${nbPictures}**`,
+            response.data.data[picture].url,
+            author,
+          ),
+        );
+      // create paginator
+      const paginator = new DiscordEmbedsPaginator([], {
+        customEmbeds: embeds,
+      });
+      // send paginator
+      await paginator.createPaginatorMessage(msg.channel).catch((err) => {
         console.error(err);
         return 1;
       });

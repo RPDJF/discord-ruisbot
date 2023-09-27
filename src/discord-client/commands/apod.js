@@ -35,12 +35,14 @@ module.exports = {
     // Return a message to the user
     msg.channel
       .send({
-        embeds: embedUtility.imageMessage(
-          response.title,
-          response.date,
-          response.hdurl,
-          author,
-        ),
+        embeds: [
+          embedUtility.imageMessage(
+            response.title,
+            response.date,
+            response.hdurl,
+            author,
+          ),
+        ],
       })
       .catch((err) => {
         console.error(err);

@@ -25,10 +25,12 @@ module.exports = {
         case "fr":
           msg.channel
             .send({
-              embeds: embedUtility.message(
-                "préfixe actuel",
-                `Le préfixe du serveur est \`\`\`${guild.prefix}\`\`\``,
-              ),
+              embeds: [
+                embedUtility.message(
+                  "préfixe actuel",
+                  `Le préfixe du serveur est \`\`\`${guild.prefix}\`\`\``,
+                ),
+              ],
             })
             .catch((err) => {
               console.error(err);
@@ -38,10 +40,12 @@ module.exports = {
         default:
           msg.channel
             .send({
-              embeds: embedUtility.message(
-                "current prefix",
-                `The server's prefix is \`\`\`${guild.prefix}\`\`\``,
-              ),
+              embeds: [
+                embedUtility.message(
+                  "current prefix",
+                  `The server's prefix is \`\`\`${guild.prefix}\`\`\``,
+                ),
+              ],
             })
             .catch((err) => {
               console.error(err);
@@ -62,10 +66,12 @@ module.exports = {
       case "fr":
         msg.channel
           .send({
-            embeds: embedUtility.message(
-              "préfixe changé",
-              `Le préfixe du serveur est \`\`\`${guild.prefix}\`\`\` désormais\nTu peux toujours utiliser \`\`\`${DEFAULT_PREFIX}prefix\`\`\` pour voir le préfixe actuel.`,
-            ),
+            embeds: [
+              embedUtility.message(
+                "préfixe changé",
+                `Le préfixe du serveur est \`\`\`${guild.prefix}\`\`\` désormais\nTu peux toujours utiliser \`\`\`${DEFAULT_PREFIX}prefix\`\`\` pour voir le préfixe actuel.`,
+              ),
+            ],
           })
           .catch((err) => {
             console.error(err);
@@ -75,10 +81,12 @@ module.exports = {
       default:
         msg.channel
           .send({
-            embeds: embedUtility.message(
-              "prefix changed",
-              `The server's prefix is now \`\`\`${guild.prefix}\`\`\`\nYou can use \`\`\`${DEFAULT_PREFIX}prefix\`\`\` at any time to check current prefix.`,
-            ),
+            embeds: [
+              embedUtility.message(
+                "prefix changed",
+                `The server's prefix is now \`\`\`${guild.prefix}\`\`\`\nYou can use \`\`\`${DEFAULT_PREFIX}prefix\`\`\` at any time to check current prefix.`,
+              ),
+            ],
           })
           .catch((err) => {
             console.error(err);

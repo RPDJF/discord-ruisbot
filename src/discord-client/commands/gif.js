@@ -50,13 +50,15 @@ module.exports = {
         Math.floor(Math.random() * response.data.results.length)
       ];
     // Return a message to the user
-    const embed = embedUtility.imageMessage(
-      query,
-      gif.content_description,
-      gif.media_formats.gif.url,
-      author,
-    );
-    msg.channel.send({ embeds: embed }).catch((err) => {
+    const embeds = [
+      embedUtility.imageMessage(
+        query,
+        gif.content_description,
+        gif.media_formats.gif.url,
+        author,
+      ),
+    ];
+    msg.channel.send({ embeds: embeds }).catch((err) => {
       console.error(err);
       return 1;
     });

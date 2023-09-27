@@ -110,20 +110,24 @@ client.on(Events.MessageCreate, async (msg) => {
           switch (guild.prefix) {
             case "fr":
               msg.channel.send({
-                embeds: embedUtility.errorMessage(
-                  "Oh non...",
-                  "Un problème est survenu, réessayez dans un petit moment.",
-                  author,
-                ),
+                embeds: [
+                  embedUtility.errorMessage(
+                    "Oh non...",
+                    "Un problème est survenu, réessayez dans un petit moment.",
+                    author,
+                  ),
+                ],
               });
               break;
             default:
               msg.channel.send({
-                embeds: embedUtility.errorMessage(
-                  "Oh nooo...",
-                  "Something went wrong, please retry later.",
-                  author,
-                ),
+                embeds: [
+                  embedUtility.errorMessage(
+                    "Oh nooo...",
+                    "Something went wrong, please retry later.",
+                    author,
+                  ),
+                ],
               });
               break;
           }
@@ -137,16 +141,20 @@ client.on(Events.MessageCreate, async (msg) => {
       let embedReply;
       switch (guild.lang) {
         case "fr":
-          embedReply = embedUtility.errorMessage(
-            `${guild.prefix}${args[0]} ?`,
-            `Je ne connais pas cette commande.\nTu peux les consulter en tapant : \`\`${guild.prefix}help\`\``,
-          );
+          embedReply = [
+            embedUtility.errorMessage(
+              `${guild.prefix}${args[0]} ?`,
+              `Je ne connais pas cette commande.\nTu peux les consulter en tapant : \`\`${guild.prefix}help\`\``,
+            ),
+          ];
           break;
         default:
-          embedReply = embedUtility.errorMessage(
-            `${guild.prefix}${args[0]} ?`,
-            `I don't know this command.\nPlease consult them by typing: \`\`${guild.prefix}help\`\`.`,
-          );
+          embedReply = [
+            embedUtility.errorMessage(
+              `${guild.prefix}${args[0]} ?`,
+              `I don't know this command.\nPlease consult them by typing: \`\`${guild.prefix}help\`\`.`,
+            ),
+          ];
           break;
       }
       msg.channel.send({ embeds: embedReply });

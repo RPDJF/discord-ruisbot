@@ -31,18 +31,19 @@ module.exports = {
       if (!userData.vote.stars) return 0;
       else return userData.vote.stars;
     })();
-    // Build embed[] reply
-    const embed = embedUtility.message(
-      `${messages.data.commands.stars.replies.title[guild.lang]}`,
-      `${messages.data.commands.stars.replies.description[guild.lang]}`.replace(
-        "{stars}",
-        stars,
+    // Build embeds reply
+    const embeds = [
+      embedUtility.message(
+        `${messages.data.commands.stars.replies.title[guild.lang]}`,
+        `${
+          messages.data.commands.stars.replies.description[guild.lang]
+        }`.replace("{stars}", stars),
       ),
-    );
+    ];
     // Send message to user
     msg
       .reply({
-        embeds: embed,
+        embeds: embeds,
       })
       .catch((err) => {
         console.error(err);

@@ -1,9 +1,189 @@
 // imports
-const { Message } = require("discord.js");
-const embedUtility = require("../../modules/embedUtility");
-const db = require("../../modules/db");
-const { BOT_AUTHOR } = require("../../../config/bot-conf");
+const { Message, Collection } = require("discord.js");
 const messages = require("../../modules/messages");
+const db = require("../../modules/db");
+const { DiscordEmbedsPaginator } = require("../../modules/paginator");
+const embedUtility = require("../../modules/embedUtility");
+const { BOT_AUTHOR, BOT_NAME } = require("../../../config/bot-conf");
+const commandMessage = messages.data.commands.help;
+
+/**
+ *
+ * Returns an array of embeds for the help command
+ *
+ * @param {Array<String>} args command arguments
+ * @param {Guild} guild guild data
+ * @returns {Array<Discord.MessageEmbed>} an array of Discord.js message embeds
+ */
+function getHelp(args, guild, msg) {
+  // embeds initialisation
+  let embeds = [];
+  // Check if args is empty
+  if (args.length < 2) {
+    // fields initialisation
+    const fields = [];
+    // fill fields
+    // chatbot
+    fields.push({
+      name: commandMessage.replies.default.chatbot.name[guild.lang],
+      value: commandMessage.replies.default.chatbot.value[guild.lang],
+      inline: false,
+    });
+    // categories
+    const categories = commandMessage.replies.categories;
+    for (const category of Object.keys(categories)) {
+      fields.push({
+        name: category,
+        value: `\`\`\`${categories[category].description[guild.lang]}\`\`\``,
+        inline: true,
+      });
+    }
+
+    // generate embeds
+    embeds.push(
+      embedUtility.fieldsMessage(
+        commandMessage.replies.default.title[guild.lang],
+        commandMessage.replies.default.description[guild.lang]
+          .toString()
+          .replace("{prefix}", guild.prefix),
+        fields,
+      ),
+    );
+
+    // return embeds
+    return embeds;
+  } else {
+    // Check if args[1] is a category, then if it is a command
+    switch (args[1]) {
+      // Get all commands
+      case "all":
+        return getEmbedsFromCommandCollection(guild, msg.client.commands, 9);
+      case "chatbot":
+        const fields = [];
+        for (const feature in commandMessage.replies.chatBot.features) {
+          const _feature = commandMessage.replies.chatBot.features[feature];
+          fields.push({
+            name: _feature.title[guild.lang],
+            value: _feature.description[guild.lang]
+              .toString()
+              .replace("{botName}", BOT_NAME),
+            inline: true,
+          });
+        }
+        fields.push({
+          name: commandMessage.replies.chatBot.privacy.title[guild.lang],
+          value: commandMessage.replies.chatBot.privacy.description[guild.lang],
+          inline: false,
+        });
+        embeds = [
+          embedUtility.fieldsMessage(
+            commandMessage.replies.chatBot.title[guild.lang],
+            commandMessage.replies.chatBot.description[guild.lang]
+              .toString()
+              .replace("{botName}", BOT_NAME),
+            fields,
+          ),
+        ];
+        return embeds;
+      default:
+        const commands = getCommandCollectionFromCategory(
+          args[1],
+          msg.client.commands,
+        );
+        // Check if args[1] is a category, else if it is a command
+        if (commands.size) {
+          return getEmbedsFromCommandCollection(guild, commands, 9);
+        } else {
+          msg.client.commands.has(args[1])
+            ? (embeds = [
+                embedUtility.message(
+                  args[1],
+                  messages.data.commands[args[1]].usage[guild.lang],
+                ),
+              ])
+            : (embeds = [
+                embedUtility.errorMessage(
+                  commandMessage.replies.notFound.title[guild.lang],
+                  commandMessage.replies.notFound.description[guild.lang]
+                    .toString()
+                    .replace("{prefix}", guild.prefix)
+                    .replace("{command}", args[1]),
+                ),
+              ]);
+        }
+    }
+  }
+  // return embeds
+  return embeds;
+}
+
+/**
+ * @param {String} category the category to get commands from
+ * @returns {Collection} a collection of commands
+ */
+function getCommandCollectionFromCategory(category, commands) {
+  // Var initialisation
+  const output = new Collection();
+  // Loop through commands
+  commands.forEach((command) => {
+    // Check if command is in category
+    if (command.category == category) {
+      // push command to commands
+      output.set(command.name, command);
+    }
+  });
+  return output;
+}
+
+/**
+ * Returns an array of embeds from a collection of commands
+ *
+ * @param {Guild} guild guild data
+ * @param {Collection} commands a collection of commands to get embeds from
+ * @param {Number} maxFields max fields per embed
+ * @returns {Array} an array of embeds
+ */
+function getEmbedsFromCommandCollection(guild, commands, maxFields) {
+  // Var initialisation
+  const embeds = []; // output
+  let maxPages; // max pages
+  let fields = [];
+  // Get max pages (for some stupid reason, msg.client.commands.length just doesn't work)
+  maxPages = Math.floor(commands.size / maxFields);
+  let i = 0; // fields index
+  // Loop through commands
+  commands.forEach((command) => {
+    // Check if current embed reached max fields or if it is the last command
+    if (
+      (i ? (i % maxFields ? false : true) : false) ||
+      i >= commands.size - 1
+    ) {
+      // reset index because max fields is reached
+      i = 0;
+      // generate new embed
+      let embed = embedUtility.fieldsMessage(
+        commandMessage.replies.categories.all.title[guild.lang],
+        `total: ${commands.size}`,
+        fields,
+        BOT_AUTHOR,
+        maxPages ? (embeds.length ? embeds.length + 1 : 1) : 0,
+        maxPages ? maxPages : undefined,
+      );
+      // push embed to embeds
+      embeds.push(embed);
+      // reset fields
+      fields = [];
+    }
+    // push command to current embed
+    fields.push({
+      name: command.name,
+      value: command.description[guild.lang],
+      inline: true,
+    });
+    i++; // increment index of fields
+  });
+  return embeds;
+}
 
 module.exports = {
   name: "help",
@@ -13,498 +193,34 @@ module.exports = {
   /**
    * @param {Message} msg
    * @param {Array} args
-   * @returns {Int32Array}
    */
   async execute(msg, args) {
-    const fields = [];
-    const guild = await db.getData("guilds", msg.guildId).catch((err) => {
+    // Code to execute when command is run
+    // Get guild data
+    const guild = await db.getData("guilds", msg.guild.id).catch((err) => {
       console.error(err);
       return 1;
     });
-    if (args.length <= 1) {
-      switch (guild.lang) {
-        case "fr":
-          fields.push({
-            name: "Chatbot",
-            value: "```Mentionnez moi pour discuter !```",
-            inline: false,
-          });
-          fields.push({
-            name: "all",
-            value: "```Toutes les commandes du bot```",
-            inline: true,
-          });
-          fields.push({
-            name: "fun",
-            value: "```Sélection de commandes sympathiques !```",
-            inline: true,
-          });
-          fields.push({
-            name: "interactions",
-            value: "```Besoin de cogner quelqu'un ?```",
-            inline: true,
-          });
-          fields.push({
-            name: "configurations",
-            value: "```Réservé aux modo discord avérés !```",
-            inline: true,
-          });
-          fields.push({
-            name: "misc",
-            value: "```Commandes diverses```",
-            inline: true,
-          });
-          msg.channel
-            .send({
-              embeds: embedUtility.fieldsMessage(
-                "Liste des commandes",
-                `Utilisez \`\`${guild.prefix}help <catégorie>\`\` pour avoir plus d'infos !`,
-                fields,
-              ),
-            })
-            .catch((err) => {
-              console.error(err);
-              return 1;
-            });
-          break;
-        default:
-          fields.push({
-            name: "Chatbot",
-            value: "```Mention me to chat!```",
-            inline: false,
-          });
-          fields.push({
-            name: "all",
-            value: "```Show all of the bot's commands```",
-            inline: true,
-          });
-          fields.push({
-            name: "fun",
-            value: "```Selection of fun commands!```",
-            inline: true,
-          });
-          fields.push({
-            name: "interactions",
-            value: "```Need to hit someone?```",
-            inline: true,
-          });
-          fields.push({
-            name: "configurations",
-            value: "```Reserved for verified Discord mods!```",
-            inline: true,
-          });
-          fields.push({
-            name: "misc",
-            value: "```Misc commands```",
-            inline: true,
-          });
-          msg.channel
-            .send({
-              embeds: embedUtility.fieldsMessage(
-                "List of commands",
-                `Use \`\`${guild.prefix}help <category>\`\` for more details!`,
-                fields,
-              ),
-            })
-            .catch((err) => {
-              console.error(err);
-              return 1;
-            });
-          break;
-      }
+    // Generate embeds
+    const embeds = getHelp(args, guild, msg);
+    // Check if embeds is null, îf so, send wrong usage message
+    if (embeds == null) {
+      embedUtility.genericWrongUsageMessage(msg, args, this);
+      return 0;
+    }
+    // Check emebds size
+    if (embeds.length < 2) {
+      msg.channel.send({ embeds });
     } else {
-      switch (guild.lang) {
-        case "fr":
-          switch (args[1]) {
-            case "all":
-              msg.client.commands.forEach((command) => {
-                fields.push({
-                  name: command.name,
-                  value: command.description[guild.lang],
-                });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "Liste de toutes les commandes",
-                    "bonne lecture !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "chatbot":
-              fields.push({
-                name: "Suivi du contexte",
-                value:
-                  "Rui's bot est en mesure de saisir le contexte de la discussion!",
-                inline: true,
-              });
-              fields.push({
-                name: "Votre pote AI",
-                value:
-                  "L'AI a été entraînée spécifiquement pour avoir un compagnon super cool!",
-                inline: true,
-              });
-              fields.push({
-                name: "Interactions",
-                value:
-                  "*Bientôt*\nGPT4 fait partie intégrante du bot ! Plus besoin de taper des commandes, demandez-lui de le faire!",
-                inline: true,
-              });
-              fields.push({
-                name: "Confidentialité",
-                value:
-                  "Aucune trace de discussions n'est gardée ou redistribuée par le bot, l'historique de conversations ne devient actif que lorsque le bot est mentionné.\nIl est toutefois possible de désactiver la fonctionnalité (administrateurs) si vous ne souhaitez pas que OpenAI puisse avoir accès à ces conversations durant la génération de texte.",
-                inline: false,
-              });
-              fields.push({
-                name: "Termes d'utilisation",
-                value:
-                  "Termes de OpenAI [Lien vers les termes d'utilisation](https://openai.com/policies/terms-of-use)",
-                inline: false,
-              });
-              const embeds = embedUtility.fieldsMessage(
-                "Chatbot propulsé avec GPT4 !",
-                `Grâce à OpenAI, le bot est capable d'intéragir avec lui tant que vous le **mentionnez** ou lui **répondez directement** !`,
-                fields,
-              );
-              embeds[0].data.thumbnail = {
-                url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
-              };
-              msg.channel.send({ embeds: embeds }).catch((err) => {
-                console.error(err);
-                return 1;
-              });
-              break;
-            case "fun":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "fun") {
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-                }
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "List des commandes fun",
-                    "Amuse-toi bien !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "conf":
-            case "configurations":
-            case "configuration":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "configurations") {
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-                }
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "Liste des commandes de configuration",
-                    "Amuse-toi bien !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "interactions":
-            case "interaction":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "interaction")
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "Liste des commandes d'interaction",
-                    "Amuse-toi bien !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "misc":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "misc")
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "Liste des commandes diverses",
-                    "Amuse-toi bien !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            default:
-              const command = msg.client.commands.get(args[1]);
-              if (command)
-                msg.channel
-                  .send({
-                    embeds: embedUtility.message(
-                      args[1],
-                      `**description** : ${
-                        command.description[guild.lang]
-                      }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
-                    ),
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  });
-              else
-                msg.channel
-                  .send({
-                    embeds: embedUtility.errorMessage(
-                      `${args[1]} ?`,
-                      `Il n'y a pas ${args[1]} dans la liste des commandes.`,
-                    ),
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  });
-              break;
-          }
-          break;
-        default:
-          switch (args[1]) {
-            case "all":
-              msg.client.commands.forEach((command) => {
-                fields.push({
-                  name: command.name,
-                  value: command.description[guild.lang],
-                });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "List of all the commands",
-                    "enjoy !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "chatbot":
-              fields.push({
-                name: "Context Tracking",
-                value:
-                  "Rui's bot is capable of understanding the discussion context!",
-                inline: true,
-              });
-              fields.push({
-                name: "Your AI Buddy",
-                value:
-                  "The AI has been specifically trained to be a super cool companion!",
-                inline: true,
-              });
-              fields.push({
-                name: "Interactions",
-                value:
-                  "*Coming Soon*\nGPT4 is an integral part of the bot! No need to type commands, just ask it to do it!",
-                inline: true,
-              });
-              fields.push({
-                name: "Privacy",
-                value:
-                  "No conversation data is stored or redistributed by the bot. Conversation history only becomes active when the bot is mentioned.\nHowever, it is possible to disable this feature (configurations) if you do not want OpenAI to have access to these conversations during text generation.",
-                inline: false,
-              });
-              fields.push({
-                name: "Terms of Use",
-                value:
-                  "OpenAI's Terms [Link to Terms of Use](https://openai.com/policies/terms-of-use)",
-                inline: true,
-              });
-              const embeds = embedUtility.fieldsMessage(
-                "Chatbot powered by GPT4!",
-                `Thanks to OpenAI, Rui's Bot is able to interact with you as long as you **mention him** or directly **reply to him**!`,
-                fields,
-              );
-              embeds[0].data.thumbnail = {
-                url: "https://tmpfiles.nohat.cc/visualhunter-41c751e3c7.png",
-              };
-              msg.channel.send({ embeds: embeds }).catch((err) => {
-                console.error(err);
-                return 1;
-              });
-              break;
-            case "fun":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "fun")
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "List of fun commands",
-                    "enjoy !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "configurations":
-            case "configuration":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "configurations") {
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-                }
-              });
-              msg.channel.send({
-                embeds: embedUtility
-                  .fieldsMessage(
-                    "List of configuration commands",
-                    "enjoy !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  )
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  }),
-              });
-              break;
-            case "interactions":
-            case "interaction":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "interaction")
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "List of interaction commands",
-                    "enjoy !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            case "misc":
-              msg.client.commands.forEach((command) => {
-                if (command.category == "misc")
-                  fields.push({
-                    name: command.name,
-                    value: command.description[guild.lang],
-                  });
-              });
-              msg.channel
-                .send({
-                  embeds: embedUtility.fieldsMessage(
-                    "List of misc commands",
-                    "enjoy !",
-                    fields,
-                    BOT_AUTHOR,
-                    args[2],
-                  ),
-                })
-                .catch((err) => {
-                  console.error(err);
-                  return 1;
-                });
-              break;
-            default:
-              const command = msg.client.commands.get(args[1]);
-              if (command)
-                msg.channel
-                  .send({
-                    embeds: embedUtility.message(
-                      args[1],
-                      `**description** : ${
-                        command.description[guild.lang]
-                      }\n**usage** : \`\`${guild.prefix}${command.usage}\`\``,
-                    ),
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  });
-              else
-                msg.channel
-                  .send({
-                    embeds: embedUtility.errorMessage(
-                      `${args[1]} ?`,
-                      `There is no reference of ${args[1]} in list of commands.`,
-                    ),
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    return 1;
-                  });
-              break;
-          }
-          break;
-      }
+      // Create a new paginator
+      const paginator = new DiscordEmbedsPaginator([], {
+        customEmbeds: embeds,
+      });
+      // Send paginator message
+      await paginator.createPaginatorMessage(msg.channel).catch((err) => {
+        console.error(err);
+        return 1;
+      });
     }
   },
 };

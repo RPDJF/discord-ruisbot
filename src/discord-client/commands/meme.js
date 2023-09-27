@@ -45,13 +45,17 @@ module.exports = {
       author: qMeme.author,
       subreddit: `Reddit /r${qMeme.subreddit}`,
     };
-    const embeds = embedUtility.message(meme.title, meme.subreddit, {
-      name: meme.author,
-      url: `https://www.reddit.com/user/${meme.author}`,
-      iconURL: (
-        await axios.get(`https://www.reddit.com/user/${meme.author}/about.json`)
-      ).data.data.icon_img.split("?")[0],
-    });
+    const embeds = [
+      embedUtility.message(meme.title, meme.subreddit, {
+        name: meme.author,
+        url: `https://www.reddit.com/user/${meme.author}`,
+        iconURL: (
+          await axios.get(
+            `https://www.reddit.com/user/${meme.author}/about.json`,
+          )
+        ).data.data.icon_img.split("?")[0],
+      }),
+    ];
     embeds[0].data.image = { url: meme.url };
     embeds[0].data.url = meme.postLink;
     embeds[0].data.footer.text = `👍 ${meme.ups} - 💭 ${meme.comments}\n${embeds[0].data.footer.text}`;

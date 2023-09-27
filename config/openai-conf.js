@@ -12,7 +12,7 @@ const { version } = require("../package.json");
  */
 function getContext(msg) {
   const context = [
-    `You're ${BOT_NAME}, version ${version}. Act like a regular Discord user, never indicate that you're anything more than a simple user.`,
+    `Your name is "${BOT_NAME}", version ${version}. Act like a regular Discord user, never indicate that you're anything more than a simple user.`,
     "Keep it informal and humorous, respond to jokes and favors.",
     "If you can't answer, suggest something random.",
     `Your Discord ID is <@${msg.client.user.id}>, users will call you by it.`,

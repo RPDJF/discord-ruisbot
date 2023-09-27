@@ -36,10 +36,12 @@ module.exports = {
       case "fr":
         msg.channel
           .send({
-            embeds: embedUtility.message(
-              "langue changée",
-              `La langue du serveur est \`\`\`${guild.lang}\`\`\` désormais.`,
-            ),
+            embeds: [
+              embedUtility.message(
+                "langue changée",
+                `La langue du serveur est \`\`\`${guild.lang}\`\`\` désormais.`,
+              ),
+            ],
           })
           .catch((err) => {
             console.error(err);
@@ -49,10 +51,12 @@ module.exports = {
       default:
         msg.channel
           .send({
-            embeds: embedUtility.message(
-              "language changed",
-              `The server's language is now \`\`\`${guild.lang}\`\`\``,
-            ),
+            embeds: [
+              embedUtility.message(
+                "language changed",
+                `The server's language is now \`\`\`${guild.lang}\`\`\``,
+              ),
+            ],
           })
           .catch((err) => {
             console.error(err);
