@@ -28,6 +28,9 @@ This project uses APIs from Discord, OpenAI and Firestore, make sure to get your
 You need to setup environment variables, or at least, create an .env file to the src folder of the project.
 You need to import the firebase configuration file (more details on `Configuration Files` section).
 You also need to create a webhook from TOP.GG to get the server voting system working `(/config/top.gg.js)`.
+On the webhook settings from TOP.GG, you need to specify the port you are using on the URL, if not using standard port 80 (HTTP) or 443 (HTTPS).
+You also need to specify the `/vote` endpoint in the webhook URL setting from TOP.GG.
+For the webhook instance to work, you need to have a public IP address with port forwarding on the port you specified in the webhook settings from TOP.GG.
 
 ## <a id="Environment-Variables"></a> Environment Variables
 The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. 
@@ -38,6 +41,8 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `OPENAI_ORGANIZATION_ID`: [OpenAI ID which you can get from their portal]
 - `TENOR_API_KEY`: [Tenor API Key which you can get from their portal]
 - `NASA_API_KEY`: [NASA API Key which you can get from their portal]
+- `TOPGG_WEBHOOK_AUTH`: [Top.gg webhook authentification key which you can **create** in their portal]
+- `TOPGG_WEBHOOK_PORT`: [Top.gg webhook port's to listen to] (you want it to be 80 or 443)
 
 ## <a id="Configuration-Files"></a> Configuration Files
 Don't forget to import firebase-adminsdk-credential into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from firestore portal
