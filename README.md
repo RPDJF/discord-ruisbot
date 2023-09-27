@@ -23,14 +23,14 @@ It means that you can do pretty much everything with this project, as long as I 
 **Important: This project is developed by a passionate individual who learns development in his spare time. The project may not be well-structured, and updates may not be frequent. Long periods of inactivity are to be expected.**
 
 ## <a id="Requirements"></a> Requirements
-A nodejs server is requiered.
-This project uses APIs from Discord, OpenAI and Firestore, make sure to get your own API keys.
-You need to setup environment variables, or at least, create an .env file to the src folder of the project.
-You need to import the firebase configuration file (more details on `Configuration Files` section).
-You also need to create a webhook from TOP.GG to get the server voting system working `(/config/top.gg.js)`.
-On the webhook settings from TOP.GG, you need to specify the port you are using on the URL, if not using standard port 80 (HTTP) or 443 (HTTPS).
-You also need to specify the `/vote` endpoint in the webhook URL setting from TOP.GG.
-For the webhook instance to work, you need to have a public IP address with port forwarding on the port you specified in the webhook settings from TOP.GG.
+- A nodejs server is requiered.
+- This project uses APIs from Discord, OpenAI and Firestore, make sure to get your own API keys.
+- You need to setup environment variables, or at least, create an .env file to the src folder of the project.
+- You need to import the firebase configuration file (more details on `Configuration Files` section).
+- You also need to create a webhook from TOP.GG to get the server voting system working `(/config/top.gg.js)`.
+  - On the webhook settings from TOP.GG, you need to specify the port you are using on the URL, if not using standard port 80 (HTTP) or 443 (HTTPS).
+  - You also need to specify the `/vote` endpoint in the webhook URL setting from TOP.GG.
+  - For the webhook instance to work, you need to have a public IP address with port forwarding on the port you specified in the webhook settings from TOP.GG.
 
 ## <a id="Environment-Variables"></a> Environment Variables
 The project utilizes environment variables, and you can create a `.env` file at the root to configure them. Make sure to fill the variable values. 
