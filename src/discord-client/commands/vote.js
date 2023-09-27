@@ -36,11 +36,18 @@ module.exports = {
     const lastVote = (() => {
       if (!userData) return 0;
       if (!userData.vote.date) return 0;
-      else return new Date(userData.vote.date);
+      let date;
+      try {
+        date = userData.vote.date.toDate();
+      } catch (e) {
+        date = new Date(userData.vote.date);
+      }
+      return date;
     })();
 
     // Check if last vote was 12 hours before
     // 43200000 milliseconds = 12 hours
+    console.log(lastVote);
     if (Date.now() - lastVote < 43200000) {
       // Send message to user if last vote was less than 12 hours ago
       msg.channel.send({
