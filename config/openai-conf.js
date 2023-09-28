@@ -2,7 +2,7 @@
 require("dotenv").config();
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_ORGANIZATION_ID = process.env.OPENAI_ORGANIZATION_ID;
-const DAILY_FREE_TOKENS = 15;
+const DAILY_FREE_TOKENS = 10;
 const MESSAGE_HISTORY_LIMIT = 8;
 const OPENAI_AUTHOR = {
   name: "OpenAI",
