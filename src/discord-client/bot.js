@@ -12,7 +12,7 @@ const dynamicActivity = require("../modules/dynamicActivity");
 const embedUtility = require("../modules/embedUtility");
 const db = require("../modules/db");
 const fs = require("fs");
-const gpt = require("../modules/gpt");
+const gpt = require("../modules/chatbot");
 
 /// app init
 const client = new Client({

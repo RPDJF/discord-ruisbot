@@ -145,8 +145,8 @@ const messages = {
               en: "Chatbot powered by GPT4!",
             },
             description: {
-              fr: "Grâce à GPT4 d'OpenAI, **{botName}** est capable d'interagir avec vous tant que vous **le mentionnez dans votre message**, ou **lui répondez directement**.",
-              en: "Thanks to OpenAI's GPT4, **{botName}** is able to interact with you as long as you **mention him in your message**, or **directly reply to him**.",
+              fr: "Grâce à GPT4 d'OpenAI, **{botName}** est capable d'interagir avec vous tant que vous **le mentionnez dans votre message**, ou **lui répondez directement**.\n\nCette fonctionnalité est limitée à {tokensPerDay} utilisations par jour.\nVous pouvez avoir plus de jetons en votant avec ``.vote``",
+              en: "Thanks to OpenAI's GPT4, **{botName}** is able to interact with you as long as you **mention him in your message**, or **directly reply to him**.\n\nThis feature is limited to {tokensPerDay} uses per day.\nYou can get more tokens by voting with ``.vote``",
             },
             features: {
               context: {
@@ -1217,18 +1217,44 @@ const messages = {
       },
       stars: {
         description: {
-          fr: "Voir le solde de <a:stars:1156021313471787058> possédées",
-          en: "See the number of <a:stars:1156021313471787058> owned.",
+          fr: "Voir ou échanger ses <a:stars:1156021313471787058> contre des récompenses",
+          en: "Check or exchange your <a:stars:1156021313471787058> for rewards",
         },
-        usage: ["stars"],
+        usage: ["stars", "stars exchange gpt"],
         replies: {
           title: {
             fr: "Nombre d'étoiles possédées",
             en: "Number of owned stars",
           },
           description: {
-            fr: "**Tu as {stars}x <a:stars:1156021313471787058> !**\nPlus tard tu pourras les échanger contre des récompenses super chouettes !\nAlors collecte-les en votant !",
-            en: "**You have {stars}x <a:stars:1156021313471787058>!**\nLater you will be able to exchange them for super cool rewards!\nSo collect them by voting!",
+            fr: "**Tu as {stars}x <a:stars:1156021313471787058> !**\nTu peux les échanger contre des jetons GPT avec :```{usage[1]}```D'autres type de récompenses sont à venir !",
+            en: "**You have {stars}x <a:stars:1156021313471787058>!**\nYou can exchange them for GPT tokens with:```{usage[1]}```Other types of rewards are coming!",
+          },
+          exchange: {
+            gpt: {
+              success: {
+                title: {
+                  fr: "Jetons GPT",
+                  en: "GPT Tokens",
+                },
+                description: {
+                  fr: "**Super !**\nTu as échangé **1x** <a:stars:1156021313471787058> contre **{tokens}x** jetons GPT !\nTu possèdes maintenant **{tokensLeft}x** jetons GPT !",
+                  en: "**Awesome!**\nYou exchanged **1x** <a:stars:1156021313471787058> for **{tokens}x** GPT tokens!\nYou now have **{tokensLeft}x** GPT tokens!",
+                },
+              },
+              error: {
+                notEnoughStars: {
+                  title: {
+                    fr: "Pas assez d'étoiles",
+                    en: "Not enough stars",
+                  },
+                  description: {
+                    fr: "Tu n'as pas assez de <a:stars:1156021313471787058> pour faire cet échange !\nTu peux en récupérer en votant avec ```{prefix}vote```",
+                    en: "You don't have enough <a:stars:1156021313471787058> to make this exchange!\nYou can get some by voting with ```{prefix}vote```",
+                  },
+                },
+              },
+            },
           },
         },
       },

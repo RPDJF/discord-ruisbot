@@ -4,8 +4,12 @@ const messages = require("../../modules/messages");
 const db = require("../../modules/db");
 const { DiscordEmbedsPaginator } = require("../../modules/paginator");
 const embedUtility = require("../../modules/embedUtility");
-const { BOT_AUTHOR, BOT_NAME } = require("../../../config/bot-conf");
+const { BOT_NAME } = require("../../../config/bot-conf");
 const commandMessage = messages.data.commands.help;
+const { DAILY_FREE_TOKENS } = require("../../../config/openai-conf");
+
+// General scope variables
+const fieldsPerPage = 6;
 
 /**
  *
@@ -59,7 +63,11 @@ function getHelp(args, guild, msg) {
     switch (args[1]) {
       // Get all commands
       case "all":
-        return getEmbedsFromCommandCollection(guild, allowedCommands, 9);
+        return getEmbedsFromCommandCollection(
+          guild,
+          allowedCommands,
+          fieldsPerPage,
+        );
       case "chatbot":
         const fields = [];
         for (const feature in commandMessage.replies.chatBot.features) {
@@ -68,7 +76,8 @@ function getHelp(args, guild, msg) {
             name: _feature.title[guild.lang],
             value: _feature.description[guild.lang]
               .toString()
-              .replace("{botName}", BOT_NAME),
+              .replace("{botName}", BOT_NAME)
+              .replace("{tokensPerDay}", DAILY_FREE_TOKENS),
             inline: true,
           });
         }
@@ -103,7 +112,7 @@ function getHelp(args, guild, msg) {
           return getEmbedsFromCommandCollection(
             guild,
             allowedCommandsFiltered,
-            9,
+            fieldsPerPage,
           );
         } else if (commandsFiltered.size) {
           embedUtility.genericPermissionMessage(msg, guild);

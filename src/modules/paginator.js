@@ -10,7 +10,7 @@ class DiscordEmbedsPaginator {
       {
         customId: "DiscordEmbedsPaginator",
         customStyle: ButtonStyle.Secondary,
-        customEmojis: BOT_PAGINATOR_EMOJIS,
+        customEmojis: BOT_PAGINATOR_EMOJIS, // edited
         customEmbeds: [],
         timeout: 60000,
       },

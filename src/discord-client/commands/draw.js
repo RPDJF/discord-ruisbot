@@ -1,7 +1,10 @@
 // imports
 const { Message } = require("discord.js");
 const embedUtility = require("../../modules/embedUtility");
-const { OPENAI_API_KEY } = require("../../../config/openai-conf");
+const {
+  OPENAI_API_KEY,
+  OPENAI_AUTHOR,
+} = require("../../../config/openai-conf");
 const { default: axios } = require("axios");
 const db = require("../../modules/db");
 const messages = require("../../modules/messages");
@@ -36,12 +39,6 @@ module.exports = {
       embedUtility.genericWrongUsageMessage(msg, args, this);
       return 0;
     }
-    // default author object
-    const author = {
-      name: "OpenAI",
-      iconURL: "https://game-tournaments.com/media/logo/t25349.png",
-      url: "https://openai.com/api/",
-    };
 
     // Send request to OpenAI API
     try {
@@ -73,7 +70,7 @@ module.exports = {
             query,
             `${msg.author}\n📷 **${++i}/${nbPictures}**`,
             response.data.data[picture].url,
-            author,
+            OPENAI_AUTHOR,
           ),
         );
       // create paginator

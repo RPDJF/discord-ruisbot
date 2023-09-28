@@ -1,6 +1,6 @@
 {
   "name": "discord-ruisbot",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Rui's Bot is a fully customizable open-source bot with integrated ChatGPT API and a new variety of fun commands",
   "main": "main.js",
   "directories": {

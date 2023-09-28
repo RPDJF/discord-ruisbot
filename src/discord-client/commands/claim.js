@@ -37,7 +37,7 @@ module.exports = {
           ),
         ),
       ];
-      msg.reply({
+      msg.channel.send({
         embeds: embeds,
       });
     } else {
@@ -66,7 +66,7 @@ module.exports = {
           ),
         ),
       ];
-      msg.reply({
+      msg.channel.send({
         embeds: embeds,
       });
     }

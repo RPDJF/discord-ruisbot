@@ -7,6 +7,7 @@ const {
   BOT_AUTHOR,
 } = require("../../config/bot-conf");
 const db = require("./db");
+const messages = require("./messages");
 
 // Message type
 /**
@@ -146,32 +147,17 @@ function genericPermissionMessage(msg, guild) {
 
 async function genericWrongUsageMessage(msg, args, command) {
   const guild = await db.getData("guilds", msg.guildId);
-  switch (guild.lang) {
-    case "fr":
-      msg.channel.send({
-        embeds: [
-          errorMessage(
-            "mauvaise utilisation",
-            `**${args[0]}**\n${
-              command.description[guild.lang]
-            }\n\nUsage : \`\`\`${guild.prefix}${command.usage}\`\`\``,
-          ),
-        ],
-      });
-      break;
-    default:
-      msg.channel.send({
-        embeds: [
-          errorMessage(
-            "wrong usage",
-            `**${args[0]}**\n${
-              command.description[guild.lang]
-            }\n\nUsage : \`\`\`${guild.prefix}${command.usage}\`\`\``,
-          ),
-        ],
-      });
-      break;
-  }
+  msg.channel.send({
+    embeds: [
+      errorMessage(
+        "mauvaise utilisation",
+        `${messages.data.commands[command.name].description[guild.lang]}
+        \`\`\`${guild.prefix}${messages.data.commands[command.name].usage.join(
+          `\`\`\`\`\`\`${guild.prefix}`,
+        )}\`\`\``,
+      ),
+    ],
+  });
 }
 
 function genericDisabledOpenAIMessage(msg, guild) {
