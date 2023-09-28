@@ -38,37 +38,52 @@ module.exports = {
     // for each meme
     let i = 0;
     for (const meme in query.data.data.children) {
-      // get meme data
-      const memeData = query.data.data.children[meme].data;
-      // break if max meme reached
-      if (i++ >= maxMeme) break;
-      // skip if meme is video
-      if (memeData.is_video) continue;
+      // initialize embed
+      let embed;
+      try {
+        // get meme data
+        const memeData = query.data.data.children[meme].data;
+        // skip if meme is video
+        if (memeData.is_video) continue;
+        // skip if meme is nsfw
+        if (memeData.over_18) continue;
+        // skip if meme is nsfw
+        if (memeData.thumbnail === "nsfw") continue;
+        // skip if meme is not png or jpg
+        const extension =
+          memeData.url.split(".")[memeData.url.split(".").length - 1];
+        if (extension != "png" && extension != "jpg") continue;
+        // break if max meme reached
+        if (i++ >= maxMeme) break;
 
-      // create embed
-      const embed = embedUtility.message(
-        memeData.title,
-        `Reddit r/${memeData.subreddit}`,
-        {
-          name: `u/${memeData.author}`,
-          url: `https://www.reddit.com/user/${memeData.author}`,
-          iconURL: (
-            await axios.get(
-              `https://www.reddit.com/user/${memeData.author}/about.json`,
-            )
-          ).data.data.icon_img.split("?")[0],
-        },
-      );
-      // edit embed
-      embed.data.image = { url: memeData.url };
-      embed.data.url = `https://www.reddit.com${memeData.permalink}`.replace(
-        "\\",
-        "/",
-      );
-      embed.data.footer.text = `👍 ${memeData.ups} - 💭 ${memeData.num_comments}\n${embed.data.footer.text}`;
-      embed.data.thumbnail = {
-        url: "https://www.redditinc.com/assets/images/site/reddit-logo.png",
-      };
+        // create embed
+        embed = embedUtility.message(
+          memeData.title,
+          `Reddit r/${memeData.subreddit}`,
+          {
+            name: `u/${memeData.author}`,
+            url: `https://www.reddit.com/user/${memeData.author}`,
+            iconURL: (
+              await axios.get(
+                `https://www.reddit.com/user/${memeData.author}/about.json`,
+              )
+            ).data.data.icon_img.split("?")[0],
+          },
+        );
+        // edit embed
+        embed.data.image = { url: memeData.url };
+        embed.data.url = `https://www.reddit.com${memeData.permalink}`.replace(
+          "\\",
+          "/",
+        );
+        embed.data.footer.text = `👍 ${memeData.ups} - 💭 ${memeData.num_comments}\n${embed.data.footer.text}`;
+        embed.data.thumbnail = {
+          url: "https://www.redditinc.com/assets/images/site/reddit-logo.png",
+        };
+      } catch (err) {
+        console.error(err);
+        continue;
+      }
 
       // push embed to embeds array
       embeds.push(embed);
