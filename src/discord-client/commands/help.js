@@ -99,7 +99,6 @@ function getHelp(args, guild, msg) {
           msg.client.commands,
         );
         // Check if args[1] is a category, else if it is a command
-        console.log(commandsFiltered.size);
         if (allowedCommandsFiltered.size) {
           return getEmbedsFromCommandCollection(
             guild,
