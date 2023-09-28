@@ -24,6 +24,7 @@ async function exchange(guild, user, args, msg) {
       // Generate new data
       const newData = user;
       newData.vote.stars -= 1; // decrement stars
+      if(!newData.openai) newData.openai = {}; // initialize openai object
       newData.openai.tokens
         ? (newData.openai.tokens += nbTokens)
         : (newData.openai.tokens = nbTokens); // increment tokens

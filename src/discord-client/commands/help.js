@@ -76,8 +76,7 @@ function getHelp(args, guild, msg) {
             name: _feature.title[guild.lang],
             value: _feature.description[guild.lang]
               .toString()
-              .replace("{botName}", BOT_NAME)
-              .replace("{tokensPerDay}", DAILY_FREE_TOKENS),
+              .replace("{botName}", BOT_NAME),
             inline: true,
           });
         }
@@ -91,7 +90,8 @@ function getHelp(args, guild, msg) {
             commandMessage.replies.chatBot.title[guild.lang],
             commandMessage.replies.chatBot.description[guild.lang]
               .toString()
-              .replace("{botName}", BOT_NAME),
+              .replace("{botName}", BOT_NAME)
+              .replace("{tokensPerDay}", DAILY_FREE_TOKENS),
             fields,
           ),
         ];

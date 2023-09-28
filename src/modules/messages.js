@@ -146,7 +146,7 @@ const messages = {
             },
             description: {
               fr: "Grâce à GPT4 d'OpenAI, **{botName}** est capable d'interagir avec vous tant que vous **le mentionnez dans votre message**, ou **lui répondez directement**.\n\nCette fonctionnalité est limitée à {tokensPerDay} utilisations par jour.\nVous pouvez avoir plus de jetons en votant avec ``.vote``",
-              en: "Thanks to OpenAI's GPT4, **{botName}** is able to interact with you as long as you **mention him in your message**, or **directly reply to him**.\n\nThis feature is limited to {tokensPerDay} uses per day.\nYou can get more tokens by voting with ``.vote``",
+              en: "Thanks to OpenAI's GPT4, **{botName}** is able to interact with you if you **mention him in your message**, or **directly reply to him**.\n\nThis feature is limited to {tokensPerDay} uses per day.\nYou can get more tokens by voting with ``.vote``",
             },
             features: {
               context: {
