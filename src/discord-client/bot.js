@@ -21,7 +21,6 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.MessageContent,
   ],
 });
@@ -31,6 +30,7 @@ client.commands = new Collection();
 const commandFiles = fs
   .readdirSync("./src/discord-client/commands")
   .filter((file) => file.endsWith(".js"));
+commandFiles.sort();
 // Load all commands from the commands folder
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -48,6 +48,8 @@ for (const file of commandFiles) {
   // Add the command to the collection
   client.commands.set(command.name, command);
 }
+const test = new Collection();
+test.sort();
 
 // Client login
 client.login(DISCORD_BOT_TOKEN);
@@ -160,7 +162,12 @@ client.on(Events.MessageCreate, async (msg) => {
       msg.channel.send({ embeds: embedReply });
       return;
     }
-
+    // Check if user has permission to execute command
+    if (command.permission)
+      if (!msg.member.permissions.has(command.permission)) {
+        embedUtility.genericPermissionMessage(msg, guild);
+        return;
+      }
     // Command execution
     try {
       if (await command.execute(msg, args))

@@ -9,6 +9,7 @@ module.exports = {
   description: messages.data.commands.gpt.description,
   usage: messages.data.commands.gpt.usage,
   category: "configurations",
+  permission: PermissionFlagsBits.Administrator,
   /**
    * @param {Message} msg
    * @param {Array} args

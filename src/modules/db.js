@@ -47,7 +47,7 @@ async function getData(collectionName, documentId) {
         // Write data in the cache
         inMemoryCache[cacheKey] = data;
 
-        console.info(`Fetched data from Firestore ${cacheKey}`);
+        console.info(`Fetched data from Firestore: ${cacheKey}`);
         return data;
       } else {
         console.info(`No data was found in Firestore for ${cacheKey}.`);
@@ -79,7 +79,7 @@ async function writeData(collectionName, documentId, newData, merge = true) {
   // reload in-memory cache
   await getData(collectionName, documentId);
 
-  console.info("Data updated in Firestore:");
+  console.info("Data updated in Firestore:", cacheKey);
 }
 // Need to fix deepMerge = breaks when merging firestore objects (ex timestamps)
 // * Writes data to Firestore and updates the in-memory cache by merging with existing data.

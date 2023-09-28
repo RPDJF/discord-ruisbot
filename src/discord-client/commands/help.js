@@ -1,5 +1,5 @@
 // imports
-const { Message, Collection } = require("discord.js");
+const { Message, Collection, Client } = require("discord.js");
 const messages = require("../../modules/messages");
 const db = require("../../modules/db");
 const { DiscordEmbedsPaginator } = require("../../modules/paginator");
@@ -53,11 +53,13 @@ function getHelp(args, guild, msg) {
     // return embeds
     return embeds;
   } else {
+    // Get allowed commands for user
+    const allowedCommands = getAllowedCommands(msg.client.commands, msg.member);
     // Check if args[1] is a category, then if it is a command
     switch (args[1]) {
       // Get all commands
       case "all":
-        return getEmbedsFromCommandCollection(guild, msg.client.commands, 9);
+        return getEmbedsFromCommandCollection(guild, allowedCommands, 9);
       case "chatbot":
         const fields = [];
         for (const feature in commandMessage.replies.chatBot.features) {
@@ -86,19 +88,36 @@ function getHelp(args, guild, msg) {
         ];
         return embeds;
       default:
-        const commands = getCommandCollectionFromCategory(
+        // Get allowed commands from category
+        const allowedCommandsFiltered = getCommandCollectionFromCategory(
+          args[1],
+          allowedCommands,
+        );
+        // Get all commands from category (used to check if user has permission to use category later)
+        const commandsFiltered = getCommandCollectionFromCategory(
           args[1],
           msg.client.commands,
         );
         // Check if args[1] is a category, else if it is a command
-        if (commands.size) {
-          return getEmbedsFromCommandCollection(guild, commands, 9);
+        console.log(commandsFiltered.size);
+        if (allowedCommandsFiltered.size) {
+          return getEmbedsFromCommandCollection(
+            guild,
+            allowedCommandsFiltered,
+            9,
+          );
+        } else if (commandsFiltered.size) {
+          embedUtility.genericPermissionMessage(msg, guild);
+          return;
         } else {
           msg.client.commands.has(args[1])
             ? (embeds = [
                 embedUtility.message(
                   args[1],
-                  messages.data.commands[args[1]].usage[guild.lang],
+                  `${messages.data.commands[args[1]].description[guild.lang]}
+                  \`\`\`${guild.prefix}${messages.data.commands[
+                    args[1]
+                  ].usage.join(`\`\`\`\`\`\`${guild.prefix}`)}\`\`\``,
                 ),
               ])
             : (embeds = [
@@ -115,6 +134,16 @@ function getHelp(args, guild, msg) {
   }
   // return embeds
   return embeds;
+}
+
+function getAllowedCommands(commands, member) {
+  const output = new Collection();
+  commands.forEach((command) => {
+    if (command.permission && !member.permissions.has(command.permission))
+      return;
+    output.set(command.name, command);
+  });
+  return output;
 }
 
 /**
@@ -139,49 +168,43 @@ function getCommandCollectionFromCategory(category, commands) {
  * Returns an array of embeds from a collection of commands
  *
  * @param {Guild} guild guild data
- * @param {Collection} commands a collection of commands to get embeds from
+ * @param {Collection} commands a collection of commands
  * @param {Number} maxFields max fields per embed
  * @returns {Array} an array of embeds
  */
 function getEmbedsFromCommandCollection(guild, commands, maxFields) {
   // Var initialisation
-  const embeds = []; // output
-  let maxPages; // max pages
-  let fields = [];
-  // Get max pages (for some stupid reason, msg.client.commands.length just doesn't work)
-  maxPages = Math.floor(commands.size / maxFields);
-  let i = 0; // fields index
-  // Loop through commands
-  commands.forEach((command) => {
-    // Check if current embed reached max fields or if it is the last command
-    if (
-      (i ? (i % maxFields ? false : true) : false) ||
-      i >= commands.size - 1
-    ) {
-      // reset index because max fields is reached
-      i = 0;
-      // generate new embed
-      let embed = embedUtility.fieldsMessage(
-        commandMessage.replies.categories.all.title[guild.lang],
-        `total: ${commands.size}`,
-        fields,
-        BOT_AUTHOR,
-        maxPages ? (embeds.length ? embeds.length + 1 : 1) : 0,
-        maxPages ? maxPages : undefined,
-      );
-      // push embed to embeds
-      embeds.push(embed);
-      // reset fields
-      fields = [];
-    }
-    // push command to current embed
+  const embeds = [];
+  var fields = [];
+  const totalPage = Math.ceil(commands.size / maxFields);
+  // For each command
+  for (let i = 1; i < commands.size + 1; i++) {
+    // Push command to fields
     fields.push({
-      name: command.name,
-      value: command.description[guild.lang],
+      name: commands.at(i - 1).name,
+      // if description longer than 25 carracters, cut and add ...
+      value:
+        commands.at(i - 1).description[guild.lang].length > 28 &&
+        !commands.at(i - 1).description[guild.lang].includes("<a:" | "<:")
+          ? commands.at(i - 1).description[guild.lang].substring(0, 28) + "..."
+          : commands.at(i - 1).description[guild.lang],
+
       inline: true,
     });
-    i++; // increment index of fields
-  });
+    // When fields is full or when it is the last command
+    if (i % maxFields == 0 || i == commands.size) {
+      // Push fields to embeds
+      embeds.push(
+        embedUtility.fieldsMessage(
+          commandMessage.replies.default.title[guild.lang],
+          `Page **${embeds.length + 1}** sur **${totalPage}**`,
+          fields,
+        ),
+      );
+      // Reset fields
+      fields = [];
+    }
+  }
   return embeds;
 }
 
@@ -203,11 +226,8 @@ module.exports = {
     });
     // Generate embeds
     const embeds = getHelp(args, guild, msg);
-    // Check if embeds is null, îf so, send wrong usage message
-    if (embeds == null) {
-      embedUtility.genericWrongUsageMessage(msg, args, this);
-      return 0;
-    }
+    // Check if embeds is null, îf so return
+    if (embeds == null) return;
     // Check emebds size
     if (embeds.length < 2) {
       msg.channel.send({ embeds });

@@ -130,20 +130,15 @@ function genericPermissionMessage(msg, guild) {
       msg.channel.send({
         embeds: [
           errorMessage(
-            "rh petit margoulin !",
-            "Seuls les administrateurs du serveur sont en mesure de lancer cette commande ! ",
+            "Pris en flag !",
+            "Tu n'as pas la permission d'utiliser cette commande.",
           ),
         ],
       });
       break;
     default:
       msg.channel.send({
-        embeds: [
-          errorMessage(
-            "I saw ya !",
-            "You can't use this command, it's only for administrators.",
-          ),
-        ],
+        embeds: [errorMessage("I saw ya !", "You can't use this command.")],
       });
       break;
   }

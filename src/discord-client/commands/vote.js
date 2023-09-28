@@ -47,7 +47,6 @@ module.exports = {
 
     // Check if last vote was 12 hours before
     // 43200000 milliseconds = 12 hours
-    console.log(lastVote);
     if (Date.now() - lastVote < 43200000) {
       // Send message to user if last vote was less than 12 hours ago
       msg.channel.send({

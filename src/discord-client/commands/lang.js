@@ -9,6 +9,7 @@ module.exports = {
   description: messages.data.commands.lang.description,
   usage: messages.data.commands.lang.usage,
   category: "configurations",
+  permission: PermissionFlagsBits.Administrator,
   /**
    * @param {Message} msg
    * @param {Array} args

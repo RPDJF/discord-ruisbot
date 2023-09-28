@@ -17,45 +17,45 @@ const messages = {
     commands: {
       apod: {
         description: {
-          fr: "Afficher l'astronomie du jour.",
-          en: "Display the astronomy picture of the day.",
+          fr: "Afficher la photo astronomique du jour de la NASA",
+          en: "Display the NASA's astronomy picture of the day",
         },
-        usage: "apod",
+        usage: ["apod"],
       },
       dick: {
         description: {
-          fr: "À quoi tu t'attends ?",
-          en: "What are u expecting for ?",
+          fr: "Algorithme très sophistiqué permettant la mesure précise de vote engin",
+          en: "A highly sophisticated algorithm enabling the precise measurement of your device",
         },
-        usage: "dick",
+        usage: ["dick"],
       },
       draw: {
         description: {
-          fr: "Dessine ce que tu veux !",
-          en: "Draw anything yout want !",
+          fr: "Générer trois images par l'IA de OpenAI",
+          en: "Generate three pictures using OpenAI's IA",
         },
-        usage: "draw <something>",
+        usage: ["draw <something>"],
       },
       gif: {
         description: {
-          fr: "Envoyer un GIF.",
-          en: "Send a GIF.",
+          fr: "Envoyer un GIF depuis Tenor pour animer les salons.",
+          en: "Send GIF from Tenor in order the animate the channels.",
         },
-        usage: "gif <something>",
+        usage: ["gif <something>"],
       },
       gpt: {
         description: {
           fr: "Désactiver ou réactiver GPT4 sur le serveur.",
           en: "Disable or enable again GPT4 on this server.",
         },
-        usage: "gpt <enable|disable>",
+        usage: ["gpt <enable|disable>"],
       },
       help: {
         description: {
-          fr: "Liste des commandes",
-          en: "List of commands",
+          fr: "Liste des commandes. La commande n'affiche que la liste dont l'utilisateur a accès.",
+          en: "List of commands. Only shows commands that the user has permissions to use.",
         },
-        usage: "help <command|category> <page>",
+        usage: ["help <command|category>"],
         replies: {
           default: {
             title: {
@@ -186,10 +186,10 @@ const messages = {
       interactions: {
         bite: {
           description: {
-            fr: "Mordre quelqu'un.",
-            en: "Bite someone.",
+            fr: "Mordre quelqu'un",
+            en: "Bite someone",
           },
-          usage: "bite <user>",
+          usage: ["bite <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -217,10 +217,10 @@ const messages = {
         },
         blush: {
           description: {
-            fr: "Rougir comme une tomate !",
-            en: "Blush like a tomato!",
+            fr: "Rougir comme une tomate",
+            en: "Blush like a tomato",
           },
-          usage: "blush",
+          usage: ["blush"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -248,10 +248,10 @@ const messages = {
         },
         bonk: {
           description: {
-            fr: "Donner un coup de poing amical à quelqu'un.",
-            en: "Give someone a friendly fist bump.",
+            fr: "Donner un coup",
+            en: "Give a bump",
           },
-          usage: "brofist <user>",
+          usage: ["brofist <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -279,10 +279,10 @@ const messages = {
         },
         bully: {
           description: {
-            fr: "Embêter quelqu'un.",
-            en: "Tease someone.",
+            fr: "Embêter quelqu'un",
+            en: "Tease someone",
           },
-          usage: "tease <user>",
+          usage: ["tease <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -310,10 +310,10 @@ const messages = {
         },
         cuddle: {
           description: {
-            fr: "Faire un câlin chaleureux.",
-            en: "Give a warm hug.",
+            fr: "Câliner quelqu'un",
+            en: "Give a warm hug",
           },
-          usage: "cuddle <user>",
+          usage: ["cuddle <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -345,10 +345,10 @@ const messages = {
         },
         cringe: {
           description: {
-            fr: "Faire une grimace de dégoût.",
-            en: "Make a cringe face.",
+            fr: "Faire une grimance",
+            en: "Make a cringe face",
           },
-          usage: "cringe",
+          usage: ["cringe"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -380,10 +380,10 @@ const messages = {
         },
         cry: {
           description: {
-            fr: "Exprimer tristesse en pleurant.",
-            en: "Express sadness by crying.",
+            fr: "Pleurer",
+            en: "Cry a river",
           },
-          usage: "cry",
+          usage: ["cry"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -411,10 +411,10 @@ const messages = {
         },
         dance: {
           description: {
-            fr: "Danser avec enthousiasme !",
-            en: "Dance with enthusiasm!",
+            fr: "Danser avec enthousiasme",
+            en: "Dance with enthusiasm",
           },
-          usage: "dance",
+          usage: ["dance"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -446,10 +446,10 @@ const messages = {
         },
         handhold: {
           description: {
-            fr: "Tenir la main de quelqu'un avec douceur.",
-            en: "Hold someone's hand gently.",
+            fr: "Tenir la main",
+            en: "Hold someone's hand",
           },
-          usage: "handhold <user>",
+          usage: ["handhold <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -481,10 +481,10 @@ const messages = {
         },
         happy: {
           description: {
-            fr: "Exprimer la joie et le bonheur.",
-            en: "Express joy and happiness.",
+            fr: "Exprimer la joie",
+            en: "Express happiness.",
           },
-          usage: "happy",
+          usage: ["happy"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -516,10 +516,10 @@ const messages = {
         },
         highfive: {
           description: {
-            fr: "Donner un high five à quelqu'un.",
-            en: "Give someone a high five.",
+            fr: "Donner un high five",
+            en: "Give someone a high five",
           },
-          usage: "highfive <user>",
+          usage: ["highfive <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -547,10 +547,10 @@ const messages = {
         },
         hug: {
           description: {
-            fr: "Prendre quelqu'un dans ses bras.",
-            en: "Hug someone.",
+            fr: "Faire un câline",
+            en: "Hug someone",
           },
-          usage: "hug <user>",
+          usage: ["hug <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -582,10 +582,10 @@ const messages = {
         },
         kick: {
           description: {
-            fr: "Donner un coup de pied à quelqu'un.",
-            en: "Kick someone.",
+            fr: "Coup de pied",
+            en: "Kick someone",
           },
-          usage: "kick <user>",
+          usage: ["kick <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -613,10 +613,10 @@ const messages = {
         },
         kill: {
           description: {
-            fr: "Tuer quelqu'un.",
-            en: "Kill someone.",
+            fr: "Tuer quelqu'un",
+            en: "Kill someone",
           },
-          usage: "kill <user>",
+          usage: ["kill <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -644,10 +644,10 @@ const messages = {
         },
         kiss: {
           description: {
-            fr: "Embrasser quelqu'un.",
-            en: "Kiss someone.",
+            fr: "Embrasser quelqu'un",
+            en: "Kiss someone",
           },
-          usage: "kiss <user>",
+          usage: ["kiss <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -679,10 +679,10 @@ const messages = {
         },
         lick: {
           description: {
-            fr: "Lécher quelqu'un.",
-            en: "Lick someone.",
+            fr: "Lécher quelqu'un",
+            en: "Lick someone",
           },
-          usage: "lick <user>",
+          usage: ["lick <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -712,10 +712,10 @@ const messages = {
         },
         neko: {
           description: {
-            fr: "Envoyer une image de neko.",
-            en: "Send a neko image.",
+            fr: "Image de neko",
+            en: "Send a neko picture",
           },
-          usage: "love",
+          usage: ["neko"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -740,10 +740,10 @@ const messages = {
         },
         nom: {
           description: {
-            fr: "Manger quelque chose de délicieux !",
-            en: "Eat something delicious!",
+            fr: "Partager un repas",
+            en: "Share a meal",
           },
-          usage: "nom <user>",
+          usage: ["nom <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -775,10 +775,10 @@ const messages = {
         },
         pat: {
           description: {
-            fr: "Tapoter la tête de quelqu'un.",
-            en: "Pat someone's head.",
+            fr: "Tapoter la tête",
+            en: "Pat someone's head",
           },
-          usage: "pat <user>",
+          usage: ["pat <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -810,10 +810,10 @@ const messages = {
         },
         poke: {
           description: {
-            fr: "Donner un petit coup à quelqu'un.",
+            fr: "Donner un petit coup",
             en: "Poke someone.",
           },
-          usage: "poke <user>",
+          usage: ["poke <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -845,10 +845,10 @@ const messages = {
         },
         slap: {
           description: {
-            fr: "Donner une gifle à quelqu'un.",
-            en: "Slap someone.",
+            fr: "Gifler quelqu'un",
+            en: "Slap someone",
           },
-          usage: "slap <user>",
+          usage: ["slap <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -880,10 +880,10 @@ const messages = {
         },
         smile: {
           description: {
-            fr: "Sourire.",
-            en: "Smile.",
+            fr: "Montrer un sourire",
+            en: "Show a smile",
           },
-          usage: "smile",
+          usage: ["smile"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -915,10 +915,10 @@ const messages = {
         },
         smug: {
           description: {
-            fr: "Avoir un air suffisant.",
-            en: "Look smug.",
+            fr: "Narguer",
+            en: "Look smug",
           },
-          usage: "smug",
+          usage: ["smug"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -950,10 +950,10 @@ const messages = {
         },
         waifu: {
           description: {
-            fr: "Afficher une image de sa waifu préférée.",
-            en: "Display an image of your favorite waifu.",
+            fr: "Une image de waifu",
+            en: "A waifu picture",
           },
-          usage: "waifu",
+          usage: ["waifu"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -985,10 +985,10 @@ const messages = {
         },
         wave: {
           description: {
-            fr: "Faire un signe de la main.",
-            en: "Wave.",
+            fr: "Faire signe",
+            en: "Wave someone",
           },
-          usage: "wave <user>",
+          usage: ["wave <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -1020,10 +1020,10 @@ const messages = {
         },
         wink: {
           description: {
-            fr: "Faire un clin d'œil.",
-            en: "Wink.",
+            fr: "Faire un clin d'oeil",
+            en: "Wink someone",
           },
-          usage: "wink <user>",
+          usage: ["wink <user>"],
           getAction: {
             fr: (msg, target) => {
               const actionMessages = [
@@ -1055,10 +1055,10 @@ const messages = {
         },
         yeet: {
           description: {
-            fr: "Lancer quelque chose avec force.",
-            en: "Throw something forcefully.",
+            fr: "Lancer quelque chose",
+            en: "Throw something",
           },
-          usage: "yeet",
+          usage: ["yeet"],
           getAction: {
             fr: (msg) => {
               const actionMessages = [
@@ -1091,10 +1091,10 @@ const messages = {
       },
       invite: {
         description: {
-          fr: "Inviter le bot sur un serveur.",
-          en: "Invite the bot to a server.",
+          fr: "Inviter le bot ou rejoindre le serveur discord officiel",
+          en: "Invite the bot or join the official discord server",
         },
-        usage: "invite",
+        usage: ["invite"],
         replies: {
           fr: {
             title: "Invite le bot sur ton serveur !",
@@ -1114,24 +1114,24 @@ const messages = {
       },
       lang: {
         description: {
-          fr: "Changer la langue du bot.",
-          en: "Change the bot's language.",
+          fr: "Changer la langue du bot",
+          en: "Change the bot's language",
         },
-        usage: "lang <fr|en>",
+        usage: ["lang <fr|en>"],
       },
       meme: {
         description: {
-          fr: "Afficher un meme aléatoire.",
-          en: "Display a random meme.",
+          fr: "Envoyer un meme amusant de reddit",
+          en: "Send a funny meme from reddit",
         },
-        usage: "meme",
+        usage: ["meme"],
       },
       mine: {
         description: {
-          fr: "Miner des ressources.",
-          en: "Mine resources.",
+          fr: "Récupérer des pierres précieuses",
+          en: "Get some precious gems",
         },
-        usage: "mine```\n```mine stats <user?>",
+        usage: ["mine", "mine stats <user?>"],
         replies: {
           stats: {
             title: {
@@ -1147,24 +1147,24 @@ const messages = {
       },
       ping: {
         description: {
-          fr: "Vérifier la latence du bot.",
-          en: "Check the bot's latency.",
+          fr: "Vérifier que le bot est en ligne",
+          en: "Check if the bot is online",
         },
-        usage: "ping",
+        usage: ["ping"],
       },
       prefix: {
         description: {
-          fr: "Changer le préfixe du bot.",
-          en: "Change the bot's prefix.",
+          fr: "Changer ou consulter le préfixe du bot",
+          en: "Change or check the bot's prefix",
         },
-        usage: "prefix <prefix>",
+        usage: ["prefix <prefix>"],
       },
       vote: {
         description: {
-          fr: "Voter pour gagner des <a:stars:1156021313471787058> !",
-          en: "Vote to earn <a:stars:1156021313471787058>!",
+          fr: "Voter pour pour le serveur pour obtenir des étoiles",
+          en: "Vote for the server to get stars",
         },
-        usage: "vote",
+        usage: ["vote"],
         replies: {
           hasVoted: {
             false: {
@@ -1196,10 +1196,10 @@ const messages = {
       },
       claim: {
         description: {
-          fr: "Réclamer les <a:stars:1156021313471787058> en attente !",
-          en: "Claim pending <a:stars:1156021313471787058>!",
+          fr: "Réclamer les <a:stars:1156021313471787058> durement gagnées",
+          en: "Claim pending <a:stars:1156021313471787058> earned",
         },
-        usage: "claim",
+        usage: ["claim"],
         replies: {
           hasClaims: {
             fr: "Tu as réclamé tes <a:stars:1156021313471787058> !",
@@ -1217,10 +1217,10 @@ const messages = {
       },
       stars: {
         description: {
-          fr: "Voir le nombre de <a:stars:1156021313471787058> possédées.",
+          fr: "Voir le solde de <a:stars:1156021313471787058> possédées",
           en: "See the number of <a:stars:1156021313471787058> owned.",
         },
-        usage: "stars",
+        usage: ["stars"],
         replies: {
           title: {
             fr: "Nombre d'étoiles possédées",

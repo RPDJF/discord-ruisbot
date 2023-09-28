@@ -10,16 +10,16 @@ module.exports = {
   description: messages.data.commands.prefix.description,
   usage: messages.data.commands.prefix.usage,
   category: "configurations",
+  permission: PermissionFlagsBits.Administrator,
   /**
    * @param {Message} msg
    * @param {Array} args
    */
   async execute(msg, args) {
+    // Fetch guild data
     let guild = await db.getData("guilds", msg.guildId);
-    if (!msg.member.permissions.has(PermissionFlagsBits.Administrator)) {
-      embedUtility.genericPermissionMessage(msg, guild);
-      return 0;
-    }
+
+    // Check if args is empty
     if (args.length < 2) {
       switch (guild.lang) {
         case "fr":
