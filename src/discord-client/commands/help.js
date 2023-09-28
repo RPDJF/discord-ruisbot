@@ -91,7 +91,8 @@ function getHelp(args, guild, msg) {
             commandMessage.replies.chatBot.description[guild.lang]
               .toString()
               .replace("{botName}", BOT_NAME)
-              .replace("{tokensPerDay}", DAILY_FREE_TOKENS),
+              .replace("{tokensPerDay}", DAILY_FREE_TOKENS)
+              .replace("{prefix}", guild.prefix),
             fields,
           ),
         ];
