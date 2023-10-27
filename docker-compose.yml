@@ -11,3 +11,9 @@ services:
     environment:
       - TZ=Europe/Zurich
     restart: always
+    networks:
+      - nginx_reverse-proxy
+
+networks:
+  nginx_reverse-proxy:
+    external: true
