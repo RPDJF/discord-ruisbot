@@ -52,8 +52,8 @@ The project utilizes environment variables, and you can create a `.env` file at 
 - `OPENAI_ORGANIZATION_ID`: [OpenAI ID which you can get from their portal]
 - `TENOR_API_KEY`: [Tenor API Key which you can get from their portal]
 - `NASA_API_KEY`: [NASA API Key which you can get from their portal]
-- `TOPGG_WEBHOOK_AUTH`: [Top.gg webhook authentication key which you can **create** in their portal]
-- `TOPGG_WEBHOOK_PORT`: [Top.gg webhook port to listen to] (you want it to be 80 or 443)
+- `TOP_GG_WEBHOOK_AUTH`: [Top.gg webhook authentication key which you can **create** in their portal]
+- `TOP_GG_WEBHOOK_PORT`: [Top.gg webhook port to listen to] (you want it to be 80 or 443)
 
 ## Configuration Files<a id="configuration-files"></a>
 Don't forget to import `firebase-adminsdk-credential` into the `/config` folder, named as `firebase-adminsdk-credential.json`, you can get that from the Firestore portal.
