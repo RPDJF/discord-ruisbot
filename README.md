@@ -28,6 +28,12 @@ This project is under the Creative Commons Attribution 4.0 International License
     - **Clone the Repository**: `git clone https://github.com/RPDJF/discord-ruisbot`
     - **Build the Docker Image**: Use `docker build -t discord-ruisbot .` inside the project directory.
     - **Run the docker compose file (below)**: `docker-compose up -d`
+4. **Running without Docker (needs nodejs)**:
+    - **Clone the Repository**: `git clone https://github.com/RPDJF/discord-ruisbot`
+    - **Install Dependencies**: `npm install`
+    - **Be sure to set up the `.env` file as mentioned above in the root directory**
+    - **Be sure to set up the `firebase-adminsdk-credential.json` file in the `config` directory**
+    - **Run the Bot**: `npm start`
 
 ## Docker Compose File
 ### Using the Official Image:
