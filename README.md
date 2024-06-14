@@ -43,6 +43,8 @@ services:
   bot:
     container_name: discord-ruisbot
     image: rpdjf/discord-ruisbot:latest
+    ports:
+      - "8069:80"
     volumes:
       - ./.env:/usr/src/app.env
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
@@ -59,6 +61,8 @@ services:
     container_name: discord-ruisbot
     build: .
     image: rpdjf/discord-ruisbot
+    ports:
+      - "8069:80"
     volumes:
       - ./.env:/usr/src/app.env # create your own .env file using env.example
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
