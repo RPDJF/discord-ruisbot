@@ -23,11 +23,10 @@ This project is under the Creative Commons Attribution 4.0 International License
 1. **Set Environment Variables**: Fill in your API keys and configurations in the `.env` file. [Example](https://github.com/RPDJF/discord-ruisbot/blob/main/env.example)
 2. **Use Official Image**:
     - **Pull the Official Image**: `docker pull rpdjf/discord-ruisbot:latest`
-    - **Run the docker compose file (below)**: `docker-compose up -d`
+    - **Run the docker compose file (below)**: `docker compose up -d`
 3. **Build Your Own Image** (if desired):
     - **Clone the Repository**: `git clone https://github.com/RPDJF/discord-ruisbot`
-    - **Build the Docker Image**: Use `docker build -t discord-ruisbot .` inside the project directory.
-    - **Run the docker compose file (below)**: `docker-compose up -d`
+    - **Run the docker compose file (below)**: `docker compose -f docker-compose-build.yml up -d`
 4. **Running without Docker (needs nodejs)**:
     - **Clone the Repository**: `git clone https://github.com/RPDJF/discord-ruisbot`
     - **Install Dependencies**: `npm install`
@@ -37,37 +36,40 @@ This project is under the Creative Commons Attribution 4.0 International License
 
 ## Docker Compose File
 ### Using the Official Image:
+Using the `docker-compose.yml` file:
 ```yaml
-version: "3"
-services:
-  bot:
-    container_name: discord-ruisbot
-    image: rpdjf/discord-ruisbot:latest
-    ports:
-      - "8069:80"
-    volumes:
-      - ./.env:/usr/src/app.env
-      - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
-    environment:
-      - TZ=Europe/Zurich
-    restart: always
-```
-
-### Building Your Own Image:
-```yaml
-version: "3"
 services:
   nodejs:
     container_name: discord-ruisbot
-    build: .
-    image: rpdjf/discord-ruisbot
-    ports:
-      - "8069:80"
+    image: rpdjf/discord-ruisbot:latest
     volumes:
       - ./.env:/usr/src/app.env # create your own .env file using env.example
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
     environment:
       - TZ=Europe/Zurich
+    ports:
+      - "8083:80"
     restart: always
 ```
+Run the image with `docker compose up -d`.
+
+### Building Your Own Image:
+Using the `docker-compose-build.yml` file:
+```yaml
+services:
+  nodejs:
+    container_name: discord-ruisbot
+    build: .
+    volumes:
+      - ./.env:/usr/src/app.env # create your own .env file using env.example
+      - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
+    environment:
+      - TZ=Europe/Zurich
+    ports:
+      - "8083:80"
+    restart: always
+```
+Build and run the image with `docker compose -f docker-compose-build.yml up -d`.
+
+
 That's it! You're all set to enjoy the wonders of Rui's Bot in your Discord server. Happy botting! 🎉

@@ -1,7 +1,7 @@
 services:
   nodejs:
     container_name: discord-ruisbot
-    image: rpdjf/discord-ruisbot:latest
+    build: .
     volumes:
       - ./.env:/usr/src/app.env # create your own .env file using env.example
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
