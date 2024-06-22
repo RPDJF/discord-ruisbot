@@ -43,7 +43,7 @@ services:
     container_name: discord-ruisbot
     image: rpdjf/discord-ruisbot:latest
     volumes:
-      - ./.env:/usr/src/app.env # create your own .env file using env.example
+      - ./.env:/usr/src/app/.env # create your own .env file using env.example
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
     environment:
       - TZ=Europe/Zurich
@@ -61,7 +61,7 @@ services:
     container_name: discord-ruisbot
     build: .
     volumes:
-      - ./.env:/usr/src/app.env # create your own .env file using env.example
+      - ./.env:/usr/src/app/.env # create your own .env file using env.example
       - ./firebase-adminsdk-credential.json:/usr/src/app/config/firebase-adminsdk-credential.json # download it from your firebase console
     environment:
       - TZ=Europe/Zurich
